@@ -82,14 +82,14 @@ public class RangedEnemyAI : MonoBehaviour
         
         // Front Right Sensors
         sensorStartPos += transform.right * frontSideSensorPos;
-        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
+        //Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
             if (!hit.collider.CompareTag("Player"))
             {
                 avoiding = true;
                 avoidMultiplier -= 1f;
-                Debug.DrawLine(sensorStartPos, hit.point);
+                //Debug.DrawLine(sensorStartPos, hit.point);
             }
             
         }
@@ -103,18 +103,18 @@ public class RangedEnemyAI : MonoBehaviour
             }
             
         }
-        Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(frontSensorAngle, transform.up) * transform.forward, Color.blue);
+        //Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(frontSensorAngle, transform.up) * transform.forward, Color.blue);
 
         // Front Left Sensors
         sensorStartPos -= transform.right * (frontSideSensorPos * 2);
-        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
+        //Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
             if (!hit.collider.CompareTag("Player"))
             {
                 avoiding = true;
                 avoidMultiplier += 1f;
-                Debug.DrawLine(sensorStartPos, hit.point);
+                //Debug.DrawLine(sensorStartPos, hit.point);
             }
         }
         // Front Left Angle Sensors
@@ -124,11 +124,11 @@ public class RangedEnemyAI : MonoBehaviour
             {
                 avoiding = true;
                 avoidMultiplier += 0.75f;
-                Debug.DrawLine(sensorStartPos, hit.point);
+                //Debug.DrawLine(sensorStartPos, hit.point);
 
             }
         }
-        Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(-frontSensorAngle, transform.up) * transform.forward, Color.blue);
+        //Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(-frontSensorAngle, transform.up) * transform.forward, Color.blue);
 
         sensorStartPos = transform.position;
         sensorStartPos += transform.forward * frontSensorPos.z;
@@ -141,7 +141,7 @@ public class RangedEnemyAI : MonoBehaviour
                 {
                    
                     avoiding = true;
-                    Debug.DrawLine(sensorStartPos, hit.point);
+                    //Debug.DrawLine(sensorStartPos, hit.point);
                 }
                 if (hit.normal.y < 0)
                 {
@@ -155,7 +155,7 @@ public class RangedEnemyAI : MonoBehaviour
                 }
             }
         }
-        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
+        //Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
 
         if (avoiding)
         {
@@ -194,7 +194,7 @@ public class RangedEnemyAI : MonoBehaviour
 
     private void RotateShip()
     {
-        Debug.Log("Rotate() Called");
+        //Debug.Log("Rotate() Called");
         var heading = _standardPrediction - transform.position;
         var rotation = Quaternion.LookRotation(heading, Vector3.up);
         rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * Time.deltaTime));
