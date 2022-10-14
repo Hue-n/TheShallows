@@ -11,12 +11,11 @@ public class RangedEnemyAI : MonoBehaviour
     private float currentHP;
     private float maxHP;
     private float speed = 5;
-    private float rotSpeed = 1050;
+    private float rotSpeed = 500;
 
     [SerializeField] public enum State
     {
         Chase,
-        Avoid,
         Attack
     }
 
@@ -37,7 +36,7 @@ public class RangedEnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentState = State.Avoid;
+        currentState = State.Chase;
         target = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
     }
@@ -51,20 +50,8 @@ public class RangedEnemyAI : MonoBehaviour
         {
             case State.Chase:
                 {
-                    rb.velocity = speed * transform.forward;
 
-                    var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, target.transform.position));
-
-                    PredictMovement(leadTimePercentage);
-
-                    RotateShip();
-
-                    break;
-                }
-            case State.Avoid:
-                {
-                    rb.velocity = speed * transform.forward;
-
+                    
 
                     break;
                 }
@@ -80,73 +67,125 @@ public class RangedEnemyAI : MonoBehaviour
 
     private void Sensors()
     {
+        //Move the Player
+        rb.velocity = speed * transform.forward;
+
         RaycastHit hit;
         Vector3 sensorStartPos = transform.position;
         sensorStartPos += transform.forward * frontSensorPos.z;
         sensorStartPos += transform.up * frontSensorPos.y;
         float avoidMultiplier = 0;
+
+        if (transform.rotation.x != 0)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y, 0));
+        }
         avoiding = false;
         
         // Front Right Sensors
         sensorStartPos += transform.right * frontSideSensorPos;
+        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
-            avoiding = true;
-            avoidMultiplier -= 1f;
-            Debug.DrawLine(sensorStartPos, hit.point);
+            if (!hit.collider.CompareTag("Player"))
+            {
+                avoiding = true;
+                avoidMultiplier -= 1f;
+                Debug.DrawLine(sensorStartPos, hit.point);
+            }
+            
         }
-        
         // Front Right Angle Sensors
         else if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(frontSensorAngle, transform.up) * transform.forward, out hit, sensorLength))
         {
-            avoiding = true;
-            avoidMultiplier -= 0.5f;
-            Debug.DrawLine(sensorStartPos, hit.point);
+            if (!hit.collider.CompareTag("Player"))
+            {
+                avoiding = true;
+                avoidMultiplier -= 0.75f;
+            }
+            
         }
+        Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(frontSensorAngle, transform.up) * transform.forward, Color.blue);
 
         // Front Left Sensors
         sensorStartPos -= transform.right * (frontSideSensorPos * 2);
+        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
-            avoiding = true;
-            avoidMultiplier += 1f;
-            Debug.DrawLine(sensorStartPos, hit.point);
+            if (!hit.collider.CompareTag("Player"))
+            {
+                avoiding = true;
+                avoidMultiplier += 1f;
+                Debug.DrawLine(sensorStartPos, hit.point);
+            }
         }
-        
         // Front Left Angle Sensors
         else if (Physics.Raycast(sensorStartPos, Quaternion.AngleAxis(-frontSensorAngle, transform.up) * transform.forward, out hit, sensorLength))
         {
-            avoiding = true;
-            avoidMultiplier += 0.5f;
-            Debug.DrawLine(sensorStartPos, hit.point);
+            if (!hit.collider.CompareTag("Player"))
+            {
+                avoiding = true;
+                avoidMultiplier += 0.75f;
+                Debug.DrawLine(sensorStartPos, hit.point);
+                Debug.Log("FrontLeft");
+
+            }
         }
+        Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(-frontSensorAngle, transform.up) * transform.forward, Color.blue);
 
         sensorStartPos = transform.position;
         sensorStartPos += transform.forward * frontSensorPos.z;
         // Front Center Sensor
         if (avoidMultiplier == 0)
         {
-            if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
+            if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength/2))
             {
-                avoiding = true;
-                Debug.DrawLine(sensorStartPos, hit.point);
-                if (hit.normal.x < 0)
+                if (!hit.collider.CompareTag("Player"))
                 {
-                    avoidMultiplier = -1f;
+                   
+                    avoiding = true;
+                    Debug.DrawLine(sensorStartPos, hit.point);
+                }
+                if (hit.normal.y < 0)
+                {
+                    avoidMultiplier = 3f;
+
                 }
                 else
                 {
-                    avoidMultiplier = 1f;
+                    avoidMultiplier = -3f;
+
                 }
             }
         }
+        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
 
         if (avoiding)
         {
-            Debug.Log("Avoiding:" + avoidMultiplier);
-            rb.MoveRotation(Quaternion.Euler(transform.rotation.x, transform.rotation.y + (5 * avoidMultiplier), transform.rotation.z));
-        }
 
+            Debug.Log("AvoidMult: " + avoidMultiplier);
+
+           //angular velocity
+            Vector3 angleVel = new Vector3(0, 30 * avoidMultiplier, 0);
+            Quaternion deltaRotation = Quaternion.Euler(angleVel * Time.deltaTime);
+
+            rb.MoveRotation(rb.rotation * deltaRotation);
+        }
+        
+        if (avoidMultiplier == 0 && !avoiding)
+            HuntPlayer();
+
+    }
+
+    private void HuntPlayer()
+    {
+        Debug.Log("Hunt");
+
+        var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, target.transform.position));
+
+        PredictMovement(leadTimePercentage);
+
+        RotateShip();
     }
 
     private void PredictMovement(float leadTimePercentage)
@@ -159,8 +198,11 @@ public class RangedEnemyAI : MonoBehaviour
     private void RotateShip()
     {
         var heading = _standardPrediction - transform.position;
-
+        
         var rotation = Quaternion.LookRotation(heading);
+
+        //JITTERY?
+        Debug.DrawRay(transform.position, heading, Color.red);
         rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * Time.deltaTime));
     }
 }
