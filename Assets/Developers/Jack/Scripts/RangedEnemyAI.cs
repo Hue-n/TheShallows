@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
+using static Cinemachine.CinemachineOrbitalTransposer;
 
 public class RangedEnemyAI : MonoBehaviour
 {
@@ -10,8 +13,8 @@ public class RangedEnemyAI : MonoBehaviour
     private GameObject target;
     private float currentHP;
     private float maxHP;
-    private float speed = 5;
-    private float rotSpeed = 500;
+    private float speed = 3;
+    private float rotSpeed = 90;
 
     [SerializeField] public enum State
     {
@@ -75,11 +78,6 @@ public class RangedEnemyAI : MonoBehaviour
         sensorStartPos += transform.forward * frontSensorPos.z;
         sensorStartPos += transform.up * frontSensorPos.y;
         float avoidMultiplier = 0;
-
-        if (transform.rotation.x != 0)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(0, transform.rotation.y, 0));
-        }
         avoiding = false;
         
         // Front Right Sensors
@@ -127,7 +125,6 @@ public class RangedEnemyAI : MonoBehaviour
                 avoiding = true;
                 avoidMultiplier += 0.75f;
                 Debug.DrawLine(sensorStartPos, hit.point);
-                Debug.Log("FrontLeft");
 
             }
         }
@@ -138,7 +135,7 @@ public class RangedEnemyAI : MonoBehaviour
         // Front Center Sensor
         if (avoidMultiplier == 0)
         {
-            if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength/2))
+            if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
             {
                 if (!hit.collider.CompareTag("Player"))
                 {
@@ -179,7 +176,6 @@ public class RangedEnemyAI : MonoBehaviour
 
     private void HuntPlayer()
     {
-        Debug.Log("Hunt");
 
         var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, target.transform.position));
 
@@ -192,17 +188,20 @@ public class RangedEnemyAI : MonoBehaviour
     {
         var predictionTime = Mathf.Lerp(0, _maxTimePrediction, leadTimePercentage);
 
-        _standardPrediction = target.GetComponent<Rigidbody>().position + target.GetComponent<Rigidbody>().velocity * predictionTime;
+        _standardPrediction = new Vector3(target.GetComponent<Rigidbody>().position.x, 0, target.GetComponent<Rigidbody>().position.z) + new Vector3(target.GetComponent<Rigidbody>().velocity.x, 0, target.GetComponent<Rigidbody>().velocity.z) * predictionTime;
+
     }
 
     private void RotateShip()
     {
+        Debug.Log("Rotate() Called");
         var heading = _standardPrediction - transform.position;
-        
-        var rotation = Quaternion.LookRotation(heading);
-
-        //JITTERY?
-        Debug.DrawRay(transform.position, heading, Color.red);
+        var rotation = Quaternion.LookRotation(heading, Vector3.up);
         rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * Time.deltaTime));
+    }
+
+    private void OnDrawGizmos()
+    {
+
     }
 }
