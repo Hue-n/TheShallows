@@ -99,15 +99,13 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
         waveCountdown = timeBetweenWaves;
 
-        
+        // waves = waves + 1;
 
-        waves = waves + 1;
+        // Wave.count = Wave.count + 5f;
 
-        Wave.count = Wave.count + 5f;
+        // Wave.rate = Wave.rate + 2f;
 
-        Wave.rate = Wave.rate + 2f;
-
-        nextWave++;
+        // nextWave++;
 
         //player.startButton.Disable();
 
