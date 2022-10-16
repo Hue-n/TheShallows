@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6282004086960359536}
   m_Layer: 0
-  m_Name: Spawn Location
+  m_Name: Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   waves:
   - name: 
-    enemy: {fileID: 0}
+    enemy: {fileID: 5308827009332966887, guid: 7a3cdd1bc9afbe14dad618cfad84991c, type: 3}
     count: 0
     rate: 0
   spawnPoints:
@@ -99,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6282004088393877107}
   m_Layer: 0
-  m_Name: Spawn Location (2)
+  m_Name: Spawn Point (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6282004088428556917}
   m_Layer: 0
-  m_Name: Spawn Location (1)
+  m_Name: Spawn Point (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,7 +10,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     //public GameObject waveStartImg, waveEndImg, playerController;
 
-    public GameObject playerController;
+    public GameObject playerController, enemyWaveSystem;
     
     //public Script_Player_Controller player;
 
@@ -33,7 +33,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     public Transform[] spawnPoints;
 
-    public float timeBetweenWaves = 15f;
+    public float timeBetweenWaves;
 
     private float waveCountdown;
 
@@ -42,7 +42,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
     private SpawnState state = SpawnState.COUNTING;
 
     void Start()
-    { 
+    {
         if (spawnPoints.Length == 0)
         {
             Debug.LogError("NO SPAWN POINTS REFERENCED");
@@ -99,11 +99,13 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
         waveCountdown = timeBetweenWaves;
 
-        // waves = waves + 1;
+        
 
-        // count = count + 5;
+        waves = waves + 1;
 
-        // rate = rate + 2;
+        Wave.count = Wave.count + 5f;
+
+        Wave.rate = Wave.rate + 2f;
 
         nextWave++;
 
