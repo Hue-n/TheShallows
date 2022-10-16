@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Script_Enemy_Wave_Spawner : MonoBehaviour
+public class Enemy_Wave_Spawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
-    public GameObject waveStartImg, waveEndImg, playerController;
+    //public GameObject waveStartImg, waveEndImg, playerController;
+
+    public GameObject playerController;
     
     //public Script_Player_Controller player;
 
@@ -97,23 +99,31 @@ public class Script_Enemy_Wave_Spawner : MonoBehaviour
 
         waveCountdown = timeBetweenWaves;
 
+        // waves = waves + 1;
+
+        // count = count + 5;
+
+        // rate = rate + 2;
+
+        nextWave++;
+
         //player.startButton.Disable();
 
         // LeanTween.moveLocal(waveEndImg, new Vector3(300f, -360f, 0f), 2f).setEase(LeanTweenType.easeOutCubic);
         // LeanTween.moveLocal(waveEndImg, new Vector3(-1480f, -360f, 0f), 1f).setDelay(2f).setEase(LeanTweenType.easeInCubic);
         // LeanTween.alpha(waveEndImg.GetComponent<RectTransform>(), 0f, 1f).setDelay(2f).setOnComplete(OpenTheShop);
 
-        if (nextWave + 1 > waves.Length - 1)
-        {
-            nextWave = 0;
+        // if (nextWave + 1 > waves.Length - 1)
+        // {
+        //     nextWave = 0;
 
-            Debug.Log ("ALL WAVES COMPLETE! LOOPING...");
-        }
+        //     Debug.Log ("ALL WAVES COMPLETE! LOOPING...");
+        // }
 
-        else
-        {
-            nextWave++;
-        }
+        // else
+        // {
+        
+        // }
     }
 
     // void OpenTheShop()
