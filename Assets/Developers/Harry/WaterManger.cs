@@ -25,7 +25,4 @@ public class WaterManger : MonoBehaviour
         meshFilter.mesh.RecalculateNormals();
     }
 
-
-
-
 }
