@@ -9,12 +9,18 @@ public class RangedEnemyAI : MonoBehaviour
 {
     public RangedEnemy enemyStats;
     public Rigidbody rb;
+    public Transform leftCheck;
+    public Transform rightCheck;
 
     private GameObject target;
     private float currentHP;
     private float maxHP;
     private float speed = 3;
     private float rotSpeed = 90;
+    private float attackRange = 15;
+    private EnemyUIAlert alert;
+    private bool isTurning = false;
+    private bool firing = false;
 
     [SerializeField] public enum State
     {
@@ -42,24 +48,66 @@ public class RangedEnemyAI : MonoBehaviour
         currentState = State.Chase;
         target = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody>();
+        alert = GetComponentInChildren<EnemyUIAlert>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Sensors();
 
-        switch(currentState)
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+
+        if (distance < attackRange && currentState != State.Attack)
+        {
+            StartCoroutine(AttackMode());
+        }
+
+        switch (currentState)
         {
             case State.Chase:
                 {
+                    Sensors();
 
-                    
 
                     break;
                 }
             case State.Attack:
                 {
+                    if (isTurning)
+                    {
+                        float lDist = Vector3.Distance(leftCheck.position, target.transform.position);
+                        float rDist = Vector3.Distance(rightCheck.position, target.transform.position);
+
+                        if (lDist < rDist)
+                        {
+                            var lookPos = target.transform.position - transform.position;
+                            var rotation = Quaternion.LookRotation(lookPos, Vector3.up);
+
+                            Quaternion newRot = Quaternion.Euler(rotation.eulerAngles.x, rotation.eulerAngles.y - 90, rotation.eulerAngles.z);
+
+                            rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, newRot, rotSpeed * Time.deltaTime));
+
+                            if (lookPos.y - transform.rotation.eulerAngles.y < 10 && !firing)
+                            {
+                                StartCoroutine(Fire());
+                            }
+                        }
+                        else
+                        {
+                            var lookPos = target.transform.position - transform.position;
+
+                            var rotation = Quaternion.LookRotation(lookPos, Vector3.up);
+
+                            Quaternion newRot = Quaternion.Euler(rotation.eulerAngles.x, rotation.eulerAngles.y + 90, rotation.eulerAngles.z);
+
+                            rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, newRot, rotSpeed * Time.deltaTime));
+
+                            if (lookPos.y - transform.rotation.eulerAngles.y < 10 && !firing)
+                            {
+                                StartCoroutine(Fire());
+                            }
+                        }
+                    }
 
                     break;
                 }
@@ -198,6 +246,45 @@ public class RangedEnemyAI : MonoBehaviour
         var heading = _standardPrediction - transform.position;
         var rotation = Quaternion.LookRotation(heading, Vector3.up);
         rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * Time.deltaTime));
+    }
+
+    private IEnumerator AttackMode()
+    {
+        yield return new WaitForSeconds(3f);
+
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+
+        if (distance < attackRange)
+        {
+            currentState = State.Attack;
+            isTurning = true;
+        }
+        yield break;
+    }
+
+    private IEnumerator Fire()
+    {
+        firing = true;
+        alert.Alerter(3);
+        yield return new WaitForSeconds(3f);
+               
+        if (Random.Range(0, 10) <= 2)
+        {
+            Debug.Log("Miss");
+            yield break;
+        }
+        else
+        {
+            //Put Screenshake Here
+            //Damage the Player
+
+            yield return new WaitForSeconds(1f);
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+            currentState = State.Chase;
+            firing = false;
+        }
+
+        yield break;
     }
 
     private void OnDrawGizmos()
