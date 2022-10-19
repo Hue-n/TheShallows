@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New RangedEnemy", menuName = "EnemyStats")]
-public class RangedEnemy : ScriptableObject
+public class ShipStats : ScriptableObject
 {
     public string shipName;
-    public Mesh mesh;
-    public MeshCollider collider;
+    public int points;
     public int maxHP;
-    public int maxSpeed;
-    public int turnSpeed;
-    public int damage;
+    public float spd;
+    public float rotSpd;
+    public float damage;
+    public float attackRange;
 
 }
