@@ -1,0 +1,117 @@
+{
+    "name": "DefaultControls",
+    "maps": [
+        {
+            "name": "Controller",
+            "id": "34a250f8-ab53-4ff9-8e51-b5a38cedb282",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "173d4b96-6e01-44b6-bbb1-709c8c7863be",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "152c7611-b37e-443e-84c0-dbb5fdefae25",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TimeStop",
+                    "type": "Button",
+                    "id": "34207d1b-63f1-48fa-9e36-f6af0b17c138",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Log",
+                    "type": "Button",
+                    "id": "996ba421-3907-4d8e-8137-28be087c964c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "79f2ddaf-b582-482c-984c-c72139d8900b",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d925bffe-89b3-4c68-9ad4-464907178999",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "161813e6-58bb-4733-8ae0-89dfe53229f5",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0fa10e8-7a77-47e5-8786-6712f69ade3a",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "TimeStop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b11e145-92f7-48c5-8997-622217253859",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Log",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "DefaultCon",
+            "bindingGroup": "DefaultCon",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
