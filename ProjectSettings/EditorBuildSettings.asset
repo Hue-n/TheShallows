@@ -9,6 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 6a739b02081e39c48bf58d540681d268
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Developers/Harry/Harry's Water.unity
+    guid: 8e17d8d4d92c3244fbc67b3429e66dc9
+  - enabled: 1
+    path: Assets/Developers/Jack/The Jack Lab.unity
+    guid: 236a4cbcd334dfe4ba6ebeb4db9b9ba0
+  - enabled: 1
+    path: Assets/Developers/Logan/Logan_Test.unity
+    guid: aa15e84b65d15ad4e8c393795228d789
+  - enabled: 1
+    path: Assets/Developers/Hyune/Hyune_Test.unity
+    guid: 6f6b2a65d1b465149a48caa1210fad63
+  - enabled: 1
+    path: Assets/Developers/Nik/Nik_Test.unity
+    guid: e6cbe28d1da2f9949b8cbdcb01a525d7
+  - enabled: 1
+    path: Assets/Developers/Sebastian/Sebastian_Test.unity
+    guid: 1bdcea10d702e174c8a24e74d12e05ee
+  - enabled: 1
+    path: Assets/Developers/Jared/Jared_Test.unity
+    guid: 522b3c5f84e0ce449ae236a48673bbe7
   m_configObjects: {}

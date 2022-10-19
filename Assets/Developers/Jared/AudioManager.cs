@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
 public class Sound
@@ -33,10 +35,13 @@ public class Sound
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    
+
+    public AudioSource testSource;
 
     [SerializeField]
     Sound[] sounds;
+
+    public List<AudioClip> soundTestList = new List<AudioClip>();
 
     void Awake ()
     {
@@ -49,8 +54,10 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    void start ()
+    void Start ()
     {
+        testSource = GetComponent<AudioSource>();
+
         for (int i = 0; i < sounds.Length; i++)
         {
             GameObject _go = new GameObject("Sound_" + i + "_" + sounds[i].name);
@@ -71,6 +78,13 @@ public class AudioManager : MonoBehaviour
         }
         // no sound with _name
         Debug.LogWarning ("AudioManager: Sound not found in list, " + _name);
+    }
+
+    public void PlaySoundTest(int index)
+    {
+        testSource.Stop();
+        testSource.clip = soundTestList[index];
+        testSource.Play();
     }
 
     //When we implement different sound effects, follow the rest of the turtorial to incorperate this system into other scripts. https://youtu.be/HhFKtiRd0qI?t=1276
