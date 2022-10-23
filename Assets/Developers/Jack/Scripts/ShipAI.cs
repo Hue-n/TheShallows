@@ -34,6 +34,8 @@ public class ShipAI : Enemy
         speed = enemyStats.spd;
         rotSpeed = enemyStats.rotSpd;
         attackRange = enemyStats.attackRange;
+        frontSensorPos = enemyStats.sensorPos;
+        sensorLength = enemyStats.sensorLength;
     }
 
     // Update is called once per frame

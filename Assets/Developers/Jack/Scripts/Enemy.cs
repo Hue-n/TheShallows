@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public Vector3 _standardPrediction;
 
     [Header("SENSORS")]
-    [SerializeField] public float sensorLength = 6f;
+    [SerializeField] public float sensorLength = 10f;
     [SerializeField] public Vector3 frontSensorPos = new Vector3(0, 0.2f, 0.5f);
     [SerializeField] public float frontSideSensorPos = 2f;
     [SerializeField] public float frontSensorAngle = 45f;
@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
 
         // Front Right Sensors
         sensorStartPos += transform.right * frontSideSensorPos;
-        //Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
+        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
             if (!hit.collider.CompareTag("Player"))
@@ -66,11 +66,11 @@ public class Enemy : MonoBehaviour
             }
 
         }
-        //Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(frontSensorAngle, transform.up) * transform.forward, Color.blue);
+        Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(frontSensorAngle, transform.up) * transform.forward, Color.blue);
 
         // Front Left Sensors
         sensorStartPos -= transform.right * (frontSideSensorPos * 2);
-        //Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
+        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
         if (Physics.Raycast(sensorStartPos, transform.forward, out hit, sensorLength))
         {
             if (!hit.collider.CompareTag("Player"))
@@ -91,7 +91,7 @@ public class Enemy : MonoBehaviour
 
             }
         }
-        //Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(-frontSensorAngle, transform.up) * transform.forward, Color.blue);
+        Debug.DrawRay(sensorStartPos, Quaternion.AngleAxis(-frontSensorAngle, transform.up) * transform.forward, Color.blue);
 
         sensorStartPos = transform.position;
         sensorStartPos += transform.forward * frontSensorPos.z;
@@ -118,7 +118,7 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        //Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
+        Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
 
         if (avoiding)
         {

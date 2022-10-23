@@ -27,6 +27,8 @@ public class CreatureAI : Enemy
         speed = enemyStats.spd;
         rotSpeed = enemyStats.rotSpd;
         attackRange = enemyStats.attackRange;
+        frontSensorPos = enemyStats.sensorPos;
+        sensorLength = enemyStats.sensorLength;
     }
 
 
