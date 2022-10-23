@@ -88,33 +88,33 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _Deep: 1
-    - _DepthFade: 13.3
+    - _DepthFade: 5.84
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
     - _FoamColor: 5
     - _FoamDepth: 1
-    - _FoamWidth: 5
+    - _FoamWidth: 2
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Height: 0.07
+    - _Height: 0.02
     - _Metallic: 0
-    - _NoiseScale: 1.49
+    - _NoiseScale: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 1
     - _QueueOffset: 8
     - _ReceiveShadows: 1
     - _Shallow: 1
-    - _Smoothnes: 1
+    - _Smoothnes: -0.1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _WaveScrollSpeed: 0.14
+    - _WaveScrollSpeed: 0.3
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
@@ -122,10 +122,10 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Deep: {r: 0, g: 0.083200455, b: 1, a: 0}
+    - _Deep: {r: 0.019802418, g: 0.40921694, b: 0.8396226, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 1, g: 1, b: 1, a: 0}
-    - _Shallow: {r: 0.47058824, g: 0.7764706, b: 0.8392157, a: 0}
+    - _Shallow: {r: 0.40970984, g: 0.8447278, b: 0.9339623, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &2674910292366667432

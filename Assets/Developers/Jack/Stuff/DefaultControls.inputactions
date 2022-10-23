@@ -40,6 +40,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SceneForward",
+                    "type": "Button",
+                    "id": "6c5d52d3-3627-4f89-b666-a7e4c514ef0b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SceneBackward",
+                    "type": "Button",
+                    "id": "debb1270-311e-4bf4-ba7a-4011dd49cf47",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -95,6 +113,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Log",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5391e2f0-a152-4e93-989b-af1343ccd628",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "SceneForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2753a3de-a8bb-49ec-95d1-46eb02939082",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "SceneBackward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.sidefx.vat": {
-      "version": "file:C:/Users/Murra/Downloads/VAT3/VAT3",
+      "version": "file:C:/Users/logan/Downloads/VAT3/VAT3",
       "depth": 0,
       "source": "local",
       "dependencies": {

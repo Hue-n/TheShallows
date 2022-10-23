@@ -62,6 +62,24 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SceneForward"",
+                    ""type"": ""Button"",
+                    ""id"": ""6c5d52d3-3627-4f89-b666-a7e4c514ef0b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SceneBackward"",
+                    ""type"": ""Button"",
+                    ""id"": ""debb1270-311e-4bf4-ba7a-4011dd49cf47"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -119,6 +137,28 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""action"": ""Log"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5391e2f0-a152-4e93-989b-af1343ccd628"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultCon"",
+                    ""action"": ""SceneForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2753a3de-a8bb-49ec-95d1-46eb02939082"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultCon"",
+                    ""action"": ""SceneBackward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +183,8 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         m_Controller_Attack = m_Controller.FindAction("Attack", throwIfNotFound: true);
         m_Controller_TimeStop = m_Controller.FindAction("TimeStop", throwIfNotFound: true);
         m_Controller_Log = m_Controller.FindAction("Log", throwIfNotFound: true);
+        m_Controller_SceneForward = m_Controller.FindAction("SceneForward", throwIfNotFound: true);
+        m_Controller_SceneBackward = m_Controller.FindAction("SceneBackward", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,6 +248,8 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controller_Attack;
     private readonly InputAction m_Controller_TimeStop;
     private readonly InputAction m_Controller_Log;
+    private readonly InputAction m_Controller_SceneForward;
+    private readonly InputAction m_Controller_SceneBackward;
     public struct ControllerActions
     {
         private @DefaultControls m_Wrapper;
@@ -214,6 +258,8 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Controller_Attack;
         public InputAction @TimeStop => m_Wrapper.m_Controller_TimeStop;
         public InputAction @Log => m_Wrapper.m_Controller_Log;
+        public InputAction @SceneForward => m_Wrapper.m_Controller_SceneForward;
+        public InputAction @SceneBackward => m_Wrapper.m_Controller_SceneBackward;
         public InputActionMap Get() { return m_Wrapper.m_Controller; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -235,6 +281,12 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @Log.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnLog;
                 @Log.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnLog;
                 @Log.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnLog;
+                @SceneForward.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSceneForward;
+                @SceneForward.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSceneForward;
+                @SceneForward.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSceneForward;
+                @SceneBackward.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSceneBackward;
+                @SceneBackward.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSceneBackward;
+                @SceneBackward.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSceneBackward;
             }
             m_Wrapper.m_ControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -251,6 +303,12 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @Log.started += instance.OnLog;
                 @Log.performed += instance.OnLog;
                 @Log.canceled += instance.OnLog;
+                @SceneForward.started += instance.OnSceneForward;
+                @SceneForward.performed += instance.OnSceneForward;
+                @SceneForward.canceled += instance.OnSceneForward;
+                @SceneBackward.started += instance.OnSceneBackward;
+                @SceneBackward.performed += instance.OnSceneBackward;
+                @SceneBackward.canceled += instance.OnSceneBackward;
             }
         }
     }
@@ -270,5 +328,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnTimeStop(InputAction.CallbackContext context);
         void OnLog(InputAction.CallbackContext context);
+        void OnSceneForward(InputAction.CallbackContext context);
+        void OnSceneBackward(InputAction.CallbackContext context);
     }
 }
