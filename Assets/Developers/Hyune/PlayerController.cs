@@ -7,6 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     public DefaultControls controls;
 
+    public float maxHP = 100;
+    public float currentHP;
+    private bool regen = false;
+    [SerializeField] private float regenCooldown = 5;
+    [SerializeField] private float regenRate = 2f;
+
     public float maxSpeed;
     public float maxTurn;
 
@@ -53,6 +59,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         moveDir = transform.forward;
+        currentHP = maxHP;
     }
 
     private void Update()
@@ -66,6 +73,14 @@ public class PlayerController : MonoBehaviour
         currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
 
         moveDir = transform.forward * currentSpeed;
+
+        if (currentHP < maxHP && regen)
+        {
+            if (currentHP + regenRate < maxHP)
+                currentHP += regenRate * Time.deltaTime;
+            else
+                currentHP = maxHP;
+        }
     }
 
     public void DebugLog()
@@ -79,5 +94,26 @@ public class PlayerController : MonoBehaviour
         rb.velocity = moveDir;
         rb.angularVelocity = new Vector3(0, currentTurn, 0);
         transform.rotation = Quaternion.LookRotation(transform.forward, Vector3.up);
+    }
+
+    public void Damage(int amount)
+    {
+        currentHP -= amount;
+
+        if (currentHP <= 0)
+            Debug.Log("G A M E  O V E R");
+
+        StartCoroutine(RegenCooldown());
+    }
+
+    private IEnumerator RegenCooldown()
+    {
+        regen = false;
+
+        yield return new WaitForSeconds(regenCooldown);
+
+        regen = true;
+
+        yield break;
     }
 }

@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     public bool avoiding = false;
 
     public GameObject target;
-    public float currentHP;
+    public int currentHP;
     public int maxHP;
     public float speed = 3;
     public float rotSpeed = 90;
@@ -135,6 +135,16 @@ public class Enemy : MonoBehaviour
         if (avoidMultiplier == 0 && !avoiding)
             HuntPlayer();
 
+    }
+
+    public void Damage(int amount)
+    {
+        currentHP -= amount;
+
+        if (currentHP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void HuntPlayer()
