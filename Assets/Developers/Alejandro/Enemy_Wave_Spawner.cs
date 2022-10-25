@@ -105,7 +105,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
         // Wave.rate = Wave.rate + 2f;
 
-        // nextWave++;
+        
 
         //player.startButton.Disable();
 
@@ -113,17 +113,19 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         // LeanTween.moveLocal(waveEndImg, new Vector3(-1480f, -360f, 0f), 1f).setDelay(2f).setEase(LeanTweenType.easeInCubic);
         // LeanTween.alpha(waveEndImg.GetComponent<RectTransform>(), 0f, 1f).setDelay(2f).setOnComplete(OpenTheShop);
 
-        // if (nextWave + 1 > waves.Length - 1)
-        // {
-        //     nextWave = 0;
+        if (nextWave + 1 > waves.Length - 1)
+        {
+            nextWave = 0;
+            
+            // nextWave = 10;
 
-        //     Debug.Log ("ALL WAVES COMPLETE! LOOPING...");
-        // }
+            // wave.count = (1.2 * wave.count) + 10;
+        }
 
-        // else
-        // {
-        
-        // }
+        else
+        {
+            nextWave++;
+        }
     }
 
     // void OpenTheShop()
@@ -185,9 +187,8 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     public void StartNextWave()
     {
-        //player.startButton.Enable();
-        //shopBackground.SetActive(false);
         waveCountdown = 3;
+        
         return;
     }
 }
