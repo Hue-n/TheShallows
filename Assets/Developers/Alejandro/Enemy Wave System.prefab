@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6282004088170767121}
-  - component: {fileID: 6282004088170767122}
+  - component: {fileID: 2969710560473896166}
   m_Layer: 0
   m_Name: Enemy Wave System
   m_TagString: Untagged
@@ -66,7 +66,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6282004088170767122
+--- !u!114 &2969710560473896166
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,20 +75,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6282004088170767123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae34574ccac9f4eb68d76c699b6c9a1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 26ffa25ac55af4d69811501ccc8fbf92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  waves:
-  - name: 
-    enemy: {fileID: 5308827009332966887, guid: 7a3cdd1bc9afbe14dad618cfad84991c, type: 3}
-    count: 0
-    rate: 0
-  spawnPoints:
-  - {fileID: 6282004086960359536}
-  - {fileID: 6282004088428556917}
-  - {fileID: 6282004088393877107}
-  timeBetweenWaves: 5
 --- !u!1 &6282004088393877116
 GameObject:
   m_ObjectHideFlags: 0

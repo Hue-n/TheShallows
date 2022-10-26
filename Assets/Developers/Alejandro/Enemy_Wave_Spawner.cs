@@ -98,15 +98,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         state = SpawnState.COUNTING;
 
         waveCountdown = timeBetweenWaves;
-
-        // waves = waves + 1;
-
-        // Wave.count = Wave.count + 5f;
-
-        // Wave.rate = Wave.rate + 2f;
-
         
-
         //player.startButton.Disable();
 
         // LeanTween.moveLocal(waveEndImg, new Vector3(300f, -360f, 0f), 2f).setEase(LeanTweenType.easeOutCubic);
@@ -116,10 +108,6 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         if (nextWave + 1 > waves.Length - 1)
         {
             nextWave = 0;
-            
-            // nextWave = 10;
-
-            // wave.count = (1.2 * wave.count) + 10;
         }
 
         else
@@ -167,6 +155,10 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         for (int i = 0; i < _wave.count; i++)
         {
             SpawnEnemy(_wave.enemy);
+
+            // add infinite modification here
+
+            // _wave.count = (_wave.count * 1.2) + 10;
 
             yield return new WaitForSeconds(1f/_wave.rate);
         }
