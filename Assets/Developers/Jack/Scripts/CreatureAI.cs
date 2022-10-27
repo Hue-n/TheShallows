@@ -54,6 +54,14 @@ public class CreatureAI : Enemy
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().Damage(10);
+        }
+    }
+
     private IEnumerator RammingSpeed()
     {
         Attacking = true;
@@ -65,7 +73,19 @@ public class CreatureAI : Enemy
         rb.AddForce(transform.forward * chargeForce, ForceMode.Impulse);
         Rotate = false;
 
+        GetComponent<BoxCollider>().enabled = true;
+        StartCoroutine(DisableBox());
+
         StartCoroutine(AttackCooldown());
+        yield break;
+    }
+
+    private IEnumerator DisableBox()
+    {
+        yield return new WaitForSeconds(2);
+
+        GetComponent<BoxCollider>().enabled = false;
+
         yield break;
     }
 
