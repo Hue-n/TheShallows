@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.sidefx.vat": {
-      "version": "file:/Users/alejandromorales/Desktop/DIG4720/VAT3",
+      "version": "file:../CustomPackages/VAT3",
       "depth": 0,
       "source": "local",
       "dependencies": {
