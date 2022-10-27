@@ -122,7 +122,7 @@ public class ShipAI : Enemy
         {
             //Put Screenshake Here
             //Damage the Player
-
+            target.GetComponent<PlayerController>().Damage(5);
             yield return new WaitForSeconds(1f);
             
         }

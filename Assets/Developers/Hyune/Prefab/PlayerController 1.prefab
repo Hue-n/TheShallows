@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1272194939669641050}
   - component: {fileID: 1272194939669641048}
   - component: {fileID: 1272194939669641051}
+  - component: {fileID: 2146721430}
   m_Layer: 0
   m_Name: PlayerController 1
   m_TagString: Player
@@ -72,6 +73,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &2146721430
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272194939669641053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5.605202, z: 16.532692}
+  m_Center: {x: 0, y: 2.302601, z: 0.35544443}
 --- !u!1001 &4721225468357561589
 PrefabInstance:
   m_ObjectHideFlags: 0

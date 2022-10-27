@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public void DebugLog()
     {
-        Debug.Log(input);
+        //Debug.Log(input);
     }
 
     // Update is called once per frame
@@ -102,6 +102,8 @@ public class PlayerController : MonoBehaviour
 
         if (currentHP <= 0)
             Debug.Log("G A M E  O V E R");
+
+        Debug.Log(currentHP);
 
         StartCoroutine(RegenCooldown());
     }
