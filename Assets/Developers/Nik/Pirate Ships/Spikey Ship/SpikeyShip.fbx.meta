@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5e15a2f13179f9f498390d3baf937f4e
+guid: 20050e4a616024242887ce45b33c3938
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Pirate_Ship_Mat
-    second: {fileID: 2100000, guid: 3bc6bcf4351bca844b33c31e0f9a174f, type: 2}
+    second: {fileID: 2100000, guid: f829fb4ca7623f245854dd0ab890a84c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Pirate_Ship_Trim_Mat
-    second: {fileID: 2100000, guid: e218a9dd1830196449c2580de1812ca9, type: 2}
+    second: {fileID: 2100000, guid: 8a5427a8cd86db242b929962933c991e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

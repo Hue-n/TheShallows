@@ -3,7 +3,17 @@ guid: 0888600c9df3704488413226af4a5324
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pirate_Ship_Mat
+    second: {fileID: 2100000, guid: a9dae1c414d068441852dd7d11c7ca5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pirate_Ship_Trim_Mat
+    second: {fileID: 2100000, guid: f904979cc692a6a4d9d4bd1822b760c1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
