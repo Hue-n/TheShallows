@@ -42,16 +42,12 @@ public class PlayerController : MonoBehaviour
     {
         controls = new DefaultControls();
 
-        controls.Controller.Movement.performed += ctx => DebugLog();
-        controls.Controller.Movement.performed += ctx => input = new Vector3(ctx.ReadValue<Vector2>().x, 0,
-            ctx.ReadValue<Vector2>().y);
+        controls.Controller.Movement.performed += ctx => OnMovement(ctx.ReadValue<Vector2>());
     }
 
     private void OnDestroy()
     {
-        controls.Controller.Movement.performed -= ctx => DebugLog();
-        controls.Controller.Movement.performed -= ctx => input = new Vector3(ctx.ReadValue<Vector2>().x, 0,
-            ctx.ReadValue<Vector2>().y);
+        controls.Controller.Movement.performed -= ctx => OnMovement(ctx.ReadValue<Vector2>());
     }
 
     // Start is called before the first frame update
@@ -64,13 +60,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //input = new Vector3(gamepad.leftStick.ReadValue().x, 0, gamepad.leftStick.ReadValue().y);
 
-        currentTurn += input.x * turnScalar;
-        currentTurn = Mathf.Clamp(currentTurn, -maxTurn, maxTurn);
-
-        currentSpeed += input.z * speedScalar;
-        currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
 
         moveDir = transform.forward * currentSpeed;
 
@@ -80,6 +70,22 @@ public class PlayerController : MonoBehaviour
                 currentHP += regenRate * Time.deltaTime;
             else
                 currentHP = maxHP;
+        }
+    }
+
+    public void OnMovement(Vector3 input)
+    {
+        // Only calculate boat movement if the player's move state is idle.
+
+        if (GameManager.Instance.playerInstance.GetComponent<ShootingMechanic>().GetCurrentState() == ShootStates.idle)
+        {
+            Vector3 inputVal = new Vector3(input.x, 0, input.y);
+
+            currentTurn += inputVal.x * turnScalar;
+            currentTurn = Mathf.Clamp(currentTurn, -maxTurn, maxTurn);
+
+            currentSpeed += inputVal.z * speedScalar;
+            currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
         }
     }
 

@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Targeting",
+                    "type": "Button",
+                    "id": "2a1fffbb-76b8-4564-979f-150c31465144",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Choose Target",
+                    "type": "Value",
+                    "id": "f7f00df9-6587-43cd-b5a8-2241622d1086",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -135,6 +153,28 @@
                     "processors": "",
                     "groups": "DefaultCon",
                     "action": "SceneBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "293d755c-58c0-4b07-8c77-cc07e3073612",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "Targeting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "efa14a0d-8cfd-4139-9590-8ceeae83898f",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "Choose Target",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
