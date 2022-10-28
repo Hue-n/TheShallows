@@ -1,91 +1,145 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]
-public class Sound
-{
-    public string name;
-    public AudioClip clip;
-    
-    [Range(0f, 1f)]
-    public float volume = 0.7f;
-    
-    [Range(0.5f, 1.5f)]
-    public float pitch = 1f;
 
-    [Range(0f, 0.5f)]
-    public float randomVolume = 0.1f;
-    
-    [Range(0f, 0.5f)]
-    public float randomPitch = 0.1f;
-    private AudioSource source;
-    public void SetSource (AudioSource _source)
-    {
-        source = _source;
-        source.clip = clip;
-    }
-    public void Play ()
-    {
-        source.volume = volume * (1 + Random.Range(-randomVolume / 2f, randomVolume / 2f));
-        source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
-        source.Play();
-    }
-    
+public enum AudioManagerChannels
+{ 
+    MusicChannel = 0,
+    SoundEffectChannel,
+    VoiceChannel
 }
+
+
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager Instance;
 
-    public AudioSource testSource;
+    public static float musicChannelVol = 1f;
+    public static float soundeffectChannelVol = 1f;
+    public static float voiceChannelVol = 1f;
 
-    [SerializeField]
-    Sound[] sounds;
+    public AudioSource musicChannel;
+    public AudioSource soundeffectChannel;
+    public AudioSource voiceChannel;
 
-    public List<AudioClip> soundTestList = new List<AudioClip>();
+    public AudioClip testSound;
 
     void Awake ()
     {
-        if (instance != null)
+        if (Instance == null)
         {
-            Debug.LogError("More than one AudioManager in the scene.");
-        }else
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
         {
-            instance = this;
+            Destroy(gameObject);
         }
     }
 
     void Start ()
     {
-        testSource = GetComponent<AudioSource>();
+        musicChannel = GetComponents<AudioSource>()[0];
+        soundeffectChannel = GetComponents<AudioSource>()[1];
+        voiceChannel = GetComponents<AudioSource>()[2];
+    }
 
-        for (int i = 0; i < sounds.Length; i++)
+    public static void SetChannelVolume(int target, float value)
+    {
+        switch (target)
         {
-            GameObject _go = new GameObject("Sound_" + i + "_" + sounds[i].name);
-            _go.transform.SetParent (this.transform);
-            sounds[i].SetSource (_go.AddComponent<AudioSource>());
+            case 0:
+                musicChannelVol = value;
+                Instance.musicChannel.volume = musicChannelVol;
+                break;
+            case 1:
+                soundeffectChannelVol = value;
+                Instance.soundeffectChannel.volume = soundeffectChannelVol;
+                break;
+            case 2:
+                voiceChannelVol = value;
+                Instance.voiceChannel.volume = voiceChannelVol;
+                break;
+            default:
+                break;
         }
     }
 
-    public void PlaySound (string _name)
+    public void SetMusicLoop()
     {
-        for (int i = 0; i < sounds.Length; i++)
+        musicChannel.loop = !musicChannel.loop;
+    }
+
+    public void PlaySound(AudioManagerChannels target, AudioClip clip)
+    {
+        switch (target)
         {
-            if (sounds[i].name == _name)
-            {
-                sounds[i].Play();
-                return;
-            }
+            case AudioManagerChannels.MusicChannel:
+                musicChannel.Stop();
+                musicChannel.clip = clip;
+                musicChannel.Play();
+                break;
+            case AudioManagerChannels.SoundEffectChannel:
+                soundeffectChannel.Stop();
+                soundeffectChannel.clip = clip;
+                soundeffectChannel.Play();
+                break;
+            case AudioManagerChannels.VoiceChannel:
+                voiceChannel.Stop();
+                voiceChannel.clip = clip;
+                voiceChannel.Play();
+                break;
         }
-        // no sound with _name
-        Debug.LogWarning ("AudioManager: Sound not found in list, " + _name);
     }
 
-    public void PlaySoundTest(int index)
+    public void PlaySound(AudioManagerChannels target, AudioClip clip, float pitch)
     {
-        testSource.Stop();
-        testSource.clip = soundTestList[index];
-        testSource.Play();
+        switch (target)
+        {
+            case AudioManagerChannels.MusicChannel:
+                musicChannel.Stop();
+                musicChannel.clip = clip;
+                musicChannel.pitch = pitch;
+                musicChannel.Play();
+                break;
+            case AudioManagerChannels.SoundEffectChannel:
+                soundeffectChannel.Stop();
+                soundeffectChannel.clip = clip;
+                soundeffectChannel.pitch = pitch;
+                soundeffectChannel.Play();
+                break;
+            case AudioManagerChannels.VoiceChannel:
+                voiceChannel.Stop();
+                voiceChannel.clip = clip;
+                voiceChannel.pitch = pitch;
+                voiceChannel.Play();
+                break;
+        }
     }
 
-    //When we implement different sound effects, follow the rest of the turtorial to incorperate this system into other scripts. https://youtu.be/HhFKtiRd0qI?t=1276
+    public void StopSound(AudioManagerChannels target)
+    {
+        switch (target)
+        {
+            case AudioManagerChannels.MusicChannel:
+                musicChannel.Stop();
+                break;
+            case AudioManagerChannels.SoundEffectChannel:
+                soundeffectChannel.Stop();
+                break;
+            case AudioManagerChannels.VoiceChannel:
+                voiceChannel.Stop();
+                break;
+        }
+    }
+
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 70, 50, 30), "Click"))
+            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, testSound, 2f);
+
+        if (GUI.Button(new Rect(100, 70, 50, 30), "Click"))
+            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, testSound);
+    }
+
 }

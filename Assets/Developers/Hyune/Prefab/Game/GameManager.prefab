@@ -47,3 +47,6 @@ MonoBehaviour:
   playerInstance: {fileID: 0}
   mainCameraInstance: {fileID: 0}
   focalPointInstance: {fileID: 0}
+  startingMusicVol: 0.5
+  startingSFXVol: 0.5
+  startingVoiceVol: 0.5
