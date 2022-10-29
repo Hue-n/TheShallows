@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RBD_Simulation_mat 1
+  m_Name: ShipDeath_Trim
   m_Shader: {fileID: -6465566751694194690, guid: 085ef3ec3a5a70d4790c0957d30c9f63, type: 3}
   m_ValidKeywords:
   - _B_LOAD_COL_TEX
@@ -42,7 +42,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Main:
-        m_Texture: {fileID: 2800000, guid: d12ff4787705d394ab52c5177ee6bead, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5f908f0d89d31aa47ba78f1a24b0f141, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -66,11 +66,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _colTexture:
-        m_Texture: {fileID: 2800000, guid: 5d83fd50e1c8e5f43b8a2309868d85ea, type: 3}
+        m_Texture: {fileID: 2800000, guid: 092e1df34f18fa5469fdc2378f739265, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _posTexture:
-        m_Texture: {fileID: 2800000, guid: ee13fbd36397f9146ad9fd0dad1578b1, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3da2c42b3c023b449b072e6a1ef8bb93, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _posTexture2:
@@ -78,7 +78,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _rotTexture:
-        m_Texture: {fileID: 2800000, guid: 0f75d1207e530ec489690f2ed1288d97, type: 3}
+        m_Texture: {fileID: 2800000, guid: ef68ddd834a1abf4dbe7cced03e7db0c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _spareColTexture:
@@ -119,15 +119,18 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _InEditor: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Preview: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Step: 1
     - _UVSec: 0
     - _ZWrite: 1
     - _boundMaxX: 9.1
@@ -138,7 +141,7 @@ Material:
     - _boundMinZ: -12
     - _displayFrame: 1
     - _frameCount: 100
-    - _gameTimeAtFirstFrame: 0
+    - _gameTimeAtFirstFrame: 1
     - _globalPscaleMul: 1
     - _houdiniFPS: 60
     - _playbackSpeed: 1

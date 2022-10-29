@@ -18,6 +18,8 @@ public class ShootingMechanic : MonoBehaviour
     public float correctTime = 0.5f;
     public float errorTime = 0.15f;
 
+    public float bulletTime = 0.5f;
+
     public FocalPoint focalPoint;
 
     public List<EnemyTracker> enemyList = new List<EnemyTracker>();
@@ -33,6 +35,9 @@ public class ShootingMechanic : MonoBehaviour
     private bool inputCooldown = false;
 
     public Coroutine shootingMinigame = null;
+
+    public List<Transform> cannonPoints = new List<Transform>();
+    public GameObject smoke;
 
     private void Awake()
     {
@@ -318,7 +323,13 @@ public class ShootingMechanic : MonoBehaviour
                 // Case: Player Wins!
                 focalPoint.SetFocalPoint(gameObject);
                 SetCurrentState(ShootStates.idle);
-                enemyList[Mathf.Abs(currentTarget) % enemyList.Count].Die();
+
+                Vector3 targetCannon = CalculateCannonPos();
+
+                // Death & VFX Logic
+                enemyList[Mathf.Abs(currentTarget) % enemyList.Count].Die(targetCannon);
+                Instantiate(smoke, targetCannon, Quaternion.identity);
+
             }
             else
             {
@@ -326,8 +337,33 @@ public class ShootingMechanic : MonoBehaviour
                 focalPoint.SetFocalPoint(gameObject);
                 SetCurrentState(ShootStates.idle);
                 Debug.Log("YOU MISSED!");
+
+                Vector3 targetCannon = CalculateCannonPos();
+
+                // VFX Logic
+                enemyList[Mathf.Abs(currentTarget) % enemyList.Count].Miss(targetCannon);
+                Instantiate(smoke, targetCannon, Quaternion.identity);
             }
         }
     }
 
+    public Vector3 CalculateCannonPos()
+    {
+        // Do a distance check from each cannon point to the target and the closest one is the one you shoot from.
+        int leastAccessor = 0;
+        float least = 100;
+
+        for (int i = 0; i < 4; i++)
+        {
+            float compareDistance = (enemyList[Mathf.Abs(currentTarget) % enemyList.Count].transform.position - cannonPoints[i].transform.position).magnitude;
+
+            if (compareDistance < least)
+            {
+                least = compareDistance;
+                leastAccessor = i;
+            }
+        }
+
+        return cannonPoints[leastAccessor].transform.position;
+    }
 }

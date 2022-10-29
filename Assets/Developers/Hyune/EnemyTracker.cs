@@ -12,9 +12,15 @@ public class EnemyTracker : MonoBehaviour
 
     public bool alive = true;
 
+    public GameObject bullet;
+    public GameObject deathAnim;
+
+    public float bulletTime = 1f;
+
     private void Start()
     {
         player = GameManager.Instance.playerInstance.GetComponent<ShootingMechanic>();
+        bulletTime = player.bulletTime;
     }
 
     // Update is called once per frame
@@ -40,21 +46,64 @@ public class EnemyTracker : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void Die(Vector3 bulletSpawn)
     {
         // if told to die, die.
         player.RemoveFromList(this);
         isTargetable = false;
         alive = false;
 
-        StartCoroutine(Death());
+        StartCoroutine(Death(bulletSpawn));
     }
 
     // BLOW UP, BOOM
-    private IEnumerator Death()
+    private IEnumerator Death(Vector3 bulletSpawn)
     {
-        yield return new WaitForSeconds(2f);
+        //Lerp a bullet
+        GameObject inst = Instantiate(bullet, bulletSpawn, Quaternion.LookRotation(transform.position - bulletSpawn));
+
+        inst.transform.rotation = Quaternion.LookRotation(transform.position - bulletSpawn);
+
+        float lerpLength = bulletTime;
+        float lerpPosition = 0;
+        
+        while (lerpPosition < lerpLength)
+        {
+            inst.transform.position = Vector3.Lerp(bulletSpawn, transform.position, lerpPosition / lerpLength);
+            lerpPosition += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(inst);
+
+        Instantiate(deathAnim, transform.position, transform.rotation);
+
         Destroy(gameObject);
+    }
+
+    public void Miss(Vector3 bulletSpawn)
+    {
+        StartCoroutine(MissEvent(bulletSpawn));
+    }
+
+    private IEnumerator MissEvent(Vector3 bulletSpawn)
+    {
+        //Lerp a bullet
+        GameObject inst = Instantiate(bullet, bulletSpawn, Quaternion.LookRotation(transform.position - bulletSpawn));
+
+        float lerpLength = bulletTime;
+        float lerpPosition = 0;
+
+        while (lerpPosition < lerpLength)
+        {
+            inst.transform.position = Vector3.Lerp(bulletSpawn, transform.position, lerpPosition / lerpLength);
+            lerpPosition += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(inst);
+
+        Instantiate(deathAnim, transform.position, transform.rotation);
     }
 
     private void OnDestroy()
