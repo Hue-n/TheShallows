@@ -39,6 +39,10 @@ public class ShootingMechanic : MonoBehaviour
     public List<Transform> cannonPoints = new List<Transform>();
     public GameObject smoke;
 
+    public AudioClip CannonFire;
+
+    public AudioClip CannonMiss;
+
     private void Awake()
     {
         controls = new DefaultControls();
@@ -330,6 +334,9 @@ public class ShootingMechanic : MonoBehaviour
                 enemyList[Mathf.Abs(currentTarget) % enemyList.Count].Die(targetCannon);
                 Instantiate(smoke, targetCannon, Quaternion.identity);
 
+                //Sound effects
+                FindObjectOfType<AudioManager>().PlaySound(AudioManagerChannels.SoundEffectChannel, CannonFire, 1f);
+
             }
             else
             {
@@ -343,6 +350,9 @@ public class ShootingMechanic : MonoBehaviour
                 // VFX Logic
                 enemyList[Mathf.Abs(currentTarget) % enemyList.Count].Miss(targetCannon);
                 Instantiate(smoke, targetCannon, Quaternion.identity);
+
+                //Sound effects
+                FindObjectOfType<AudioManager>().PlaySound(AudioManagerChannels.SoundEffectChannel, CannonMiss, 1f);
             }
         }
     }
