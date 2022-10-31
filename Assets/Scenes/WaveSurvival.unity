@@ -477,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 7488092144086063548, guid: afa706895f8e87f42852b5db52fed201, type: 3}
       propertyPath: testSound
       value: 
-      objectReference: {fileID: 8300000, guid: 6b2fe4f8767bec5479017adb0a8d68a6, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7488092144086063551, guid: afa706895f8e87f42852b5db52fed201, type: 3}
       propertyPath: m_RootOrder
       value: 5

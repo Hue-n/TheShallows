@@ -8,7 +8,12 @@ public class MainMenu : MonoBehaviour
     public GameObject menu;
     public GameObject settings;
     public GameObject credits;
+    public AudioClip TitleMusic;
     
+    public void Start()
+    {
+        AudioManager.Instance.PlaySound(AudioManagerChannels.MusicChannel, TitleMusic, 1f);
+    }
     public void StartGame()
     {
         SceneManager.LoadScene(1);

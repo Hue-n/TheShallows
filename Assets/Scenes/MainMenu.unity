@@ -336,6 +336,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300167483}
   m_CullTransparentMesh: 1
+--- !u!82 &363806594 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7488092144086063538, guid: afa706895f8e87f42852b5db52fed201, type: 3}
+  m_PrefabInstance: {fileID: 1920905976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &408858910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1541,7 @@ MonoBehaviour:
   menu: {fileID: 613359694}
   settings: {fileID: 408858910}
   credits: {fileID: 1250337301}
+  TitleMusic: {fileID: 8300000, guid: 68732f6eff652dd48b880164fc94d355, type: 3}
 --- !u!1 &1250337301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,10 +2372,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7488092144086063538, guid: afa706895f8e87f42852b5db52fed201, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488092144086063538, guid: afa706895f8e87f42852b5db52fed201, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488092144086063538, guid: afa706895f8e87f42852b5db52fed201, type: 3}
+      propertyPath: m_Volume
+      value: 0.368
+      objectReference: {fileID: 0}
     - target: {fileID: 7488092144086063548, guid: afa706895f8e87f42852b5db52fed201, type: 3}
       propertyPath: testSound
       value: 
-      objectReference: {fileID: 8300000, guid: 6b2fe4f8767bec5479017adb0a8d68a6, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488092144086063548, guid: afa706895f8e87f42852b5db52fed201, type: 3}
+      propertyPath: musicChannel
+      value: 
+      objectReference: {fileID: 363806594}
+    - target: {fileID: 7488092144086063548, guid: afa706895f8e87f42852b5db52fed201, type: 3}
+      propertyPath: soundeffectChannel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488092144086063549, guid: afa706895f8e87f42852b5db52fed201, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488092144086063549, guid: afa706895f8e87f42852b5db52fed201, type: 3}
+      propertyPath: m_Volume
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 7488092144086063551, guid: afa706895f8e87f42852b5db52fed201, type: 3}
       propertyPath: m_RootOrder
       value: 5
