@@ -101,9 +101,9 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         {
             // Wave newWave = new Wave[waves.enemy, waves.rate, waves.count];
             
-            // nextWave = 0;
+            nextWave = 0;
 
-            NewWave();
+            // NewWave();
         }
 
         else
@@ -111,10 +111,10 @@ public class Enemy_Wave_Spawner : MonoBehaviour
             nextWave++;
         }
     }
-    void NewWave()
-    {
-        Wave newWave = new Wave{waves.name, waves.enemy, waves.rate, waves.count};
-    }
+    // void NewWave()
+    // {
+    //     Wave newWave = new Wave[waves.name, waves.enemy, waves.rate, waves.count];
+    // }
 
     // void FreezeGame()
     // {
@@ -148,6 +148,8 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
             yield return new WaitForSeconds(1f/wave.rate);
         }
+
+        // Wave newWave = new Wave[wave.name, wave.enemy, wave.rate, wave.count];
 
         state = SpawnState.WAITING;
 
