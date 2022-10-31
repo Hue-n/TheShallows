@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
 
     public AudioClip CannonHit;
 
-    public void Start()
+    public void Awake()
     {
         Damage(0);
     }
@@ -156,6 +156,7 @@ public class Enemy : MonoBehaviour
     public void Damage(int amount)
     {
         currentHP -= amount;
+        FindObjectOfType<AudioManager>().PlaySound(AudioManagerChannels.SoundEffectChannel, CannonHit, 1f);
 
         if (currentHP <= 0)
         {

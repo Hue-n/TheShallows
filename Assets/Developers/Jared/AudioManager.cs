@@ -88,9 +88,7 @@ public class AudioManager : MonoBehaviour
                 musicChannel.Play();
                 break;
             case AudioManagerChannels.SoundEffectChannel:
-                soundeffectChannel.Stop();
-                soundeffectChannel.clip = clip;
-                soundeffectChannel.Play();
+                soundeffectChannel.PlayOneShot(clip);
                 break;
             case AudioManagerChannels.VoiceChannel:
                 voiceChannel.Stop();
@@ -111,10 +109,10 @@ public class AudioManager : MonoBehaviour
                 musicChannel.Play();
                 break;
             case AudioManagerChannels.SoundEffectChannel:
-                soundeffectChannel.Stop();
-                soundeffectChannel.clip = clip;
+                //soundeffectChannel.Stop();
+                //soundeffectChannel.clip = clip;
                 soundeffectChannel.pitch = pitch;
-                soundeffectChannel.Play();
+                soundeffectChannel.PlayOneShot(clip);
                 break;
             case AudioManagerChannels.VoiceChannel:
                 voiceChannel.Stop();
