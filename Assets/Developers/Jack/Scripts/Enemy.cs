@@ -30,6 +30,12 @@ public class Enemy : MonoBehaviour
     public EnemyUIAlert alert;
     public bool isTurning = false;
 
+    public AudioClip CannonHit;
+
+    public void Start()
+    {
+        Damage(0);
+    }
     public void StopTime()
     {
         if (ExtTime.timeScale == 1)
@@ -154,6 +160,10 @@ public class Enemy : MonoBehaviour
         if (currentHP <= 0)
         {
             Destroy(gameObject);
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().PlaySound(AudioManagerChannels.SoundEffectChannel, CannonHit, 1f);
         }
     }
 

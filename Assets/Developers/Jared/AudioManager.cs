@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum AudioManagerChannels
 { 
@@ -22,7 +23,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource soundeffectChannel;
     public AudioSource voiceChannel;
 
-    public AudioClip testSound;
+    public AudioClip BackgroundMusic;
+
+    public AudioClip WaterAmbience;
 
     void Awake ()
     {
@@ -41,7 +44,12 @@ public class AudioManager : MonoBehaviour
     {
         musicChannel = GetComponents<AudioSource>()[0];
         soundeffectChannel = GetComponents<AudioSource>()[1];
-        voiceChannel = GetComponents<AudioSource>()[2];
+        voiceChannel = GetComponents<AudioSource>()[2]; 
+        if (SceneManager.GetActiveScene().name == "WaveSurvival")
+        {
+            AudioManager.Instance.PlaySound(AudioManagerChannels.MusicChannel, BackgroundMusic, 1f);
+            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, WaterAmbience, 1f);
+        }
     }
 
     public static void SetChannelVolume(int target, float value)
@@ -132,14 +140,4 @@ public class AudioManager : MonoBehaviour
                 break;
         }
     }
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 70, 50, 30), "Click"))
-            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, testSound, 2f);
-
-        if (GUI.Button(new Rect(100, 70, 50, 30), "Click"))
-            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, testSound);
-    }
-
 }
