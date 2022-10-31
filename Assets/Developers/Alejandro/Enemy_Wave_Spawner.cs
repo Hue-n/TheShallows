@@ -8,12 +8,8 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 {
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
-    //public GameObject waveStartImg, waveEndImg, playerController;
-
-    public GameObject playerController, enemyWaveSystem;
+    public GameObject enemyWaveSystem;
     
-    //public Script_Player_Controller player;
-
     [System.Serializable]
 
     public class Wave
@@ -27,11 +23,22 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         public float rate;
     }
     
-    public Wave[] waves;
+    // [System.Serializable]
+    
+    // public class Wave
+    // {
+    //     public string name;
+    
+    //     public List <WaveAction> actions;
+    // }
 
     private int nextWave = 0;
 
+    private int newWave;
+
     public Transform[] spawnPoints;
+
+    public List <Wave> waves;
 
     public float timeBetweenWaves;
 
@@ -71,9 +78,6 @@ public class Enemy_Wave_Spawner : MonoBehaviour
             if (state != SpawnState.SPAWNING)
             {
                 StartCoroutine( SpawnWave ( waves[nextWave] ) );
-                // LeanTween.moveLocal(waveStartImg, new Vector3(-300f, -300f, 0f), 2f).setEase(LeanTweenType.easeOutCubic);
-                // LeanTween.moveLocal(waveStartImg, new Vector3(1400f, -300f, 0f), 1f).setDelay(2f).setEase(LeanTweenType.easeInCubic);
-                // LeanTween.alpha(waveStartImg.GetComponent<RectTransform>(), 0f, 1f).setDelay(2f).setOnComplete(ResetWaveStart);
             }
         }
 
@@ -85,12 +89,6 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         //transform.Rotate (new Vector3 (0,15,0) * Time.deltaTime);
     }
 
-    // void ResetWaveStart()
-    // {
-    //     LeanTween.moveLocal(waveStartImg, new Vector3(-1420f, -300f, 0f), 0.2f).setEase(LeanTweenType.easeInCubic);
-    //     LeanTween.alpha(waveStartImg.GetComponent<RectTransform>(), 1f, 0.1f).setDelay(0.4f);
-    // }
-
     void WaveCompleted()
     {
         Debug.Log ("WAVE COMPLETED");
@@ -98,16 +96,14 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         state = SpawnState.COUNTING;
 
         waveCountdown = timeBetweenWaves;
-        
-        //player.startButton.Disable();
 
-        // LeanTween.moveLocal(waveEndImg, new Vector3(300f, -360f, 0f), 2f).setEase(LeanTweenType.easeOutCubic);
-        // LeanTween.moveLocal(waveEndImg, new Vector3(-1480f, -360f, 0f), 1f).setDelay(2f).setEase(LeanTweenType.easeInCubic);
-        // LeanTween.alpha(waveEndImg.GetComponent<RectTransform>(), 0f, 1f).setDelay(2f).setOnComplete(OpenTheShop);
-
-        if (nextWave + 1 > waves.Length - 1)
+        if (nextWave + 1 > waves.Count - 1)
         {
-            nextWave = 0;
+            // Wave newWave = new Wave[waves.enemy, waves.rate, waves.count];
+            
+            // nextWave = 0;
+
+            NewWave();
         }
 
         else
@@ -115,19 +111,15 @@ public class Enemy_Wave_Spawner : MonoBehaviour
             nextWave++;
         }
     }
-
-    // void OpenTheShop()
-    // {
-    //     LeanTween.moveLocal(waveEndImg, new Vector3(1520f, -360f, 0f), 0.2f).setEase(LeanTweenType.easeInCubic);
-    //     LeanTween.alpha(waveEndImg.GetComponent<RectTransform>(), 1f, 0.1f).setDelay(0.4f);
-    //     shopBackground.SetActive(true);
-    //     LeanTween.moveLocal(shopBackground, new Vector3(0f, 0f, 0f), 1f).setEase(LeanTweenType.easeOutCirc).setOnComplete(FreezeGame);
-    // }
-
-    void FreezeGame()
+    void NewWave()
     {
-        Time.timeScale = 0;
+        Wave newWave = new Wave{waves.name, waves.enemy, waves.rate, waves.count};
     }
+
+    // void FreezeGame()
+    // {
+    //     Time.timeScale = 0;
+    // }
 
     bool EnemyIsAlive()
     {
@@ -146,21 +138,15 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         return true;
     }
 
-    IEnumerator SpawnWave(Wave _wave)
+    IEnumerator SpawnWave(Wave wave)
     {
-        Debug.Log ("SPAWNING WAVE: " + _wave.name);
-
         state = SpawnState.SPAWNING;
 
-        for (int i = 0; i < _wave.count; i++)
+        for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy(_wave.enemy);
+            SpawnEnemy(wave.enemy);
 
-            // add infinite modification here
-
-            // _wave.count = (_wave.count * 1.2) + 10;
-
-            yield return new WaitForSeconds(1f/_wave.rate);
+            yield return new WaitForSeconds(1f/wave.rate);
         }
 
         state = SpawnState.WAITING;
@@ -168,13 +154,13 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         yield break;
     }
 
-    void SpawnEnemy(GameObject _enemy)
+    void SpawnEnemy(GameObject enemy)
     {
-        Debug.Log ("SPAWNING ENEMY: " + _enemy.name);
+        Debug.Log ("SPAWNING ENEMY: " + enemy.name);
 
-        Transform _sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
+        Transform sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
 
-        Instantiate (_enemy, _sp.position, _sp.rotation);
+        Instantiate (enemy, sp.position, sp.rotation);
     }
 
     public void StartNextWave()

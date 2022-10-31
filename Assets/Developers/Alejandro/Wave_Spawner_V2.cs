@@ -70,6 +70,10 @@ public class Wave_Spawner_V2 : MonoBehaviour
                             Instantiate (A.enemy, _sp.position, _sp.rotation);
                         }
                     }
+                    // if (m_CurrentWave = 5)
+                    // {
+                    //     WaveAction newWave = new WaveAction(name, delay, obj, spawnCount, message);
+                    // }
                 }
                 
                 yield return null;  // prevents crash if all delays are 0
@@ -84,13 +88,4 @@ public class Wave_Spawner_V2 : MonoBehaviour
     {
         StartCoroutine(SpawnLoop());
     }
-
-    // void SpawnEnemy(GameObject enemy)
-    // {
-    //     // Debug.Log ("SPAWNING ENEMY: " + _enemy.name);
-
-    //     Transform _sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
-
-    //     Instantiate (enemy, _sp.position, _sp.rotation);
-    // }
 }
