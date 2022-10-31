@@ -30,11 +30,21 @@ public class Enemy : MonoBehaviour
     public EnemyUIAlert alert;
     public bool isTurning = false;
 
+    public void StopTime()
+    {
+        if (ExtTime.timeScale == 1)
+            ExtTime.timeScale = 0f;
+        else
+            ExtTime.timeScale = 1f;
+
+        Debug.Log(ExtTime.timeScale);
+    }
+
     // Start is called before the first frame update
     public void Sensors()
     {
         //Move the Player
-        rb.velocity = speed * transform.forward;
+        rb.velocity = speed * transform.forward * ExtTime.timeScale;
 
         RaycastHit hit;
         Vector3 sensorStartPos = transform.position;
@@ -120,19 +130,19 @@ public class Enemy : MonoBehaviour
         }
         Debug.DrawRay(sensorStartPos, transform.forward, Color.blue);
 
-        if (avoiding)
+        if (avoiding && ExtTime.timeScale == 1)
         {
 
             Debug.Log("AvoidMult: " + avoidMultiplier);
 
             //angular velocity
             Vector3 angleVel = new Vector3(0, 30 * avoidMultiplier, 0);
-            Quaternion deltaRotation = Quaternion.Euler(angleVel * Time.deltaTime);
+            Quaternion deltaRotation = Quaternion.Euler(angleVel * ExtTime.timeScale);
 
             rb.MoveRotation(rb.rotation * deltaRotation);
         }
 
-        if (avoidMultiplier == 0 && !avoiding)
+        if (avoidMultiplier == 0 && !avoiding && ExtTime.timeScale == 1)
             HuntPlayer();
 
     }
@@ -149,11 +159,10 @@ public class Enemy : MonoBehaviour
 
     public void HuntPlayer()
     {
-
+        
         var leadTimePercentage = Mathf.InverseLerp(_minDistancePredict, _maxDistancePredict, Vector3.Distance(transform.position, target.transform.position));
 
         PredictMovement(leadTimePercentage);
-
         RotateShip();
     }
 
@@ -170,6 +179,13 @@ public class Enemy : MonoBehaviour
         //Debug.Log("Rotate() Called");
         var heading = _standardPrediction - transform.position;
         var rotation = Quaternion.LookRotation(heading, Vector3.up);
-        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * Time.deltaTime));
+        
+        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * ExtTime.timeScale));
     }
+
+    public class ExtTime
+    {
+        public static float timeScale = 1;
+    }
+
 }

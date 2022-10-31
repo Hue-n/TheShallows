@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
 
-
         moveDir = transform.forward * currentSpeed;
 
         if (currentHP < maxHP && regen)

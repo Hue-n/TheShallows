@@ -21,11 +21,13 @@ public class CombatUI : MonoBehaviour
         targetTransform.SetActive(false);
 
         ShootingMechanic.OnShootingMechanic += ParseShootingMechanicData;
+        TimeStop.OnTimeStop += ParseTimeStopData;
     }
 
     private void OnDestroy()
     {
         ShootingMechanic.OnShootingMechanic -= ParseShootingMechanicData;
+        TimeStop.OnTimeStop -= ParseTimeStopData;
     }
 
     private void Update()
@@ -100,6 +102,21 @@ public class CombatUI : MonoBehaviour
                 break;
             case ShootingMechanicCommands.UpdateTarget:
                 targetReference = data.targetReference;
+                break;
+        }
+    }
+
+    public void ParseTimeStopData(TimeStopData Data)
+    {
+        switch (Data.command)
+        {
+            case TimeStopCommands.OnTimeStop:
+                break;
+
+            case TimeStopCommands.OnChangeTarget:
+                break;
+
+            case TimeStopCommands.OnTimePlay:
                 break;
         }
     }

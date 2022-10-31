@@ -9,15 +9,17 @@ public class RenderCut : MonoBehaviour
     // Update is called once per frame
     void OnBecameInvisible()
     {
-        GetComponent<Renderer>().enabled = false;
-        Debug.Log($"'{name}' is Invisible to '{Camera.current.name}'");
+        GetComponent<WaterManger>().enabled = false;
+        //GetComponent<WaveManager>().enabled = false;
+
 
     }
 
     private void OnBecameVisible()
     {
-        GetComponent<Renderer>().enabled = true;
-        Debug.Log($"'{name}' is Visible to '{Camera.current.name}'");
+        GetComponent<WaterManger>().enabled = true;
+        //GetComponent<WaveManager>().enabled = true;
+
 
     }
 }
