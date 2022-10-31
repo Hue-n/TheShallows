@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0b713d6e99e1e944a805e7755463528, type: 3}
-  m_Name: Sharky
+  m_Name: Shark
   m_EditorClassIdentifier: 
-  creatureName: 
-  points: 0
-  maxHP: 0
+  creatureName: Megalodon
+  points: 500
+  maxHP: 2
   spd: 4
   rotSpd: 130
-  damage: 0
+  damage: 25
   attackRange: 20
   sensorPos: {x: 0, y: -1, z: 6}
   sensorLength: 8
