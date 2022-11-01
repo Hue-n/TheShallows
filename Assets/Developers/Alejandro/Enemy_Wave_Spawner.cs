@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+// using ;
 
 public class Enemy_Wave_Spawner : MonoBehaviour
 {
@@ -18,10 +19,23 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
         public GameObject enemy;
 
-        public int count;
+        public float count;
 
         public float rate;
+
+        public Wave(GameObject enemy, float count, float rate, string name = "Wave 1")
+        {
+            name = name;
+
+            enemy = enemy;
+
+            count = count;
+
+            rate = rate;
+        }
     }
+
+    public int newRate = 2;
     
     // [System.Serializable]
     
@@ -31,8 +45,11 @@ public class Enemy_Wave_Spawner : MonoBehaviour
     
     //     public List <WaveAction> actions;
     // }
+    public GameObject[] enemies;
 
     private int nextWave = 0;
+
+    public int waveCounter;
 
     private int newWave;
 
@@ -97,13 +114,25 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
         waveCountdown = timeBetweenWaves;
 
+        waveCounter = waveCounter + 1;
+
         if (nextWave + 1 > waves.Count - 1)
         {
-            // Wave newWave = new Wave[waves.enemy, waves.rate, waves.count];
+            // Wave newWave = new Wave();
             
-            nextWave = 0;
+            // nextWave = 0;
 
-            // NewWave();
+            GameObject newEnemy = enemies [Random.Range (0, enemies.Length - 1)];
+
+            float newCount = Mathf.Round(Mathf.Pow(1.2f, waveCounter) + 10f);
+
+            newRate += 2;
+
+            Wave newWave = new Wave(newEnemy, newCount, newRate);
+
+            waves.Add(newWave);
+
+            // waves.name, waves.enemy, waves.rate, waves.count
         }
 
         else
@@ -111,7 +140,8 @@ public class Enemy_Wave_Spawner : MonoBehaviour
             nextWave++;
         }
     }
-    // void NewWave()
+    
+    // Wave()
     // {
     //     Wave newWave = new Wave[waves.name, waves.enemy, waves.rate, waves.count];
     // }
