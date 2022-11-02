@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 309659731}
   - component: {fileID: 4083423901819225844}
   m_Layer: 0
-  m_Name: Megalodon
+  m_Name: Serpent
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2818584996764430951}
-  m_Mesh: {fileID: -5546347261141537002, guid: 2b12a4956185b3a4c8697f1c6e261fea, type: 3}
+  m_Mesh: {fileID: 3808045967415927192, guid: 65c0713527ea46744b2ca4e3147626df, type: 3}
 --- !u!23 &4331720047535592370
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 18a9bf9bcedbc034991473e0111e374a, type: 2}
+  - {fileID: 2100000, guid: 674ca04b824511d4baa5a1cbc0b04949, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,7 +150,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 650.5556, y: 631.95953, z: 2049.6333}
+  m_Size: {x: 650.5556, y: 631.95953, z: 1024}
   m_Center: {x: 0, y: 35.268547, z: -27.69308}
 --- !u!65 &309659731
 BoxCollider:
@@ -163,7 +163,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 650.5556, y: 762.2082, z: 2075.1348}
+  m_Size: {x: 650.5556, y: 762.2082, z: 965.4}
   m_Center: {x: 0, y: 0.000030517578, z: 0}
 --- !u!114 &4083423901819225844
 MonoBehaviour:

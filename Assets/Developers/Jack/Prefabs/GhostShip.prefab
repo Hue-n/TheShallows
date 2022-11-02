@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 4814033930038361969}
   - component: {fileID: 1600912974203945710}
   m_Layer: 0
-  m_Name: Raider
+  m_Name: GhostShip
   m_TagString: Enemy
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -425,7 +425,7 @@ MonoBehaviour:
   targetableRange: 100
   alive: 1
   bullet: {fileID: 9171304638266698910, guid: 34b004599ca30294e87754ae5572c1cd, type: 3}
-  deathAnim: {fileID: 2354111998539015351, guid: ba53dfe3e8c1c374b9773c283cff9777, type: 3}
+  deathAnim: {fileID: 919132149155446097, guid: 20050e4a616024242887ce45b33c3938, type: 3}
   bulletTime: 1
 --- !u!1001 &4454410437615853470
 PrefabInstance:
@@ -493,15 +493,15 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 0888600c9df3704488413226af4a5324, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e218a9dd1830196449c2580de1812ca9, type: 2}
+      objectReference: {fileID: 2100000, guid: 9201c6bbbfa3dda4d86cf5ca3da80816, type: 2}
     - target: {fileID: -7511558181221131132, guid: 0888600c9df3704488413226af4a5324, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 3bc6bcf4351bca844b33c31e0f9a174f, type: 2}
+      objectReference: {fileID: 2100000, guid: 5fc143e11c6efaf488e16a459a8d0e56, type: 2}
     - target: {fileID: -5754084199372789682, guid: 0888600c9df3704488413226af4a5324, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7016543781260893702, guid: 5e15a2f13179f9f498390d3baf937f4e, type: 3}
+      objectReference: {fileID: 4521025400428286651, guid: ea221c9fe5373cc4ca6b3d5e787eca1c, type: 3}
     - target: {fileID: 919132149155446097, guid: 0888600c9df3704488413226af4a5324, type: 3}
       propertyPath: m_Name
       value: Hero Ship
