@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
-
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void LoadSettings()
@@ -68,7 +69,6 @@ public class PauseMenu : MonoBehaviour
         animator.SetBool("SettingsIsOpen", true);
         animator.SetBool("PauseIsOpen", false);
         SettingsIsOpen = true;
-
     }
 
     public void CloseSettings()
