@@ -38,6 +38,8 @@ public class Enemy : MonoBehaviour
     }
     public void StopTime()
     {
+        StartCoroutine(TimeStopDuration());
+
         if (ExtTime.timeScale == 1)
             ExtTime.timeScale = 0f;
         else
@@ -197,6 +199,20 @@ public class Enemy : MonoBehaviour
     public class ExtTime
     {
         public static float timeScale = 1;
+    }
+
+    public IEnumerator TimeStopDuration()
+    {
+        yield return new WaitForSeconds(4);
+
+        StopTime();
+
+        yield break;
+    }
+
+    private void OnDestroy()
+    {
+        FindObjectOfType<TimeStop>().AddCharge(15);
     }
 
 }

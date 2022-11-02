@@ -13,6 +13,7 @@ public class TimeStop : MonoBehaviour
 
     public ShootingMechanic mechanic;
 
+    public int charge;
 
     private void Awake()
     {
@@ -40,18 +41,20 @@ public class TimeStop : MonoBehaviour
 
     public void OnTimeStopInput()
     {
-        // Check if the time stop is ready
-        foreach(Enemy boi in FindObjectsOfType<Enemy>())
+        if (charge == 100)
         {
-            boi.StopTime();
+            // Check if the time stop is ready
+            foreach (Enemy boi in FindObjectsOfType<Enemy>())
+            {
+                boi.StopTime();
+            }
         }
         
         Debug.Log("Time Stopped");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddCharge(int amount)
     {
-        
+        charge += amount;
     }
 }

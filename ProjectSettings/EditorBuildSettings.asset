@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Developers/Harry/Harry's Water.unity
     guid: 8e17d8d4d92c3244fbc67b3429e66dc9
   - enabled: 0
+    path: Assets/Scenes/WaveSurvival.unity
+    guid: a003dc41979325948ab80b569e256e72
+  - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
