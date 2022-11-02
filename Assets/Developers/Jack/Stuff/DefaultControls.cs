@@ -98,6 +98,15 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ba52cb2-aa92-4ed8-b60c-a6b235cf6917"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -199,6 +208,28 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""action"": ""Choose Target"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb54124d-4a2c-4d46-b937-685fd8ba2a3a"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""144d66f7-b8f5-463c-b06f-1b0d238f5d69"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -227,6 +258,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         m_Controller_SceneBackward = m_Controller.FindAction("SceneBackward", throwIfNotFound: true);
         m_Controller_Targeting = m_Controller.FindAction("Targeting", throwIfNotFound: true);
         m_Controller_ChooseTarget = m_Controller.FindAction("Choose Target", throwIfNotFound: true);
+        m_Controller_Pause = m_Controller.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -294,6 +326,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controller_SceneBackward;
     private readonly InputAction m_Controller_Targeting;
     private readonly InputAction m_Controller_ChooseTarget;
+    private readonly InputAction m_Controller_Pause;
     public struct ControllerActions
     {
         private @DefaultControls m_Wrapper;
@@ -306,6 +339,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         public InputAction @SceneBackward => m_Wrapper.m_Controller_SceneBackward;
         public InputAction @Targeting => m_Wrapper.m_Controller_Targeting;
         public InputAction @ChooseTarget => m_Wrapper.m_Controller_ChooseTarget;
+        public InputAction @Pause => m_Wrapper.m_Controller_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Controller; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -339,6 +373,9 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @ChooseTarget.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnChooseTarget;
                 @ChooseTarget.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnChooseTarget;
                 @ChooseTarget.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnChooseTarget;
+                @Pause.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_ControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -367,6 +404,9 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @ChooseTarget.started += instance.OnChooseTarget;
                 @ChooseTarget.performed += instance.OnChooseTarget;
                 @ChooseTarget.canceled += instance.OnChooseTarget;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -390,5 +430,6 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         void OnSceneBackward(InputAction.CallbackContext context);
         void OnTargeting(InputAction.CallbackContext context);
         void OnChooseTarget(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

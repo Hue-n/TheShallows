@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -16,30 +17,36 @@ public class PauseMenu : MonoBehaviour
 
     public bool PauseIsOpen = false;
 
+    public DefaultControls controls;
+
+    public GameObject pauseFirstButton, optionsFirstButton, optionsClosedButton; 
+
+
+    private void OnEnable()
+    {
+        controls.Controller.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Controller.Disable();
+    }
+
+    private void Awake()
+    {
+        controls = new DefaultControls();
+
+        controls.Controller.Pause.performed += ctx => OnPause();
+    }
+
+    private void OnDestroy()
+    {
+        controls.Controller.Movement.performed -= ctx => OnPause();
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (GameIsPaused)
-            {
-              
-                animator.SetBool("CloseAll", true);
-                Resume();
-
-                if (SettingsIsOpen == true)
-                {
-                    animator.SetBool("SettingsIsOpen", false);
-                    animator.SetBool("CloseAll", true);
-                }
-                
-            }
-            else
-            {
-                
-                Pause();
-
-            }
-        }
+        
     }
 
     public void Resume()
@@ -57,6 +64,11 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         GameIsPaused = true;
         animator.SetBool("PauseIsOpen", true);
+
+        //clear selected object 
+        EventSystem.current.SetSelectedGameObject(null);
+        //set new selected object
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
     public void QuitGame()
@@ -69,6 +81,11 @@ public class PauseMenu : MonoBehaviour
         animator.SetBool("SettingsIsOpen", true);
         animator.SetBool("PauseIsOpen", false);
         SettingsIsOpen = true;
+
+        //clear selected object 
+        EventSystem.current.SetSelectedGameObject(null);
+        //set new selected object
+        EventSystem.current.SetSelectedGameObject(optionsFirstButton);
     }
 
     public void CloseSettings()
@@ -78,6 +95,29 @@ public class PauseMenu : MonoBehaviour
         animator.SetBool("CloseAll", false);
         SettingsIsOpen = false;
 
+    }
+
+    public void OnPause()
+    {
+        if (GameIsPaused)
+        {
+
+            animator.SetBool("CloseAll", true);
+            Resume();
+
+            if (SettingsIsOpen == true)
+            {
+                animator.SetBool("SettingsIsOpen", false);
+                animator.SetBool("CloseAll", true);
+            }
+
+        }
+        else
+        {
+
+            Pause();
+
+        }
     }
 
 
