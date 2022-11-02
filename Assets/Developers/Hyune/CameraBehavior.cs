@@ -13,16 +13,11 @@ public class CameraBehavior : MonoBehaviour
 
     private Vector3 offset;
 
-    private void Awake()
-    {
-        // create a couple between camerabehavior and focal point since there can always only be one of both.
-        offset = transform.position;
-    }
-
     private void Start()
     {
         focalPoint = GameManager.Instance.focalPointInstance.GetComponent<FocalPoint>();
         playerTransform = GameManager.Instance.playerInstance.transform;
+        offset = transform.position - playerTransform.position;
     }
 
     private void FixedUpdate()

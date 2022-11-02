@@ -23,15 +23,15 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
         public float rate;
 
-        public Wave(GameObject enemy, float count, float rate, string name = "Wave 1")
+        public Wave(GameObject newEnemy, float newCount, float newRate, string Tag = "")
         {
-            name = name;
+            name = Tag;
 
-            enemy = enemy;
+            enemy = newEnemy;
 
-            count = count;
+            count = newCount;
 
-            rate = rate;
+            rate = newRate;
         }
     }
 
