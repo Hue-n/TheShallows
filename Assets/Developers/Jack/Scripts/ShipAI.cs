@@ -10,6 +10,12 @@ public class ShipAI : Enemy
     private bool firing = false;
     public ShipStats enemyStats;
 
+    public GameObject bullet;
+    public GameObject shootEffect;
+
+    public Transform bulletSpawn;
+    public float bulletTime = 0.5f;
+
     [SerializeField]
     public enum State
     {
@@ -101,16 +107,19 @@ public class ShipAI : Enemy
         alert.Alerter(3);
         yield return new WaitForSeconds(3f);
 
+        AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.cannonFire, 1f);
+        Instantiate(shootEffect, bulletSpawn.position, bulletSpawn.rotation);
+
         if (Random.Range(0, 10) <= 2)
         {
-            Debug.Log("Miss");
-
+            yield return Miss();
         }
         else
         {
             //Put Screenshake Here
             //Damage the Player
-            target.GetComponent<PlayerController>().Damage(500000);
+            yield return Hit();
+            target.GetComponent<PlayerController>().Damage(50);
             yield return new WaitForSeconds(1f);
 
         }
@@ -119,6 +128,45 @@ public class ShipAI : Enemy
         yield break;
     }
 
+    private IEnumerator Miss()
+    {
+        //Lerp a bullet
+        GameObject inst = Instantiate(bullet, bulletSpawn.position, transform.rotation);
 
+        float lerpLength = bulletTime;
+        float lerpPosition = 0;
 
+        while (lerpPosition < lerpLength)
+        {
+            inst.transform.position = Vector3.Lerp(bulletSpawn.position, GameManager.Instance.playerInstance.transform.position, lerpPosition / lerpLength);
+            lerpPosition += Time.deltaTime;
+            yield return null;
+        }
+
+        AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.cannonMiss, 1f);
+        Destroy(inst);
+
+        Instantiate(GameManager.Instance.missEffect, GameManager.Instance.playerInstance.transform.position, Quaternion.identity);
+    }
+
+    private IEnumerator Hit()
+    {
+        //Lerp a bullet
+        GameObject inst = Instantiate(bullet, bulletSpawn.position, transform.rotation);
+
+        float lerpLength = bulletTime;
+        float lerpPosition = 0;
+
+        while (lerpPosition < lerpLength)
+        {
+            inst.transform.position = Vector3.Lerp(bulletSpawn.position, GameManager.Instance.playerInstance.transform.position, lerpPosition / lerpLength);
+            lerpPosition += Time.deltaTime;
+            yield return null;
+        }
+
+        AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.cannonHit, 1f);
+        Destroy(inst);
+
+        Instantiate(GameManager.Instance.hitEffect, GameManager.Instance.playerInstance.transform.position, Quaternion.identity);
+    }
 }

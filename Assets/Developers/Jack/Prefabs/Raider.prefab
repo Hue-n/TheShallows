@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 5308827009332966936}
   - component: {fileID: 101375494}
   - component: {fileID: 4814033930038361969}
-  - component: {fileID: 1600912974203945710}
+  - component: {fileID: 2967306657050425021}
   - component: {fileID: -4686942411992440393}
   m_Layer: 0
   m_Name: Raider
@@ -394,12 +394,15 @@ MonoBehaviour:
   maxHP: 0
   attackRange: 15
   alert: {fileID: 9118585063861524694}
-  isTurning: 0
   agent: {fileID: 0}
   CannonHit: {fileID: 0}
   aiTick: 0
   enemyStats: {fileID: 11400000, guid: 8d05651777d071941ba23c0e3414744f, type: 2}
---- !u!114 &1600912974203945710
+  bullet: {fileID: 9171304638266698910, guid: 34b004599ca30294e87754ae5572c1cd, type: 3}
+  shootEffect: {fileID: 6158271316592869780, guid: bda4816535c72a34eb9bb59169bf2f3a, type: 3}
+  bulletSpawn: {fileID: 6361569849726492637}
+  bulletTime: 0.5
+--- !u!114 &2967306657050425021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -411,8 +414,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f735a7bbbd5eb1245bb4943f67c4af60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transformReference: {fileID: 4205103988252604533}
+  type: 1
   isTargetable: 0
-  targetableRange: 35
+  targetableRange: 50
   alive: 1
   bullet: {fileID: 9171304638266698910, guid: 34b004599ca30294e87754ae5572c1cd, type: 3}
   deathAnim: {fileID: 2354111998539015351, guid: ba53dfe3e8c1c374b9773c283cff9777, type: 3}
@@ -439,6 +444,37 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!1 &9147129506658038903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6361569849726492637}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6361569849726492637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147129506658038903}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -600.9739, y: 275.69476, z: -0.000074821575}
+  m_LocalScale: {x: 156.91217, y: 156.91222, z: 156.91217}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4205103988252604533}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4454410437615853470
 PrefabInstance:
   m_ObjectHideFlags: 0

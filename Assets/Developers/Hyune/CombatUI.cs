@@ -15,6 +15,8 @@ public class CombatUI : MonoBehaviour
 
     private bool isTargeting = false;
 
+    private bool deathGague = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,25 @@ public class CombatUI : MonoBehaviour
         if (isTargeting)
         {
             targetTransform.GetComponent<RectTransform>().position = WorldToUISpace(GetComponent<Canvas>(), targetReference.position);
+        }
+
+        if (deathGague)
+        {
+            if (GameManager.Instance.playerInstance.GetComponent<ShootingMechanic>().CheckForEnemy())
+            {
+                isTargeting = true;
+                targetReference = GameManager.Instance.playerInstance.GetComponent<ShootingMechanic>().currentTargetTrans;
+
+                targetTransform.SetActive(true);
+                reticle.enabled = true;
+            }
+            else
+            {
+                isTargeting = false;
+
+                targetTransform.SetActive(false);
+                reticle.enabled = false;
+            }
         }
     }
 
@@ -73,6 +94,7 @@ public class CombatUI : MonoBehaviour
                         targetTransform.SetActive(false);
 
                         isTargeting = false;
+                        deathGague = false;
                         break;
                     case ShootStates.targeting:
                         targetTransform.SetActive(true);
@@ -80,6 +102,8 @@ public class CombatUI : MonoBehaviour
                         minigameIcon.enabled = false;
 
                         isTargeting = true;
+                        deathGague = false;
+
                         break;
                     case ShootStates.skillchecking:
                         targetTransform.SetActive(true);
@@ -87,6 +111,11 @@ public class CombatUI : MonoBehaviour
                         minigameIcon.enabled = true;
 
                         isTargeting = true;
+                        deathGague = false;
+                        break;
+
+                    case ShootStates.deathgague:
+                        deathGague = true;
                         break;
                 }
 

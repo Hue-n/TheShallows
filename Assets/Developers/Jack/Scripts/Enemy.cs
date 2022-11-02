@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
 
         Debug.Log(ExtTime.timeScale);
     }
+
     #region stoopid bullshit
     //// Start is called before the first frame update
     //public void Sensors()
@@ -189,6 +190,7 @@ public class Enemy : MonoBehaviour
 
     //    rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * ExtTime.timeScale));
     //}
+
     public void Update()
     {
         aiTick += Time.deltaTime;
@@ -201,7 +203,7 @@ public class Enemy : MonoBehaviour
     public void Damage(int amount)
     {
         currentHP -= amount;
-        FindObjectOfType<AudioManager>().PlaySound(AudioManagerChannels.SoundEffectChannel, CannonHit, 1f);
+        AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, CannonHit, 1f);
 
         if (currentHP <= 0)
         {
@@ -209,7 +211,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            FindObjectOfType<AudioManager>().PlaySound(AudioManagerChannels.SoundEffectChannel, CannonHit, 1f);
+            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, CannonHit, 1f);
         }
     }
 
@@ -230,7 +232,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<TimeStop>().AddCharge(15);
+        GameManager.Instance.playerInstance.GetComponent<TimeStop>().AddCharge(15);
     }
 
 }

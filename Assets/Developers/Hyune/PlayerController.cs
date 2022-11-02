@@ -109,6 +109,10 @@ public class PlayerController : MonoBehaviour
 
         if (currentHP <= 0)
         {
+            // Check the spawner
+            GameManager.Instance.waveNumber = GameManager.Instance.spawner.waveCounter;
+            GameManager.Instance.CheckHighScore(GameManager.Instance.spawner.waveCounter);
+
             Debug.Log("G A M E  O V E R");
             SceneManager.LoadScene("LoseScreen");
         }

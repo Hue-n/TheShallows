@@ -8,7 +8,8 @@ public enum ShootStates
 { 
     idle = 0,
     targeting,
-    skillchecking
+    skillchecking,
+    deathgague,
 }
 
 public class ShootingMechanic : MonoBehaviour
@@ -23,6 +24,7 @@ public class ShootingMechanic : MonoBehaviour
     public FocalPoint focalPoint;
 
     public List<EnemyTracker> enemyList = new List<EnemyTracker>();
+    public Transform currentTargetTrans;
 
     private ShootStates currentState = ShootStates.idle;
 
@@ -43,6 +45,10 @@ public class ShootingMechanic : MonoBehaviour
 
     public AudioClip CannonMiss;
 
+    public bool deathGague;
+    public float currentDeathGague;
+    public float maxDeathGague = 100;
+
     private void Awake()
     {
         controls = new DefaultControls();
@@ -51,6 +57,22 @@ public class ShootingMechanic : MonoBehaviour
         controls.Controller.Targeting.performed += ctx => OnScanButton();
         controls.Controller.ChooseTarget.performed += ctx => OnTargetChange(ctx.ReadValue<Vector2>());
         controls.Controller.Attack.performed += ctx => OnAttackButton();
+
+        controls.Controller.DeathGague.performed += ctx => OnDeathGague();
+    }
+
+    public void OnDeathGague()
+    {
+        if (!deathGague && currentDeathGague != 0 && currentState == ShootStates.idle)
+        {
+            deathGague = true;
+            SetCurrentState(ShootStates.deathgague);
+        }
+        else
+        {
+            deathGague = false;
+            SetCurrentState(ShootStates.idle);
+        }
     }
 
     private void Start()
@@ -127,8 +149,55 @@ public class ShootingMechanic : MonoBehaviour
                 }
 
                 break;
+
             case ShootStates.skillchecking:
                 break;
+
+            case ShootStates.deathgague:
+                if (CheckInDeathGague())
+                {
+                    // Deiterate Death Gague
+                    currentDeathGague -= Time.deltaTime * 2;
+
+                    if (CheckForEnemy())
+                    {
+                        ChangeTarget();
+
+                        // Always keep the accessor clamped to evade a OOB
+                        int targetTracker = currentTarget;
+                        currentTarget %= enemyList.Count;
+                        if (currentTarget != targetTracker)
+                        {
+                            ChangeTarget();
+                        }
+                    }
+                    else
+                    {
+                        // put the focus back on the player
+                        focalPoint.SetFocalPoint(gameObject);
+                    }
+                }
+                else
+                {
+                    // put the focus back on the player
+                    focalPoint.SetFocalPoint(gameObject);
+                    SetCurrentState(ShootStates.idle);
+                    // Reset Accessor
+                    currentTarget = 0;
+                }
+                break;
+        }
+    }
+
+    private bool CheckInDeathGague()
+    {
+        if (currentDeathGague <= 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 
@@ -150,6 +219,7 @@ public class ShootingMechanic : MonoBehaviour
     // Auxillary Function to help change the target.
     public void ChangeTarget()
     {
+        currentTargetTrans = enemyList[Mathf.Abs(currentTarget) % enemyList.Count].gameObject.transform;
         focalPoint.SetFocalPoint(enemyList[Mathf.Abs(currentTarget) % enemyList.Count].gameObject);
         ShootingMechanicData data = new ShootingMechanicData();
 
@@ -189,6 +259,31 @@ public class ShootingMechanic : MonoBehaviour
                 break;
             case ShootStates.skillchecking:
                 break;
+            case ShootStates.deathgague:
+                if (CheckForEnemy())
+                {
+                    if (!inputCooldown)
+                    {
+                        if (input.x > 0)
+                        {
+                            currentTarget++;
+                            ChangeTarget();
+                        }
+                        else if (input.x < 0)
+                        {
+                            currentTarget--;
+                            ChangeTarget();
+                        }
+                        else
+                        {
+                            // Nothing
+                        }
+
+                        StartCoroutine(InputCooldown());
+
+                    }
+                }
+                break;
         }
     }
 
@@ -214,11 +309,14 @@ public class ShootingMechanic : MonoBehaviour
             case ShootStates.skillchecking:
                 // Nothing.
                 break;
+            case ShootStates.deathgague:
+                // Nothing.
+                break;
         }
     }
 
     // Check if the list is empty
-    bool CheckForEnemy()
+    public bool CheckForEnemy()
     {
         if (enemyList.Count == 0)
         {
@@ -255,6 +353,16 @@ public class ShootingMechanic : MonoBehaviour
             case ShootStates.skillchecking:
                 userInput = true;
                 // End Minigame
+                break;
+            case ShootStates.deathgague:
+                Vector3 targetCannon = CalculateCannonPos();
+
+                // Death & VFX Logic
+                enemyList[Mathf.Abs(currentTarget) % enemyList.Count].Die(targetCannon);
+                Instantiate(smoke, targetCannon, Quaternion.identity);
+
+                //Sound effects
+                AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, CannonFire, 1f);
                 break;
         }
     }
@@ -328,6 +436,9 @@ public class ShootingMechanic : MonoBehaviour
                 focalPoint.SetFocalPoint(gameObject);
                 SetCurrentState(ShootStates.idle);
 
+                // Death Gague
+                currentDeathGague += 5;
+
                 Vector3 targetCannon = CalculateCannonPos();
 
                 // Death & VFX Logic
@@ -335,7 +446,7 @@ public class ShootingMechanic : MonoBehaviour
                 Instantiate(smoke, targetCannon, Quaternion.identity);
 
                 //Sound effects
-                FindObjectOfType<AudioManager>().PlaySound(AudioManagerChannels.SoundEffectChannel, CannonFire, 1f);
+                AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, CannonFire, 1f);
 
             }
             else
@@ -352,7 +463,7 @@ public class ShootingMechanic : MonoBehaviour
                 Instantiate(smoke, targetCannon, Quaternion.identity);
 
                 //Sound effects
-                FindObjectOfType<AudioManager>().PlaySound(AudioManagerChannels.SoundEffectChannel, CannonMiss, 1f);
+                AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, CannonFire, 1f);
             }
         }
     }

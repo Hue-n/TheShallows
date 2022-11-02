@@ -10,7 +10,9 @@ public class Enemy_Wave_Spawner : MonoBehaviour
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
     public GameObject enemyWaveSystem;
-    
+
+    public List<GameObject> enemiesList = new List<GameObject>();
+
     [System.Serializable]
 
     public class Wave
@@ -53,7 +55,9 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     private int newWave;
 
-    public Transform[] spawnPoints;
+    public Transform[] spawnPoints = new Transform[3];
+
+    public List<Transform> AllSpawnPoints = new List<Transform>();
 
     public List <Wave> waves;
 
@@ -71,6 +75,11 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         {
             //Debug.LogError("NO SPAWN POINTS REFERENCED");
         }
+
+        // Find nearest spawn points to the player for the next wave.
+        FindNearestSpawnPoints();
+
+        GameManager.Instance.ui.GetComponent<GameUI>().UpdateWaveCounter(1);
 
         waveCountdown = timeBetweenWaves;
     }
@@ -119,6 +128,13 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         waveCountdown = timeBetweenWaves;
 
         waveCounter = waveCounter + 1;
+
+        GameManager.Instance.ui.GetComponent<GameUI>().UpdateWaveCounter(waveCounter);
+        AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.waveStart, 1f);
+
+
+        // Find nearest spawn points to the player for the next wave.
+        FindNearestSpawnPoints();
 
         if (nextWave + 1 > waves.Count - 1)
         {
@@ -197,7 +213,47 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         Transform sp = spawnPoints[Random.Range (0, spawnPoints.Length) ];
 
         GameObject recentObj = Instantiate(enemy, sp.position, sp.rotation);
+
+        enemiesList.Add(recentObj);
+
         //Debug.Log(recentObj.transform.position);
+    }
+
+    void FindNearestSpawnPoints()
+    {
+        List<Transform> temp = new List<Transform>(AllSpawnPoints);
+
+        float least = 1000000;
+        int leastAccessor = 0;
+
+        // find the spawnPoints.length's nearest spawn points
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            // reset least
+            least = 1000000;
+
+
+            // find shortest distance
+            for (int j = 0; j < temp.Count; j++)
+            {
+                //Debug.Log((GameManager.Instance.playerInstance.transform.position - temp[j].transform.position).magnitude);
+
+                float compareDist = (GameManager.Instance.playerInstance.transform.position - temp[j].transform.position).magnitude;
+
+                if (compareDist< least)
+                {
+                    least = compareDist;
+                    leastAccessor = j;
+                }
+            }
+            // set i's reference
+            spawnPoints[i] = temp[leastAccessor];
+
+            // remove list
+            temp.RemoveAt(leastAccessor);
+        }
+
+        temp.Clear();
     }
 
     public void StartNextWave()

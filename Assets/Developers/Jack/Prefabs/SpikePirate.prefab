@@ -169,11 +169,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f735a7bbbd5eb1245bb4943f67c4af60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transformReference: {fileID: 0}
+  type: 0
   isTargetable: 0
   targetableRange: 35
   alive: 1
   bullet: {fileID: 9171304638266698910, guid: 34b004599ca30294e87754ae5572c1cd, type: 3}
-  deathAnim: {fileID: 8123196247841749450, guid: ec7e05db4a6641d489402c9428b0cdf5, type: 3}
+  deathAnim: {fileID: 2354111998539015351, guid: ba53dfe3e8c1c374b9773c283cff9777, type: 3}
   bulletTime: 1
 --- !u!195 &2063872689209081176
 NavMeshAgent:

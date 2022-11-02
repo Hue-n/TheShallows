@@ -2,9 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnemyTypes
+{ 
+    none = 0,
+    raider,
+    shark,
+    serpent,
+    crab
+}
+
 public class EnemyTracker : MonoBehaviour
 {
     private ShootingMechanic player;
+
+    public Transform transformReference;
+
+    public EnemyTypes type = EnemyTypes.none;
 
     public bool isTargetable = false;
 
@@ -14,6 +27,8 @@ public class EnemyTracker : MonoBehaviour
 
     public GameObject bullet;
     public GameObject deathAnim;
+
+    private GameObject bulletInst;
 
     public float bulletTime = 1f;
 
@@ -76,8 +91,16 @@ public class EnemyTracker : MonoBehaviour
 
         Destroy(inst);
 
-        Instantiate(deathAnim, transform.position, transform.rotation);
+        if (type == EnemyTypes.raider)
+        {
+            Instantiate(deathAnim, transform.position, transformReference.rotation);
+        }
+        else
+        { 
+            Instantiate(deathAnim, transform.position, transform.rotation);
+        }
 
+        AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.cannonHit, 1f);
         Destroy(gameObject);
     }
 
@@ -101,9 +124,10 @@ public class EnemyTracker : MonoBehaviour
             yield return null;
         }
 
+        AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.cannonMiss, 1f);
         Destroy(inst);
 
-        Instantiate(deathAnim, transform.position, transform.rotation);
+        Instantiate(GameManager.Instance.missEffect, transform.position, transform.rotation);
     }
 
     private void OnDestroy()
@@ -114,5 +138,7 @@ public class EnemyTracker : MonoBehaviour
             player.RemoveFromList(this);
             isTargetable = false;
         }
+
+        GameManager.Instance.spawner.GetComponent<Enemy_Wave_Spawner>().enemiesList.Remove(gameObject);
     }
 }

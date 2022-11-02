@@ -47,6 +47,12 @@ MonoBehaviour:
   playerInstance: {fileID: 0}
   mainCameraInstance: {fileID: 0}
   focalPointInstance: {fileID: 0}
+  spawner: {fileID: 0}
+  ui: {fileID: 0}
+  hitEffect: {fileID: 7381046892883162815, guid: 8cd6b85e8232e3c4980264e9eb3d51ee, type: 3}
+  missEffect: {fileID: 91389321875190635, guid: c21a43658b86a064d929a9151d203082, type: 3}
   startingMusicVol: 0.5
   startingSFXVol: 0.5
   startingVoiceVol: 0.5
+  waveNumber: 0
+  highScore: 0

@@ -107,6 +107,15 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DeathGague"",
+                    ""type"": ""Button"",
+                    ""id"": ""af8cf13d-90b5-41b4-a035-b027a470cb22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -230,6 +239,17 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86b0985c-ff43-40b9-84ea-2268d9c931f0"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeathGague"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -259,6 +279,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         m_Controller_Targeting = m_Controller.FindAction("Targeting", throwIfNotFound: true);
         m_Controller_ChooseTarget = m_Controller.FindAction("Choose Target", throwIfNotFound: true);
         m_Controller_Pause = m_Controller.FindAction("Pause", throwIfNotFound: true);
+        m_Controller_DeathGague = m_Controller.FindAction("DeathGague", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -327,6 +348,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controller_Targeting;
     private readonly InputAction m_Controller_ChooseTarget;
     private readonly InputAction m_Controller_Pause;
+    private readonly InputAction m_Controller_DeathGague;
     public struct ControllerActions
     {
         private @DefaultControls m_Wrapper;
@@ -340,6 +362,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         public InputAction @Targeting => m_Wrapper.m_Controller_Targeting;
         public InputAction @ChooseTarget => m_Wrapper.m_Controller_ChooseTarget;
         public InputAction @Pause => m_Wrapper.m_Controller_Pause;
+        public InputAction @DeathGague => m_Wrapper.m_Controller_DeathGague;
         public InputActionMap Get() { return m_Wrapper.m_Controller; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -376,6 +399,9 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnPause;
+                @DeathGague.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnDeathGague;
+                @DeathGague.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnDeathGague;
+                @DeathGague.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnDeathGague;
             }
             m_Wrapper.m_ControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -407,6 +433,9 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @DeathGague.started += instance.OnDeathGague;
+                @DeathGague.performed += instance.OnDeathGague;
+                @DeathGague.canceled += instance.OnDeathGague;
             }
         }
     }
@@ -431,5 +460,6 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         void OnTargeting(InputAction.CallbackContext context);
         void OnChooseTarget(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnDeathGague(InputAction.CallbackContext context);
     }
 }

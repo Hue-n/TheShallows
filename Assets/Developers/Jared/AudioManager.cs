@@ -7,7 +7,8 @@ public enum AudioManagerChannels
 { 
     MusicChannel = 0,
     SoundEffectChannel,
-    VoiceChannel
+    VoiceChannel,
+    AmbienceChannel
 }
 
 
@@ -18,14 +19,22 @@ public class AudioManager : MonoBehaviour
     public static float musicChannelVol = 1f;
     public static float soundeffectChannelVol = 1f;
     public static float voiceChannelVol = 1f;
+    public static float ambienceChannelVol = 1f;
 
     public AudioSource musicChannel;
     public AudioSource soundeffectChannel;
     public AudioSource voiceChannel;
+    public AudioSource ambienceChannel;
 
-    public AudioClip BackgroundMusic;
+    public AudioClip TitleMusic;
+    public AudioClip MainGameMusic;
 
     public AudioClip WaterAmbience;
+
+    public AudioClip cannonHit;
+    public AudioClip cannonMiss;
+    public AudioClip cannonFire;
+    public AudioClip waveStart;
 
     void Awake ()
     {
@@ -44,11 +53,30 @@ public class AudioManager : MonoBehaviour
     {
         musicChannel = GetComponents<AudioSource>()[0];
         soundeffectChannel = GetComponents<AudioSource>()[1];
-        voiceChannel = GetComponents<AudioSource>()[2]; 
-        if (SceneManager.GetActiveScene().name == "WaveSurvival")
+        voiceChannel = GetComponents<AudioSource>()[2];
+        ambienceChannel = GetComponents<AudioSource>()[3];
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        Instance.PlaySound(AudioManagerChannels.MusicChannel, TitleMusic, 1f);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        switch (scene.buildIndex)
         {
-            AudioManager.Instance.PlaySound(AudioManagerChannels.MusicChannel, BackgroundMusic, 1f);
-            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, WaterAmbience, 1f);
+            case 0:
+                Instance.PlaySound(AudioManagerChannels.MusicChannel, TitleMusic, 1f);
+                Instance.StopSound(AudioManagerChannels.AmbienceChannel);
+                break;
+            case 1:
+                Instance.PlaySound(AudioManagerChannels.MusicChannel, MainGameMusic, 1f);
+                Instance.PlaySound(AudioManagerChannels.AmbienceChannel, WaterAmbience, 1f);
+                break;
+            case 2:
+                Instance.StopSound(AudioManagerChannels.MusicChannel);
+                Instance.StopSound(AudioManagerChannels.AmbienceChannel);
+                break;
         }
     }
 
@@ -67,6 +95,10 @@ public class AudioManager : MonoBehaviour
             case 2:
                 voiceChannelVol = value;
                 Instance.voiceChannel.volume = voiceChannelVol;
+                break;
+            case 3:
+                ambienceChannelVol = value;
+                Instance.ambienceChannel.volume = ambienceChannelVol;
                 break;
             default:
                 break;
@@ -95,6 +127,12 @@ public class AudioManager : MonoBehaviour
                 voiceChannel.clip = clip;
                 voiceChannel.Play();
                 break;
+            case AudioManagerChannels.AmbienceChannel:
+                ambienceChannel.Stop();
+                ambienceChannel.clip = clip;
+                ambienceChannel.Play();
+                ambienceChannel.loop = true;
+                break;
         }
     }
 
@@ -120,6 +158,12 @@ public class AudioManager : MonoBehaviour
                 voiceChannel.pitch = pitch;
                 voiceChannel.Play();
                 break;
+            case AudioManagerChannels.AmbienceChannel:
+                ambienceChannel.Stop();
+                ambienceChannel.clip = clip;
+                ambienceChannel.Play();
+                ambienceChannel.loop = true;
+                break;
         }
     }
 
@@ -135,6 +179,10 @@ public class AudioManager : MonoBehaviour
                 break;
             case AudioManagerChannels.VoiceChannel:
                 voiceChannel.Stop();
+                break;
+            case AudioManagerChannels.AmbienceChannel:
+                ambienceChannel.Stop();
+                ambienceChannel.loop = false;
                 break;
         }
     }

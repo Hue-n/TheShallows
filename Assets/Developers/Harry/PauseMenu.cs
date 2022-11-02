@@ -44,18 +44,14 @@ public class PauseMenu : MonoBehaviour
         controls.Controller.Movement.performed -= ctx => OnPause();
     }
 
-    void Update()
-    {
-        
-    }
-
     public void Resume()
     {
- 
         Time.timeScale = 1f;
         GameIsPaused = false;
         animator.SetBool("PauseIsOpen", false);
 
+        //clear selected object 
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void Pause()
@@ -73,6 +69,9 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -95,6 +94,10 @@ public class PauseMenu : MonoBehaviour
         animator.SetBool("CloseAll", false);
         SettingsIsOpen = false;
 
+        //clear selected object 
+        EventSystem.current.SetSelectedGameObject(null);
+        //set new selected object
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
     public void OnPause()
