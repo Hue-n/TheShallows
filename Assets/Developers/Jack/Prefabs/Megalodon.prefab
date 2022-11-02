@@ -122,7 +122,7 @@ MonoBehaviour:
   alert: {fileID: 0}
   isTurning: 0
   CannonHit: {fileID: 0}
-  enemyStats: {fileID: 0}
+  enemyStats: {fileID: 11400000, guid: 9012d338d558698489b2fb17cce43f80, type: 2}
 --- !u!54 &2019392870
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -178,9 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTargetable: 0
-  targetableRange: 100
+  targetableRange: 35
   alive: 1
-  bullet: {fileID: 0}
+  bullet: {fileID: 9171304638266698910, guid: 34b004599ca30294e87754ae5572c1cd, type: 3}
   deathAnim: {fileID: 8123196247841749450, guid: ec7e05db4a6641d489402c9428b0cdf5, type: 3}
   bulletTime: 1
 --- !u!1 &3470494444209332023
@@ -315,7 +315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8535241105072560035
 RectTransform:
   m_ObjectHideFlags: 0

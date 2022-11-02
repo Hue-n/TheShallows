@@ -69,7 +69,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
     {
         if (spawnPoints.Length == 0)
         {
-            Debug.LogError("NO SPAWN POINTS REFERENCED");
+            //Debug.LogError("NO SPAWN POINTS REFERENCED");
         }
 
         waveCountdown = timeBetweenWaves;
@@ -81,8 +81,10 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
         if (state == SpawnState.WAITING)
         {
+            
             if (!EnemyIsAlive())
             {
+                //Debug.Log("wave done");
                 WaveCompleted();
             }
 
@@ -110,7 +112,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     void WaveCompleted()
     {
-        Debug.Log ("WAVE COMPLETED");
+        //Debug.Log ("WAVE COMPLETED");
 
         state = SpawnState.COUNTING;
 
@@ -177,7 +179,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         for (int i = 0; i < wave.count; i++)
         {
             SpawnEnemy(wave.enemy);
-
+            //Debug.Log("spawned");
             yield return new WaitForSeconds(1f/wave.rate);
         }
 
@@ -190,11 +192,12 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
-        Debug.Log ("SPAWNING ENEMY: " + enemy.name);
+        //Debug.Log("SPAWNING ENEMY: " + enemy.name);
 
-        Transform sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
+        Transform sp = spawnPoints[Random.Range (0, spawnPoints.Length) ];
 
-        Instantiate (enemy, sp.position, sp.rotation);
+        GameObject recentObj = Instantiate(enemy, sp.position, sp.rotation);
+        Debug.Log(recentObj.transform.position);
     }
 
     public void StartNextWave()

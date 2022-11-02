@@ -20,8 +20,11 @@ public class ShipAI : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        
         currentState = State.Chase;
         target = GameObject.FindGameObjectWithTag("Player");
+        agent.SetDestination(target.transform.position);
+
         rb = GetComponent<Rigidbody>();
         alert = GetComponentInChildren<EnemyUIAlert>();
         if (enemyStats != null)
@@ -30,9 +33,10 @@ public class ShipAI : Enemy
 
     private void SetStats()
     {
+        currentHP = maxHP;
         maxHP = enemyStats.maxHP;
-        speed = enemyStats.spd;
-        rotSpeed = enemyStats.rotSpd;
+        agent.speed = enemyStats.spd;
+        agent.angularSpeed = enemyStats.rotSpd;
         attackRange = enemyStats.attackRange;
         frontSensorPos = enemyStats.sensorPos;
         sensorLength = enemyStats.sensorLength;
@@ -53,7 +57,7 @@ public class ShipAI : Enemy
         {
             case State.Chase:
                 {
-                    Sensors();
+                    //Sensors();
                     
 
                     break;
