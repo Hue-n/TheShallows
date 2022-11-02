@@ -19,17 +19,13 @@ public class Enemy_Wave_Spawner : MonoBehaviour
     {
         public string name;
 
-        public GameObject enemy;
-
         public float count;
 
         public float rate;
 
-        public Wave(GameObject newEnemy, float newCount, float newRate, string Tag = "")
+        public Wave(float newCount, float newRate, string Tag = "")
         {
             name = Tag;
-
-            enemy = newEnemy;
 
             count = newCount;
 
@@ -39,14 +35,6 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     public int newRate = 2;
     
-    // [System.Serializable]
-    
-    // public class Wave
-    // {
-    //     public string name;
-    
-    //     public List <WaveAction> actions;
-    // }
     public GameObject[] enemies;
 
     private int nextWave = 0;
@@ -142,13 +130,11 @@ public class Enemy_Wave_Spawner : MonoBehaviour
             
             // nextWave = 0;
 
-            GameObject newEnemy = enemies [Random.Range (0, enemies.Length - 1)];
-
             float newCount = Mathf.Round(Mathf.Pow(1.2f, waveCounter) + 10f);
 
             newRate += 2;
 
-            Wave newWave = new Wave(newEnemy, newCount, newRate);
+            Wave newWave = new Wave(newCount, newRate);
 
             waves.Add(newWave);
 
@@ -194,7 +180,8 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
         for (int i = 0; i < wave.count; i++)
         {
-            SpawnEnemy(wave.enemy);
+            GameObject newEnemy = enemies[Random.Range(0, enemies.Length)];
+            SpawnEnemy(newEnemy);
             //Debug.Log("spawned");
             yield return new WaitForSeconds(1f/wave.rate);
         }

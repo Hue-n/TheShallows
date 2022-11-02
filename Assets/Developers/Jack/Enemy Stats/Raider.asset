@@ -18,6 +18,6 @@ MonoBehaviour:
   spd: 4
   rotSpd: 30
   damage: 10
-  attackRange: 30
+  attackRange: 50
   sensorPos: {x: 0, y: 0, z: 5}
   sensorLength: 6
