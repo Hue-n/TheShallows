@@ -11,13 +11,17 @@ public class PlayerController : MonoBehaviour
     public float currentHP;
     private bool regen = false;
     [SerializeField] private float regenCooldown = 5;
-    [SerializeField] private float regenRate = 2f;
+    [SerializeField] private float regenRate = 1f;
 
     public float maxSpeed;
     public float maxTurn;
 
     public float turnScalar = 0.05f;
     public float speedScalar = 0.05f;
+
+    public bool canTakeColDMG = true;
+
+    //public bool isMoving;
 
     [SerializeField] private float currentSpeed;
     [SerializeField] private float currentTurn;
@@ -60,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-
+        
         moveDir = transform.forward * currentSpeed;
 
         if (currentHP < maxHP && regen)
@@ -78,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
         if (GameManager.Instance.playerInstance.GetComponent<ShootingMechanic>().GetCurrentState() == ShootStates.idle)
         {
+
             Vector3 inputVal = new Vector3(input.x, 0, input.y);
 
             currentTurn += inputVal.x * turnScalar;
@@ -116,11 +121,30 @@ public class PlayerController : MonoBehaviour
             Debug.Log("G A M E  O V E R");
             SceneManager.LoadScene("LoseScreen");
         }
-            
+        
 
         Debug.Log(currentHP);
 
         StartCoroutine(RegenCooldown());
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (canTakeColDMG)
+        {
+            Damage(5);
+            canTakeColDMG = false;
+        }
+        
+    }
+
+    private IEnumerator ColDamageCooldown()
+    {
+        yield return new WaitForSeconds(3);
+
+        canTakeColDMG = true;
+
+        yield break;
     }
 
     private IEnumerator RegenCooldown()

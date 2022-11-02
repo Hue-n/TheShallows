@@ -6,21 +6,6 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public Rigidbody rb;
-    //public Transform leftCheck;
-    //public Transform rightCheck;
-
-    //[Header("PREDICTION")]
-    //[SerializeField] public float _maxDistancePredict = 100;
-    //[SerializeField] public float _minDistancePredict = 5;
-    //[SerializeField] public float _maxTimePrediction = 5;
-    //public Vector3 _standardPrediction;
-
-    //[Header("SENSORS")]
-    //[SerializeField] public float sensorLength = 10f;
-    //[SerializeField] public Vector3 frontSensorPos = new Vector3(0, 0.2f, 0.5f);
-    //[SerializeField] public float frontSideSensorPos = 2f;
-    //[SerializeField] public float frontSensorAngle = 45f;
-    //public bool avoiding = false;
 
     public GameObject target;
     public int currentHP;
@@ -181,16 +166,6 @@ public class Enemy : MonoBehaviour
     //}
     #endregion
 
-    //public void RotateShip()
-    //{
-    //    //Debug.Log("Rotate() Called");
-    //    var heading = _standardPrediction - transform.position;
-    //    heading.y = 11;
-    //    var rotation = Quaternion.LookRotation(heading, Vector3.up);
-
-    //    rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * ExtTime.timeScale));
-    //}
-
     public void Update()
     {
         aiTick += Time.deltaTime;
@@ -230,9 +205,9 @@ public class Enemy : MonoBehaviour
         yield break;
     }
 
-    private void OnDestroy()
-    {
-        GameManager.Instance.playerInstance.GetComponent<TimeStop>().AddCharge(15);
-    }
+    //private void OnDestroy()
+    //{
+    //    GameManager.Instance.playerInstance.GetComponent<TimeStop>().AddCharge(15);
+    //}
 
 }

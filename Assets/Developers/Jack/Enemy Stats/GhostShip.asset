@@ -15,9 +15,9 @@ MonoBehaviour:
   shipName: Ghostship
   points: 1000
   maxHP: 3
-  spd: 1.25
-  rotSpd: 35
-  damage: 10
-  attackRange: 25
+  spd: 2
+  rotSpd: 15
+  damage: 20
+  attackRange: 30
   sensorPos: {x: 0, y: 0, z: 8}
   sensorLength: 6

@@ -169,4 +169,9 @@ public class ShipAI : Enemy
 
         Instantiate(GameManager.Instance.hitEffect, GameManager.Instance.playerInstance.transform.position, Quaternion.identity);
     }
+
+    public void OnDestroy()
+    {
+        FindObjectOfType<ScoreKeeper>().AddScore(enemyStats.points);
+    }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1244269118}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &95372919
@@ -1864,6 +1864,11 @@ MonoBehaviour:
   credits: {fileID: 1250337301}
   controls: {fileID: 110761514}
   TitleMusic: {fileID: 8300000, guid: 68732f6eff652dd48b880164fc94d355, type: 3}
+  CreditBack: {fileID: 1617266418}
+  ControlsBack: {fileID: 1508425205}
+  CreditsButton: {fileID: 1355003259}
+  ControlsButton: {fileID: 1620683461}
+  PlayButton: {fileID: 1244269118}
 --- !u!1 &1179899345
 GameObject:
   m_ObjectHideFlags: 0
