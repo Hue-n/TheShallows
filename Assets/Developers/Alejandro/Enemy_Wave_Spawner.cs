@@ -77,6 +77,8 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(state);
+
         if (state == SpawnState.WAITING)
         {
             if (!EnemyIsAlive())
