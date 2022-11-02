@@ -7,10 +7,12 @@ public class CreatureAI : Enemy
 {
     public CreatureStats enemyStats;
     private bool Attacking = false;
-    private bool Rotate = false;
     private float chargeForce = 100;
     private float attackCooldown = 5;
-    
+
+    public BoxCollider collider;
+    public BoxCollider trigger;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,8 @@ public class CreatureAI : Enemy
         agent.angularSpeed = enemyStats.rotSpd;
         attackRange = enemyStats.attackRange;
 
+
+
         
         //frontSensorPos = enemyStats.sensorPos;
         //sensorLength = enemyStats.sensorLength;
@@ -52,7 +56,7 @@ public class CreatureAI : Enemy
 
         if (distance > attackRange)
         {
-            //Sensors();
+
         }
         else
         {
@@ -62,10 +66,7 @@ public class CreatureAI : Enemy
             }
         }
 
-        if (Rotate)
-        {
-            //HuntPlayer();
-        }
+     
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,21 +74,21 @@ public class CreatureAI : Enemy
         if (other.CompareTag("Player"))
         {
             other.GetComponent<PlayerController>().Damage(10);
+
         }
     }
 
     private IEnumerator RammingSpeed()
     {
         Attacking = true;
-        Rotate = true;
 
         alert.Alerter(3);
         yield return new WaitForSeconds(3);
 
         rb.AddForce(transform.forward * chargeForce, ForceMode.Impulse);
-        Rotate = false;
 
-        GetComponent<BoxCollider>().enabled = true;
+        trigger.enabled = true;
+        collider.enabled = false;
         StartCoroutine(DisableBox());
 
         StartCoroutine(AttackCooldown());
@@ -98,7 +99,8 @@ public class CreatureAI : Enemy
     {
         yield return new WaitForSeconds(2);
 
-        GetComponent<BoxCollider>().enabled = false;
+        trigger.enabled = false;
+        collider.enabled = true;
 
         yield break;
     }

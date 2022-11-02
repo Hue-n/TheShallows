@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public DefaultControls controls;
@@ -105,8 +105,14 @@ public class PlayerController : MonoBehaviour
     {
         currentHP -= amount;
 
+        GetComponent<TimeStop>().AddCharge(15);
+
         if (currentHP <= 0)
+        {
             Debug.Log("G A M E  O V E R");
+            SceneManager.LoadScene("LoseScreen");
+        }
+            
 
         Debug.Log(currentHP);
 

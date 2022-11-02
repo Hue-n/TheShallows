@@ -145,7 +145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 11.3}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1549380057071555362
@@ -389,26 +389,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  leftCheck: {fileID: 8239816509123528236}
-  rightCheck: {fileID: 140824077205336083}
-  _maxDistancePredict: 100
-  _minDistancePredict: 5
-  _maxTimePrediction: 5
-  _standardPrediction: {x: 0, y: 0, z: 0}
-  sensorLength: 6
-  frontSensorPos: {x: 0, y: 0.2, z: 0}
-  frontSideSensorPos: 1
-  frontSensorAngle: 45
-  avoiding: 0
   target: {fileID: 0}
   currentHP: 0
   maxHP: 0
-  speed: 3
-  rotSpeed: 90
   attackRange: 15
-  alert: {fileID: 0}
+  alert: {fileID: 9118585063861524694}
   isTurning: 0
+  agent: {fileID: 0}
   CannonHit: {fileID: 0}
+  aiTick: 0
   enemyStats: {fileID: 11400000, guid: 8d05651777d071941ba23c0e3414744f, type: 2}
 --- !u!114 &1600912974203945710
 MonoBehaviour:

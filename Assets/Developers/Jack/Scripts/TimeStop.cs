@@ -55,6 +55,9 @@ public class TimeStop : MonoBehaviour
 
     public void AddCharge(int amount)
     {
-        charge += amount;
+        if (amount + charge < 100)
+            charge += amount;
+        else
+            charge = 100;
     }
 }

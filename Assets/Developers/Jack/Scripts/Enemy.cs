@@ -6,33 +6,35 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public Rigidbody rb;
-    public Transform leftCheck;
-    public Transform rightCheck;
+    //public Transform leftCheck;
+    //public Transform rightCheck;
 
-    [Header("PREDICTION")]
-    [SerializeField] public float _maxDistancePredict = 100;
-    [SerializeField] public float _minDistancePredict = 5;
-    [SerializeField] public float _maxTimePrediction = 5;
-    public Vector3 _standardPrediction;
+    //[Header("PREDICTION")]
+    //[SerializeField] public float _maxDistancePredict = 100;
+    //[SerializeField] public float _minDistancePredict = 5;
+    //[SerializeField] public float _maxTimePrediction = 5;
+    //public Vector3 _standardPrediction;
 
-    [Header("SENSORS")]
-    [SerializeField] public float sensorLength = 10f;
-    [SerializeField] public Vector3 frontSensorPos = new Vector3(0, 0.2f, 0.5f);
-    [SerializeField] public float frontSideSensorPos = 2f;
-    [SerializeField] public float frontSensorAngle = 45f;
-    public bool avoiding = false;
+    //[Header("SENSORS")]
+    //[SerializeField] public float sensorLength = 10f;
+    //[SerializeField] public Vector3 frontSensorPos = new Vector3(0, 0.2f, 0.5f);
+    //[SerializeField] public float frontSideSensorPos = 2f;
+    //[SerializeField] public float frontSensorAngle = 45f;
+    //public bool avoiding = false;
 
     public GameObject target;
     public int currentHP;
     public int maxHP;
-    public float speed = 3;
-    public float rotSpeed = 90;
+    //public float speed = 3;
+    //public float rotSpeed = 90;
     public float attackRange = 15;
     public EnemyUIAlert alert;
-    public bool isTurning = false;
+    //public bool isTurning = false;
     public NavMeshAgent agent;
 
     public AudioClip CannonHit;
+
+    public float aiTick = 0;
 
     public void Awake()
     {
@@ -178,16 +180,24 @@ public class Enemy : MonoBehaviour
     //}
     #endregion
 
-    public void RotateShip()
+    //public void RotateShip()
+    //{
+    //    //Debug.Log("Rotate() Called");
+    //    var heading = _standardPrediction - transform.position;
+    //    heading.y = 11;
+    //    var rotation = Quaternion.LookRotation(heading, Vector3.up);
+
+    //    rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * ExtTime.timeScale));
+    //}
+    public void Update()
     {
-        //Debug.Log("Rotate() Called");
-        var heading = _standardPrediction - transform.position;
-        heading.y = 11;
-        var rotation = Quaternion.LookRotation(heading, Vector3.up);
-
-        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, rotSpeed * ExtTime.timeScale));
+        aiTick += Time.deltaTime;
+        if (aiTick >= 3)
+        {
+            agent.destination = target.transform.position;
+            aiTick = 0;
+        }
     }
-
     public void Damage(int amount)
     {
         currentHP -= amount;

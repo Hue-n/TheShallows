@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-// using ;
+
 
 public class Enemy_Wave_Spawner : MonoBehaviour
 {
@@ -77,7 +77,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
+        //Debug.Log(state);
 
         if (state == SpawnState.WAITING)
         {
@@ -197,7 +197,7 @@ public class Enemy_Wave_Spawner : MonoBehaviour
         Transform sp = spawnPoints[Random.Range (0, spawnPoints.Length) ];
 
         GameObject recentObj = Instantiate(enemy, sp.position, sp.rotation);
-        Debug.Log(recentObj.transform.position);
+        //Debug.Log(recentObj.transform.position);
     }
 
     public void StartNextWave()

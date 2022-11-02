@@ -10,7 +10,8 @@ public class ShipAI : Enemy
     private bool firing = false;
     public ShipStats enemyStats;
 
-    [SerializeField] public enum State
+    [SerializeField]
+    public enum State
     {
         Chase,
         Attack
@@ -20,15 +21,15 @@ public class ShipAI : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        
+
         currentState = State.Chase;
         target = GameObject.FindGameObjectWithTag("Player");
         agent.SetDestination(target.transform.position);
 
         rb = GetComponent<Rigidbody>();
-        alert = GetComponentInChildren<EnemyUIAlert>();
+        
         if (enemyStats != null)
-        SetStats();
+            SetStats();
     }
 
     private void SetStats()
@@ -37,9 +38,10 @@ public class ShipAI : Enemy
         maxHP = enemyStats.maxHP;
         agent.speed = enemyStats.spd;
         agent.angularSpeed = enemyStats.rotSpd;
+        
         attackRange = enemyStats.attackRange;
-        frontSensorPos = enemyStats.sensorPos;
-        sensorLength = enemyStats.sensorLength;
+        agent.stoppingDistance = attackRange - (attackRange / 3);
+
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class ShipAI : Enemy
 
         if (distance < attackRange && currentState != State.Attack)
         {
+            Debug.Log("in range");
             StartCoroutine(AttackMode());
         }
 
@@ -58,45 +61,24 @@ public class ShipAI : Enemy
             case State.Chase:
                 {
                     //Sensors();
-                    
+
 
                     break;
                 }
             case State.Attack:
                 {
-                    
-                    if (isTurning)
+                    Debug.Log("state is attack");
+                    if (!firing)
                     {
-                        
-                        float lDist = Vector3.Distance(leftCheck.position, target.transform.position);
-                        float rDist = Vector3.Distance(rightCheck.position, target.transform.position);
-
-                        if (lDist < rDist)
-                        {
-                            
-
-                            if (!firing)
-                            {
-                                StartCoroutine(Fire());
-                            }
-                        }
-                        else
-                        {
-                            
-
-                            if (!firing)
-                            {
-                                StartCoroutine(Fire());
-                            }
-                        }
+                        StartCoroutine(Fire());
+                        Debug.Log("fire coroutine");
                     }
-
-                    break;
                 }
-        }
 
-        
+                break;
+        }
     }
+
     private IEnumerator AttackMode()
     {
         yield return new WaitForSeconds(3f);
@@ -105,34 +87,38 @@ public class ShipAI : Enemy
 
         if (distance < attackRange)
         {
+            Debug.Log("set state to attack");
             currentState = State.Attack;
-            isTurning = true;
         }
+
         yield break;
     }
 
     private IEnumerator Fire()
     {
+        Debug.Log("fire");
         firing = true;
         alert.Alerter(3);
         yield return new WaitForSeconds(3f);
-               
+
         if (Random.Range(0, 10) <= 2)
         {
             Debug.Log("Miss");
-            
+
         }
         else
         {
             //Put Screenshake Here
             //Damage the Player
-            target.GetComponent<PlayerController>().Damage(5);
+            target.GetComponent<PlayerController>().Damage(500000);
             yield return new WaitForSeconds(1f);
-            
+
         }
         currentState = State.Chase;
         firing = false;
         yield break;
     }
+
+
 
 }

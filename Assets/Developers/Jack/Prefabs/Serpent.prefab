@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5005630033627820057}
   - component: {fileID: 309659731}
   - component: {fileID: 4083423901819225844}
+  - component: {fileID: 4779929372778431707}
   m_Layer: 0
   m_Name: Serpent
   m_TagString: Enemy
@@ -102,27 +103,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  leftCheck: {fileID: 0}
-  rightCheck: {fileID: 0}
-  _maxDistancePredict: 100
-  _minDistancePredict: 5
-  _maxTimePrediction: 5
-  _standardPrediction: {x: 0, y: 0, z: 0}
-  sensorLength: 6
-  frontSensorPos: {x: 0, y: 0.2, z: 0.5}
-  frontSideSensorPos: 2
-  frontSensorAngle: 45
-  avoiding: 0
   target: {fileID: 0}
   currentHP: 0
   maxHP: 0
-  speed: 3
-  rotSpeed: 90
   attackRange: 30
-  alert: {fileID: 0}
-  isTurning: 0
+  alert: {fileID: 2677734374299976212}
+  agent: {fileID: 0}
   CannonHit: {fileID: 0}
+  aiTick: 0
   enemyStats: {fileID: 11400000, guid: 27252551e3a365349bfadf35d410b15e, type: 2}
+  collider: {fileID: 309659731}
+  trigger: {fileID: 5005630033627820057}
 --- !u!54 &2019392870
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -183,6 +174,28 @@ MonoBehaviour:
   bullet: {fileID: 9171304638266698910, guid: 34b004599ca30294e87754ae5572c1cd, type: 3}
   deathAnim: {fileID: 8123196247841749450, guid: ec7e05db4a6641d489402c9428b0cdf5, type: 3}
   bulletTime: 1
+--- !u!195 &4779929372778431707
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2818584996764430951}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 15
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 10
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 5
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 2
 --- !u!1 &3470494444209332023
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 15.9, y: -219.40004}
+  m_AnchoredPosition: {x: 15.9, y: 539}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3175365701271826714
