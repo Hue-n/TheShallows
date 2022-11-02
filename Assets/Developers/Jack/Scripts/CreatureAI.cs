@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CreatureAI : Enemy
 {
@@ -9,26 +10,37 @@ public class CreatureAI : Enemy
     private bool Rotate = false;
     private float chargeForce = 100;
     private float attackCooldown = 5;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        
         target = GameObject.FindGameObjectWithTag("Player");
+        agent.SetDestination(target.transform.position);
         rb = GetComponent<Rigidbody>();
         alert = GetComponentInChildren<EnemyUIAlert>();
-
+        
         if (enemyStats != null)
         SetStats();
+
+        
     }
 
     private void SetStats()
     {
+        currentHP = maxHP;
         maxHP = enemyStats.maxHP;
-        speed = enemyStats.spd;
-        rotSpeed = enemyStats.rotSpd;
+        agent.speed = enemyStats.spd;
+        agent.angularSpeed = enemyStats.rotSpd;
         attackRange = enemyStats.attackRange;
-        frontSensorPos = enemyStats.sensorPos;
-        sensorLength = enemyStats.sensorLength;
+
+        
+        //frontSensorPos = enemyStats.sensorPos;
+        //sensorLength = enemyStats.sensorLength;
+        
+        //set navmesh stats
+
     }
 
 
@@ -39,7 +51,9 @@ public class CreatureAI : Enemy
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
         if (distance > attackRange)
-        Sensors();
+        {
+            //Sensors();
+        }
         else
         {
             if (!Attacking)
@@ -50,7 +64,7 @@ public class CreatureAI : Enemy
 
         if (Rotate)
         {
-            HuntPlayer();
+            //HuntPlayer();
         }
     }
 
