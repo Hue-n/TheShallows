@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0b713d6e99e1e944a805e7755463528, type: 3}
-  m_Name: Shark
+  m_Name: Krab
   m_EditorClassIdentifier: 
   creatureName: Megalodon
   points: 500
-  maxHP: 2
-  spd: 6
-  rotSpd: 60
+  maxHP: 4
+  spd: 2
+  rotSpd: 20
   damage: 15
   attackRange: 30
   sensorPos: {x: 0, y: -1, z: 6}

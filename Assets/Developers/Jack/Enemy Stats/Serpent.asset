@@ -16,8 +16,8 @@ MonoBehaviour:
   points: 300
   maxHP: 1
   spd: 2.5
-  rotSpd: 130
+  rotSpd: 60
   damage: 10
-  attackRange: 20
+  attackRange: 30
   sensorPos: {x: 0, y: -1, z: 3}
   sensorLength: 8

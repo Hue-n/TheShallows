@@ -49,6 +49,9 @@ public class ShootingMechanic : MonoBehaviour
     public float currentDeathGague;
     public float maxDeathGague = 100;
 
+    public GameObject defaultPP;
+    public GameObject deathPP;
+
     private void Awake()
     {
         controls = new DefaultControls();
@@ -67,11 +70,15 @@ public class ShootingMechanic : MonoBehaviour
         {
             deathGague = true;
             SetCurrentState(ShootStates.deathgague);
+            deathPP.SetActive(true);
+            defaultPP.SetActive(false);
         }
         else
         {
             deathGague = false;
             SetCurrentState(ShootStates.idle);
+            deathPP.SetActive(false);
+            defaultPP.SetActive(true);
         }
     }
 
@@ -157,7 +164,7 @@ public class ShootingMechanic : MonoBehaviour
                 if (CheckInDeathGague())
                 {
                     // Deiterate Death Gague
-                    currentDeathGague -= Time.deltaTime * 2;
+                    currentDeathGague -= Time.deltaTime * 4;
 
                     if (CheckForEnemy())
                     {
@@ -184,6 +191,9 @@ public class ShootingMechanic : MonoBehaviour
                     SetCurrentState(ShootStates.idle);
                     // Reset Accessor
                     currentTarget = 0;
+                    deathGague = false;
+                    deathPP.SetActive(false);
+                    defaultPP.SetActive(true);
                 }
                 break;
         }

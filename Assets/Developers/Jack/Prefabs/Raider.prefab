@@ -392,7 +392,7 @@ MonoBehaviour:
   target: {fileID: 0}
   currentHP: 0
   maxHP: 0
-  attackRange: 15
+  attackRange: 35
   alert: {fileID: 9118585063861524694}
   agent: {fileID: 0}
   CannonHit: {fileID: 0}

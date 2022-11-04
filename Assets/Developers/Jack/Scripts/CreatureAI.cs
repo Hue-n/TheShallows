@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,8 +8,8 @@ public class CreatureAI : Enemy
 {
     public CreatureStats enemyStats;
     private bool Attacking = false;
-    private float chargeForce = 100;
-    private float attackCooldown = 5;
+    private float chargeForce = 125;
+    private float attackCooldown = 3;
 
     public BoxCollider collider;
     public BoxCollider trigger;
@@ -83,7 +84,7 @@ public class CreatureAI : Enemy
         Attacking = true;
 
         alert.Alerter(3);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
 
         rb.AddForce(transform.forward * chargeForce, ForceMode.Impulse);
 
@@ -112,5 +113,10 @@ public class CreatureAI : Enemy
 
         Attacking = false;
         yield break;
+    }
+
+    public void OnDestroy()
+    {
+        FindObjectOfType<ScoreKeeper>().AddScore(enemyStats.points);
     }
 }

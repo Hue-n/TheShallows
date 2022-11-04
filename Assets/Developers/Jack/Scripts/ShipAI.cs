@@ -66,7 +66,6 @@ public class ShipAI : Enemy
         {
             case State.Chase:
                 {
-                    //Sensors();
 
 
                     break;
@@ -87,7 +86,7 @@ public class ShipAI : Enemy
 
     private IEnumerator AttackMode()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
 
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
@@ -104,8 +103,8 @@ public class ShipAI : Enemy
     {
         Debug.Log("fire");
         firing = true;
-        alert.Alerter(3);
-        yield return new WaitForSeconds(3f);
+        alert.Alerter(2);
+        yield return new WaitForSeconds(2f);
 
         AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.cannonFire, 1f);
         Instantiate(shootEffect, bulletSpawn.position, bulletSpawn.rotation);
@@ -117,9 +116,8 @@ public class ShipAI : Enemy
         else
         {
             //Put Screenshake Here
-            //Damage the Player
             yield return Hit();
-            target.GetComponent<PlayerController>().Damage(50);
+            target.GetComponent<PlayerController>().Damage(25);
             yield return new WaitForSeconds(1f);
 
         }
@@ -168,5 +166,10 @@ public class ShipAI : Enemy
         Destroy(inst);
 
         Instantiate(GameManager.Instance.hitEffect, GameManager.Instance.playerInstance.transform.position, Quaternion.identity);
+    }
+
+    public void OnDestroy()
+    {
+        FindObjectOfType<ScoreKeeper>().AddScore(enemyStats.points);
     }
 }
