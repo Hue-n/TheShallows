@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd1bb921cab0ba4fb7eb2b20fc2a36e, type: 3}
+  m_Name: Test
+  m_EditorClassIdentifier: 
+  voiceLines:
+  - speaker: {fileID: 11400000, guid: afb07a18afb08654f903d5bc580a5897, type: 2}
+    line: Hello, my name is Joe. This is test dialogue. Hahahahaha. Random Testing
+      noises.
+  - speaker: {fileID: 11400000, guid: 6955b653447ecda44ab148498182f0b0, type: 2}
+    line: Hello Joe, I'm mama. This is also more text dialogue. Hahahahaha. Testing
+      Noises.
