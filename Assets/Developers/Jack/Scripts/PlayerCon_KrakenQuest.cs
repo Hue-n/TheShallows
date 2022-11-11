@@ -57,12 +57,14 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         moveDir = transform.forward;
         currentHP = maxHP;
+        Cursor.visible = false;
     }
 
     private void Update()
     {
 
         moveDir = transform.forward * currentSpeed;
+        
 
     }
 
@@ -70,14 +72,13 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
     {
         // Only calculate boat movement if the player's move state is idle.
 
-        if (GameManager.Instance.playerInstance.GetComponent<ShootingMechanic>().GetCurrentState() == ShootStates.idle)
+        if (KQGameManager.Instance.playerInstance.GetComponent<ShootingMechanic>().GetCurrentState() == ShootStates.idle)
         {
-
+            
             Vector3 inputVal = new Vector3(input.x, 0, input.y);
-
+            
             currentTurn += inputVal.x * turnScalar;
             currentTurn = Mathf.Clamp(currentTurn, -maxTurn, maxTurn);
-
             currentSpeed += inputVal.z * speedScalar;
             currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
         }

@@ -84,7 +84,7 @@ public class ShootingMechanic : MonoBehaviour
 
     private void Start()
     {
-        focalPoint = GameManager.Instance.focalPointInstance.GetComponent<FocalPoint>();
+        focalPoint = FindObjectOfType<FocalPoint>();
     }
 
     private void OnEnable()

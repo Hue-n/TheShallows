@@ -9,8 +9,8 @@ public class FocalPoint : MonoBehaviour
 
     private void Start()
     {
-        focus = GameManager.Instance.playerInstance;
-        behavior = GameManager.Instance.mainCameraInstance.GetComponent<CameraBehavior>();
+        focus = GameObject.FindGameObjectWithTag("Player");
+        behavior = FindObjectOfType<CameraBehavior>();
     }
 
     // Snaps to target

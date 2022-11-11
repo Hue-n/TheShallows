@@ -100,7 +100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 503336625}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -758.552, y: 46.09974, z: -699.7657}
+  m_LocalPosition: {x: 2.6, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596483826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -755.552, y: 47.75974, z: -708.2857}
+  m_LocalPosition: {x: 0, y: 3, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -162,7 +162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636426831}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -755.632, y: 47.32974, z: -691.3957}
+  m_LocalPosition: {x: 0, y: 2.92, z: 8.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051165058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -753.34204, y: 45.969738, z: -701.5457}
+  m_LocalPosition: {x: -2.6, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,9 +314,10 @@ GameObject:
   - component: {fileID: 4233045282200890262}
   - component: {fileID: 5709132986238114493}
   - component: {fileID: 2726783483663169660}
+  - component: {fileID: 6471380584745181342}
   m_Layer: 0
   m_Name: PlayerController_KrakenQuest
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -362,10 +363,10 @@ MonoBehaviour:
   currentTargetTrans: {fileID: 0}
   currentTarget: 0
   cannonPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1051165059}
+  - {fileID: 503336626}
+  - {fileID: 636426832}
+  - {fileID: 596483827}
   smoke: {fileID: 6158271316592869780, guid: bda4816535c72a34eb9bb59169bf2f3a, type: 3}
   CannonFire: {fileID: 8300000, guid: e947a61cf7565fe419e715bc9911321f, type: 3}
   CannonMiss: {fileID: 8300000, guid: 11e2139aca82e384fb1314f8c07e4a01, type: 3}
@@ -424,6 +425,20 @@ MonoBehaviour:
   canTakeColDMG: 1
   currentSpeed: 0
   currentTurn: 0
+--- !u!114 &6471380584745181342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8507357422721587716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4b8606d361a634483d436eec3da9ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mechanic: {fileID: 0}
+  charge: 0
 --- !u!1001 &8507357423660978194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -445,15 +460,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0888600c9df3704488413226af4a5324, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -755.632
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0888600c9df3704488413226af4a5324, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 44.699738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0888600c9df3704488413226af4a5324, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -699.7657
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0888600c9df3704488413226af4a5324, type: 3}
       propertyPath: m_LocalRotation.w

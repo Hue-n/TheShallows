@@ -15,8 +15,8 @@ public class CameraBehavior : MonoBehaviour
 
     private void Start()
     {
-        focalPoint = GameManager.Instance.focalPointInstance.GetComponent<FocalPoint>();
-        playerTransform = GameManager.Instance.playerInstance.transform;
+        focalPoint = FindObjectOfType<FocalPoint>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         offset = transform.position - playerTransform.position;
     }
 
