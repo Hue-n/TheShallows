@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b13101dda13f8a345a19d359f9a9e324, type: 3}
-  m_Name: Tree
+  m_Script: {fileID: 11500000, guid: ab354cf5f53f7e64a9f9ec29e186a403, type: 3}
+  m_Name: FinishTest
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  voiceLines: []
+  characters:
+  - treeguy
+  - me
+  text:
+  - thanks
+  - ok

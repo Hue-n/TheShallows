@@ -17,25 +17,46 @@ public class KQ_Dialogue : MonoBehaviour
 
     private int index;
 
+    public Dialogue currentDial;
+
     public DefaultControls controls;
+
+    private void OnEnable()
+    {
+        controls.Controller.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Controller.Disable();
+    }
+
+    private void Awake()
+    {
+        controls = new DefaultControls();
+        controls.Controller.Attack.performed += ctx => Interact();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         textComponent.text = string.Empty;
 
-        controls = new DefaultControls();
-        controls.Controller.Attack.performed += ctx => Interact();
+        
     }
 
     public void AssignDialogue(Dialogue data)
     {
+        currentDial = data;
+
         int count = 0;
 
-        foreach(string character in data.characters)
+        while(count < data.text.Length)
         {
-            names[count] = character;
-            lines[count] = data.text[count];
+            Debug.Log(count + " / " + data.text.Length);
+            lines[count] = data.text[count]; ;
+            names[count] = data.characters[count];
+            count++;
         }
     }
 
@@ -88,7 +109,8 @@ public class KQ_Dialogue : MonoBehaviour
         }
         else
         {
-
+            textComponent.text = string.Empty;
+            nameComponent.text = string.Empty;
             gameObject.SetActive(false);
         }
     }

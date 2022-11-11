@@ -14,16 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestName: Grab the Rock
   QuestDescription: Go get tree guy's rock.
-  QuestRequirements: Kill 2 fish
+  QuestRequirements: Get 2 fish
   returnText: return to carl for the reward
   objectiveCur: 0
   objectiveMax: 2
-  EnemyTrigger: {fileID: 0}
-  Fetchables: []
   QuestType: 0
   FireballReward: 0
   SoulReward: 0
-  startDialogue: {fileID: 0}
-  midquestDialogue: {fileID: 0}
-  finishDialogue: {fileID: 0}
+  startDialogue: {fileID: 11400000, guid: ac1aa32bbeeff874cb1cd46f6c984ab8, type: 2}
+  midquestDialogue: {fileID: 11400000, guid: d3a8805cd0b78cd4ea00604b512ca216, type: 2}
+  finishDialogue: {fileID: 11400000, guid: 8f7a3551220e54f4388a454ad41a83dd, type: 2}
   State: 0

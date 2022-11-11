@@ -5,11 +5,15 @@ using TMPro;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using System.Diagnostics;
 
 public class NPC : MonoBehaviour
 {
 
     public DefaultControls controls;
+
     public Quest quest;
     public string charName;
     public Dialogue[] dialogues;
@@ -17,32 +21,28 @@ public class NPC : MonoBehaviour
     public GameObject dialogueObject;
     public bool inRange = false;
 
-    public GameObject[] fetchables;
+    public void Awake()
+    {
+        controls = new DefaultControls();
 
-    public GameObject[] enemyTriggers;
+        controls.Controller.Attack.performed += ctx => SpeakToNPC();
+    }
+
+    private void OnEnable()
+    {
+        controls.Controller.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Controller.Disable();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        dialogueObject = FindObjectOfType<KQ_Dialogue>().gameObject;
-
-        uiObject = GetComponentInChildren<Image>().gameObject;
         uiObject.SetActive(false);
 
-        controls = new DefaultControls();
-
-        controls.Controller.Attack.performed += ctx => SpeakToNPC();
-
-
-        foreach (GameObject obj in fetchables)
-        {
-            obj.GetComponent<Fetchable>().AssignQuest(quest);
-        }
-
-        foreach (GameObject obj in enemyTriggers)
-        {
-
-        }
     }
 
     public void SpeakToNPC()
@@ -51,8 +51,31 @@ public class NPC : MonoBehaviour
         {
             if (!dialogueObject.activeSelf)
             {
+                
+
+                switch(quest.State)
+                {
+                    case 0:
+                        {
+                            quest.State = 1;
+                            dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.startDialogue);
+                            break;
+                        }
+                    case 1:
+                        {
+                            dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.midquestDialogue);
+                            break;
+                        }
+                    case 2:
+                        {
+                            dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.finishDialogue);
+                            quest.State = 3;
+                            quest = null;
+                            break;
+                        }
+                }
+
                 dialogueObject.SetActive(true);
-                dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(dialogues[0]);
                 dialogueObject.GetComponent<KQ_Dialogue>().StartDialogue();
             }  
         }

@@ -17,7 +17,7 @@ public class GameUI : MonoBehaviour
     public int currentQuest = 0;
 
     
-    public void Start()
+    public void Awake()
     {
         controls = new DefaultControls();
         controls.Controller.Log.performed += ctx => ToggleCaptainsLog();
@@ -27,7 +27,7 @@ public class GameUI : MonoBehaviour
 
     private void OnEnable()
     {
-        //controls.Controller.Enable();
+        controls.Controller.Enable();
     }
 
     private void OnDisable()

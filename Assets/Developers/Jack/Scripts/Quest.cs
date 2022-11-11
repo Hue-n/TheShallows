@@ -16,8 +16,6 @@ public class Quest : ScriptableObject
     [Header("Quest Stats")]
     public int objectiveCur = 0;
     public int objectiveMax;
-    public GameObject EnemyTrigger;
-    public GameObject[] Fetchables;
     [Description("0 = Fetch, 1 = Kill Quest, 2 = Other")]
     public int QuestType;
     public int FireballReward = 0;

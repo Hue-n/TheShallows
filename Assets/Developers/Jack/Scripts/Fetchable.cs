@@ -9,16 +9,20 @@ public class Fetchable : MonoBehaviour
 
     public DefaultControls controls;
 
-    public void AssignQuest(Quest assignment)
-    {
-        quest = assignment;
-    }
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         controls = new DefaultControls();
         controls.Controller.Attack.performed += ctx => PickUp();
+    }
+    private void OnEnable()
+    {
+        controls.Controller.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Controller.Disable();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -43,9 +47,12 @@ public class Fetchable : MonoBehaviour
         {
             quest.objectiveCur += 1;
 
+            FindObjectOfType<GameUI>().UpdateUI();
+
             if (quest.objectiveCur >= quest.objectiveMax)
             {
                 quest.State = 2;
+                FindObjectOfType<GameUI>().UpdateUI();
             }
 
             Destroy(gameObject);
