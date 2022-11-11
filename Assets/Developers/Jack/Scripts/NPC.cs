@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -14,14 +15,34 @@ public class NPC : MonoBehaviour
     public Dialogue[] dialogues;
     public GameObject uiObject;
     public GameObject dialogueObject;
-    private bool inRange = false;
+    public bool inRange = false;
+
+    public GameObject[] fetchables;
+
+    public GameObject[] enemyTriggers;
 
     // Start is called before the first frame update
     void Start()
     {
+        dialogueObject = FindObjectOfType<KQ_Dialogue>().gameObject;
+
         uiObject = GetComponentInChildren<Image>().gameObject;
+        uiObject.SetActive(false);
+
         controls = new DefaultControls();
+
         controls.Controller.Attack.performed += ctx => SpeakToNPC();
+
+
+        foreach (GameObject obj in fetchables)
+        {
+            obj.GetComponent<Fetchable>().AssignQuest(quest);
+        }
+
+        foreach (GameObject obj in enemyTriggers)
+        {
+
+        }
     }
 
     public void SpeakToNPC()
@@ -48,6 +69,7 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inRange = true;
+            uiObject.SetActive(true);
         }
     }
 
@@ -56,6 +78,7 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             inRange = false;
+            uiObject.SetActive(false);
         }
     }
 }

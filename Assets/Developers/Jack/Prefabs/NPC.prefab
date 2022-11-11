@@ -213,11 +213,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b23bff9fff548043b4467cd35f25c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 0}
+  quest: {fileID: 11400000, guid: 55d32df38877b394ca22c92c8f76165b, type: 2}
   charName: Treeman
   dialogues:
   - {fileID: 0}
   uiObject: {fileID: 0}
+  dialogueObject: {fileID: 0}
+  fetchables: []
+  enemyTriggers: []
 --- !u!1 &8806125721298954627
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6414858267586716676
 RectTransform:
   m_ObjectHideFlags: 0

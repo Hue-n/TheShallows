@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 
@@ -9,16 +11,22 @@ public class Quest : ScriptableObject
     [Header("Quest Details")]
     public string QuestName = "Default Quest";
     public string QuestDescription = "Journey to the thing with the stuff.";
+    public string QuestRequirements = "Kill 2 fish";
+    public string returnText = "return to carl for the reward";
     [Header("Quest Stats")]
+    public int objectiveCur = 0;
+    public int objectiveMax;
     public GameObject EnemyTrigger;
     public GameObject[] Fetchables;
-    [SerializeField] public enum QuestType { Fetch, Kill, Other }
+    [Description("0 = Fetch, 1 = Kill Quest, 2 = Other")]
+    public int QuestType;
     public int FireballReward = 0;
     public int SoulReward = 0;
     [Header("Quest Dialogue")]
     public Dialogue startDialogue;
     public Dialogue midquestDialogue;
     public Dialogue finishDialogue;
-    public enum state{notStarted, inProgress, returning, complete }
+    [Description("0 = not Started, 1 = in Progress, 2 = returning, 3 = Complete")]
+    public int State = 0;
 
 }

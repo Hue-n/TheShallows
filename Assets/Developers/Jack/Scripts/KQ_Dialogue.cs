@@ -61,6 +61,8 @@ public class KQ_Dialogue : MonoBehaviour
 
     public void StartDialogue()
     {
+        nameComponent.gameObject.SetActive(true);
+        textComponent.gameObject.SetActive(true);
         nameComponent.text = names[0];
         index = 0;
         StartCoroutine(TypeLine());
