@@ -5565,7 +5565,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12994,6 +12994,9 @@ MonoBehaviour:
   captainsLogUI: {fileID: 0}
   questList:
   - {fileID: 11400000, guid: 55d32df38877b394ca22c92c8f76165b, type: 2}
+  - {fileID: 11400000, guid: dc62ec0c33d476641a421b1732700d3a, type: 2}
+  stateList: 0000000001000000
+  objList: 0000000000000000
   currentQuest: 0
 --- !u!1001 &1882848092
 PrefabInstance:
@@ -14448,72 +14451,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126553841}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &67424548059647333
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 695.5289
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 11.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 750.0735
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2901631102823862197, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3172609323348616298, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: m_Name
-      value: Fetchable
-      objectReference: {fileID: 0}
-    - target: {fileID: 6388798551491997994, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-      propertyPath: quest
-      value: 
-      objectReference: {fileID: 11400000, guid: 55d32df38877b394ca22c92c8f76165b, type: 2}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
---- !u!1 &67424548059647334 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3172609323348616298, guid: 8b7366d3fbb6b6049ac908898a2b162b, type: 3}
-  m_PrefabInstance: {fileID: 67424548059647333}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5869862888462828755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14529,6 +14466,14 @@ PrefabInstance:
       propertyPath: uiObject
       value: 
       objectReference: {fileID: 770101830}
+    - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
+      propertyPath: InitQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 55d32df38877b394ca22c92c8f76165b, type: 2}
+    - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
+      propertyPath: UIcontroller
+      value: 
+      objectReference: {fileID: 1850321018}
     - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
       propertyPath: dialogueObject
       value: 
@@ -14552,7 +14497,7 @@ PrefabInstance:
     - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
       propertyPath: FetchItems.Array.data[0]
       value: 
-      objectReference: {fileID: 67424548059647334}
+      objectReference: {fileID: 0}
     - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
       propertyPath: FetchItems.Array.data[1]
       value: 
@@ -14560,7 +14505,7 @@ PrefabInstance:
     - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
       propertyPath: fetchables.Array.data[0]
       value: 
-      objectReference: {fileID: 67424548059647334}
+      objectReference: {fileID: 0}
     - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
       propertyPath: fetchables.Array.data[1]
       value: 
@@ -14572,7 +14517,7 @@ PrefabInstance:
     - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
       propertyPath: questReqs.Array.data[0].fetchables.Array.data[0]
       value: 
-      objectReference: {fileID: 67424548059647334}
+      objectReference: {fileID: 0}
     - target: {fileID: 4954074757090064604, guid: 301524cf15df1cf42aabbaf228057ee3, type: 3}
       propertyPath: questReqs.Array.data[0].fetchables.Array.data[1]
       value: 

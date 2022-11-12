@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class Fetchable : MonoBehaviour
 {
     public Quest quest;
     public bool inRange;
+    public GameUI UIcontroller;
 
     public DefaultControls controls;
 
@@ -14,6 +16,8 @@ public class Fetchable : MonoBehaviour
     {
         controls = new DefaultControls();
         controls.Controller.Attack.performed += ctx => PickUp();
+
+        UIcontroller = FindObjectOfType<GameUI>();
     }
     private void OnEnable()
     {
@@ -45,13 +49,13 @@ public class Fetchable : MonoBehaviour
     {
         if (inRange)
         {
-            quest.objectiveCur += 1;
+            UIcontroller.objList[UIcontroller.currentQuest] += 1;
 
             FindObjectOfType<GameUI>().UpdateUI();
 
-            if (quest.objectiveCur >= quest.objectiveMax)
+            if (UIcontroller.objList[UIcontroller.currentQuest] >= quest.objectiveMax)
             {
-                quest.State = 2;
+                UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.returning;
                 FindObjectOfType<GameUI>().UpdateUI();
             }
 

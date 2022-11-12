@@ -29,6 +29,7 @@ public class KQ_Dialogue : MonoBehaviour
     private void OnDisable()
     {
         controls.Controller.Disable();
+        
     }
 
     private void Awake()
@@ -77,7 +78,8 @@ public class KQ_Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(nameComponent.text == string.Empty)
+            FindObjectOfType<FocalPoint>().SetFocalPoint(GameObject.FindGameObjectWithTag("Player"));
     }
 
     public void StartDialogue()
@@ -87,6 +89,7 @@ public class KQ_Dialogue : MonoBehaviour
         nameComponent.text = names[0];
         index = 0;
         StartCoroutine(TypeLine());
+        
     }
 
     IEnumerator TypeLine()
@@ -109,9 +112,11 @@ public class KQ_Dialogue : MonoBehaviour
         }
         else
         {
+            FindObjectOfType<FocalPoint>().SetFocalPoint(GameObject.FindGameObjectWithTag("Player"));
             textComponent.text = string.Empty;
             nameComponent.text = string.Empty;
             gameObject.SetActive(false);
+            
         }
     }
 }

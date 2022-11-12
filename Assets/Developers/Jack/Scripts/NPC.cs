@@ -15,17 +15,23 @@ public class NPC : MonoBehaviour
     public DefaultControls controls;
 
     public Quest quest;
+    public Quest InitQuest;
     public string charName;
     public Dialogue[] dialogues;
     public GameObject uiObject;
     public GameObject dialogueObject;
     public bool inRange = false;
 
+    public GameUI UIcontroller;
     public void Awake()
     {
         controls = new DefaultControls();
 
         controls.Controller.Attack.performed += ctx => SpeakToNPC();
+       
+        quest = ScriptableObject.CreateInstance<Quest>();
+        quest = InitQuest;
+
     }
 
     private void OnEnable()
@@ -51,25 +57,25 @@ public class NPC : MonoBehaviour
         {
             if (!dialogueObject.activeSelf)
             {
-                
 
-                switch(quest.State)
+                switch(UIcontroller.stateList[UIcontroller.currentQuest])
                 {
-                    case 0:
+                    case Quest.State.notStarted:
                         {
-                            quest.State = 1;
+                            UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.inProgress;
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.startDialogue);
                             break;
                         }
-                    case 1:
+                    case Quest.State.inProgress:
                         {
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.midquestDialogue);
                             break;
                         }
-                    case 2:
+                    case Quest.State.returning:
                         {
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.finishDialogue);
-                            quest.State = 3;
+                            UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.complete;
+                            UIcontroller.UpdateUI();
                             quest = null;
                             break;
                         }
@@ -77,6 +83,7 @@ public class NPC : MonoBehaviour
 
                 dialogueObject.SetActive(true);
                 dialogueObject.GetComponent<KQ_Dialogue>().StartDialogue();
+                FindObjectOfType<FocalPoint>().SetFocalPoint(gameObject);
             }  
         }
     }

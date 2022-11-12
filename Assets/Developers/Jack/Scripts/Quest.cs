@@ -14,10 +14,11 @@ public class Quest : ScriptableObject
     public string QuestRequirements = "Kill 2 fish";
     public string returnText = "return to carl for the reward";
     [Header("Quest Stats")]
-    public int objectiveCur = 0;
+    //public int objectiveCur = 0;
     public int objectiveMax;
     [Description("0 = Fetch, 1 = Kill Quest, 2 = Other")]
-    public int QuestType;
+    public enum QuestType { Fetch, KillQuest, Other };
+    public QuestType qType;
     public int FireballReward = 0;
     public int SoulReward = 0;
     [Header("Quest Dialogue")]
@@ -25,6 +26,7 @@ public class Quest : ScriptableObject
     public Dialogue midquestDialogue;
     public Dialogue finishDialogue;
     [Description("0 = not Started, 1 = in Progress, 2 = returning, 3 = Complete")]
-    public int State = 0;
+    public enum State { notStarted, inProgress, returning, complete };
+    //public State qState;
 
 }

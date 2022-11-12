@@ -14,6 +14,8 @@ public class GameUI : MonoBehaviour
     public DefaultControls controls;
 
     public List<Quest> questList;
+    public List<Quest.State> stateList;
+    public List<int> objList;
     public int currentQuest = 0;
 
     
@@ -53,16 +55,18 @@ public class GameUI : MonoBehaviour
     {
         questTitle.text = questList[currentQuest].QuestName;
 
-        if (questList[currentQuest].State == 2)
+        if (stateList[currentQuest] == Quest.State.returning)
         {
             questReq.text = questList[currentQuest].returnText;
         }
         else
-        questReq.text = questList[currentQuest].QuestRequirements + " (" + questList[currentQuest].objectiveCur + "/" + questList[currentQuest].objectiveMax + ")";
+        questReq.text = questList[currentQuest].QuestRequirements + " (" + objList[currentQuest] + "/" + questList[currentQuest].objectiveMax + ")";
 
-        if (questList[currentQuest].State == 3)
+        if (stateList[currentQuest] == Quest.State.complete)
         {
             currentQuest += 1;
+            UpdateUI();
+            Debug.Log("Quest List " + currentQuest);
         }
     }
 
