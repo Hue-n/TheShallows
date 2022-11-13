@@ -214,14 +214,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 55d32df38877b394ca22c92c8f76165b, type: 2}
+  InitQuest: {fileID: 0}
   charName: Treeman
   dialogues:
   - {fileID: 0}
   uiObject: {fileID: 0}
   dialogueObject: {fileID: 0}
   inRange: 0
-  fetchables: []
-  enemyTriggers: []
+  UIcontroller: {fileID: 0}
 --- !u!1 &8806125721298954627
 GameObject:
   m_ObjectHideFlags: 0

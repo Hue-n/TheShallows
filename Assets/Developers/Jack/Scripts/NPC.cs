@@ -62,17 +62,20 @@ public class NPC : MonoBehaviour
                 {
                     case Quest.State.notStarted:
                         {
+                            //UnityEngine.Debug.Log("Intro Dialogue");
                             UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.inProgress;
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.startDialogue);
                             break;
                         }
                     case Quest.State.inProgress:
                         {
+                            //UnityEngine.Debug.Log("In Progress Talk");
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.midquestDialogue);
                             break;
                         }
                     case Quest.State.returning:
                         {
+                            //UnityEngine.Debug.Log("Finish Talk");
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.finishDialogue);
                             UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.complete;
                             UIcontroller.UpdateUI();
@@ -111,4 +114,6 @@ public class NPC : MonoBehaviour
             uiObject.SetActive(false);
         }
     }
+
+
 }

@@ -66,12 +66,17 @@ public class GameUI : MonoBehaviour
         {
             currentQuest += 1;
             UpdateUI();
-            Debug.Log("Quest List " + currentQuest);
+            //Debug.Log("Quest List " + currentQuest);
         }
     }
 
     public void UpdateWaveCounter(int wave)
     {
         score.text = "Wave: " + wave;
+    }
+
+    void OnGUI()
+    {
+        GUILayout.Label(stateList[currentQuest].ToString());
     }
 }

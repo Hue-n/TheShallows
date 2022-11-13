@@ -54,7 +54,7 @@ public class KQ_Dialogue : MonoBehaviour
 
         while(count < data.text.Length)
         {
-            Debug.Log(count + " / " + data.text.Length);
+            //Debug.Log(count + " / " + data.text.Length);
             lines[count] = data.text[count]; ;
             names[count] = data.characters[count];
             count++;
@@ -79,7 +79,11 @@ public class KQ_Dialogue : MonoBehaviour
     void Update()
     {
         if(nameComponent.text == string.Empty)
+        {
             FindObjectOfType<FocalPoint>().SetFocalPoint(GameObject.FindGameObjectWithTag("Player"));
+            gameObject.SetActive(false);
+        }
+            
     }
 
     public void StartDialogue()
