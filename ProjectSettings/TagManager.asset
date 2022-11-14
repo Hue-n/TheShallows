@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - FBAmmo
+  - Health
+  - Souls
   layers:
   - Default
   - TransparentFX

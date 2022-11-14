@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 public class PlayerCon_KrakenQuest : MonoBehaviour
 {
     public DefaultControls controls;
 
     public float maxHP = 100;
     public float currentHP;
+
+    public int fbAmmo;
+    public TMP_Text fbAmmoText;
+
+    public int souls;
+    public TMP_Text soulsText;
 
     public float maxSpeed;
     public float maxTurn;
@@ -58,6 +66,12 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         moveDir = transform.forward;
         currentHP = maxHP;
         Cursor.visible = false;
+
+        fbAmmo = 0;
+        SetFBAmmoText();
+
+        souls = 0;
+        SetSoulsText();
     }
 
     private void Update()
@@ -136,5 +150,43 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         yield break;
     }
 
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "FBAmmo")
+        {
+            fbAmmo = fbAmmo + 1;
+            SetFBAmmoText();
+
+            Destroy(collider.gameObject);
+        }
+
+        if (collider.tag == "Health")
+        {
+            if (currentHP < maxHP)
+            {
+                currentHP = currentHP + 25f;
+
+                Destroy(collider.gameObject);
+            }
+        }
+
+        if (collider.tag == "Souls")
+        {
+            souls = souls + 1;
+            SetSoulsText();
+
+            Destroy(collider.gameObject);
+        }
+    }
+
+    void SetFBAmmoText()
+    {
+        fbAmmoText.text = "Fireball Rounds: " + fbAmmo.ToString();
+    }
+
+    void SetSoulsText()
+    {
+        soulsText.text = "Souls: " + souls.ToString();
+    }
 
 }
