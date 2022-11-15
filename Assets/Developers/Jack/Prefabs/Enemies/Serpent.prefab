@@ -115,6 +115,9 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 27252551e3a365349bfadf35d410b15e, type: 2}
   collider: {fileID: 309659731}
   trigger: {fileID: 5005630033627820057}
+  dropRate: 0.25
+  drops:
+  - {fileID: 7573285551881796010, guid: 47d9b8b4516c649349217834c0a65b99, type: 3}
 --- !u!54 &2019392870
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -23,6 +23,10 @@ public class ShipAI : Enemy
         Attack
     }
 
+    [Range(0f, 1f)]
+    public float dropRate;
+    public List<GameObject> drops;
+
     private State currentState;
     // Start is called before the first frame update
     void Start()
@@ -168,8 +172,19 @@ public class ShipAI : Enemy
         Instantiate(GameManager.Instance.hitEffect, GameManager.Instance.playerInstance.transform.position, Quaternion.identity);
     }
 
+    void Drop() {
+        float roll;
+        roll = Random.Range(0f,1f);
+        Debug.Log(roll);
+        if (roll < dropRate) {
+            //Instantiate(drops[Random.Range(0,drops.Count-1)], transform.position, transform.rotation);
+            Instantiate(drops[Random.Range(0,drops.Count-1)], rb.position + Vector3.up * 0.5f, Quaternion.identity);
+        }
+    }
+
     public void OnDestroy()
     {
         FindObjectOfType<ScoreKeeper>().AddScore(enemyStats.points);
+        Drop();
     }
 }
