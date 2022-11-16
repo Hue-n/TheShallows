@@ -25,6 +25,8 @@ public class GameUI : MonoBehaviour
         controls.Controller.Log.performed += ctx => ToggleCaptainsLog();
 
         UpdateUI();
+
+        
     }
 
     private void OnEnable()

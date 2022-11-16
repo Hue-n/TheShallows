@@ -222,6 +222,8 @@ MonoBehaviour:
   dialogueObject: {fileID: 0}
   inRange: 0
   UIcontroller: {fileID: 0}
+  questContainer: {fileID: 0}
+  questPrefab: {fileID: 6631468022513956483, guid: c31711471f6873e449c08968937e54c3, type: 3}
 --- !u!1 &8806125721298954627
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,6 +23,11 @@ public class NPC : MonoBehaviour
     public bool inRange = false;
 
     public GameUI UIcontroller;
+
+    public GameObject questContainer;
+
+    [SerializeField] private GameObject questPrefab;
+
     public void Awake()
     {
         controls = new DefaultControls();
@@ -64,6 +69,10 @@ public class NPC : MonoBehaviour
                         {
                             //UnityEngine.Debug.Log("Intro Dialogue");
                             UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.inProgress;
+                            // add to quest log
+                            GameObject newQuest = Instantiate(questPrefab, questContainer.transform);
+                            newQuest.GetComponent<QuestLog>().SetQuest(quest, 0);
+
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.startDialogue);
                             break;
                         }
