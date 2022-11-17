@@ -147,7 +147,7 @@
                     "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "DefaultCon",
                     "action": "Log",
                     "isComposite": false,
                     "isPartOfComposite": false

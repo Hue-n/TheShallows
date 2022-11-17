@@ -22,6 +22,8 @@ public class NPC : MonoBehaviour
     public GameObject dialogueObject;
     public bool inRange = false;
 
+    private bool questAdded = false;
+
     public GameUI UIcontroller;
 
     public GameObject questContainer;
@@ -62,18 +64,22 @@ public class NPC : MonoBehaviour
         {
             if (!dialogueObject.activeSelf)
             {
-
+                if (!questAdded)
+                {
+                    // add to quest log
+                    GameObject newQuest = Instantiate(questPrefab, questContainer.transform);
+                    UIcontroller.GetComponent<GameUI>().AddQuest(newQuest, quest);
+                    questAdded = true;
+                }
+                //add quest & switch to this one
                 switch(UIcontroller.stateList[UIcontroller.currentQuest])
                 {
                     case Quest.State.notStarted:
                         {
+                            dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.startDialogue);
+
                             //UnityEngine.Debug.Log("Intro Dialogue");
                             UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.inProgress;
-                            // add to quest log
-                            GameObject newQuest = Instantiate(questPrefab, questContainer.transform);
-                            newQuest.GetComponent<QuestLog>().SetQuest(quest, 0);
-
-                            dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.startDialogue);
                             break;
                         }
                     case Quest.State.inProgress:

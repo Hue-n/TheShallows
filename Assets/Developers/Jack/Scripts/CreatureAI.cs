@@ -11,7 +11,7 @@ public class CreatureAI : Enemy
     private float chargeForce = 125;
     private float attackCooldown = 3;
 
-    public BoxCollider collider;
+    public BoxCollider collidey;
     public BoxCollider trigger;
 
     [Range(0f, 1f)]
@@ -93,7 +93,7 @@ public class CreatureAI : Enemy
         rb.AddForce(transform.forward * chargeForce, ForceMode.Impulse);
 
         trigger.enabled = true;
-        collider.enabled = false;
+        collidey.enabled = false;
         StartCoroutine(DisableBox());
 
         StartCoroutine(AttackCooldown());
@@ -105,7 +105,7 @@ public class CreatureAI : Enemy
         yield return new WaitForSeconds(2);
 
         trigger.enabled = false;
-        collider.enabled = true;
+        collidey.enabled = true;
 
         yield break;
     }

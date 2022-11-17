@@ -16,6 +16,7 @@ public class GameUI : MonoBehaviour
     public List<Quest> questList;
     public List<Quest.State> stateList;
     public List<int> objList;
+    public List<GameObject> logList;
     public int currentQuest = 0;
 
     
@@ -24,9 +25,6 @@ public class GameUI : MonoBehaviour
         controls = new DefaultControls();
         controls.Controller.Log.performed += ctx => ToggleCaptainsLog();
 
-        UpdateUI();
-
-        
     }
 
     private void OnEnable()
@@ -41,20 +39,22 @@ public class GameUI : MonoBehaviour
 
     public void ToggleCaptainsLog()
     {
+        Debug.Log("CLog Toggle");
         if (captainsLogUI.activeSelf)
         {
-            captainsLogUI.SetActive(false);
+            captainsLogUI.GetComponent<CapLogAnim>().Toggle();
             Time.timeScale = 1f;
         }
         else
         {
-            captainsLogUI.SetActive(true);
+            captainsLogUI.GetComponent<CapLogAnim>().Toggle();
             Time.timeScale = 0f;
         }
     }
 
     public void UpdateUI()
     {
+        //Update Current UI
         questTitle.text = questList[currentQuest].QuestName;
 
         if (stateList[currentQuest] == Quest.State.returning)
@@ -70,6 +70,24 @@ public class GameUI : MonoBehaviour
             UpdateUI();
             //Debug.Log("Quest List " + currentQuest);
         }
+
+        int count = 0;
+        //Update Captains Log
+        foreach (GameObject obj in logList)
+        {
+            obj.GetComponent<QuestLog>().UpdateLog(objList[count]);
+        }
+
+    }
+
+    public void AddQuest(GameObject questLog, Quest quest)
+    {
+        questList.Add(quest);
+        logList.Add(questLog);
+        objList.Add(0);
+        stateList.Add(Quest.State.notStarted);
+        UpdateUI();
+        questLog.GetComponent<QuestLog>().SetQuest(quest);
     }
 
     public void UpdateWaveCounter(int wave)
@@ -79,6 +97,6 @@ public class GameUI : MonoBehaviour
 
     void OnGUI()
     {
-        GUILayout.Label(stateList[currentQuest].ToString());
+        //GUILayout.Label(stateList[currentQuest].ToString());
     }
 }

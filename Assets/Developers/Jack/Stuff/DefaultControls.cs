@@ -169,7 +169,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""DefaultCon"",
                     ""action"": ""Log"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
