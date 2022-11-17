@@ -8,6 +8,7 @@ TagManager:
   - FBAmmo
   - Health
   - Souls
+  - Quest
   layers:
   - Default
   - TransparentFX

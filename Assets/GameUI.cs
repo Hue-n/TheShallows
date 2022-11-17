@@ -40,16 +40,9 @@ public class GameUI : MonoBehaviour
     public void ToggleCaptainsLog()
     {
         Debug.Log("CLog Toggle");
-        if (captainsLogUI.activeSelf)
-        {
-            captainsLogUI.GetComponent<CapLogAnim>().Toggle();
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            captainsLogUI.GetComponent<CapLogAnim>().Toggle();
-            Time.timeScale = 0f;
-        }
+
+        captainsLogUI.GetComponent<CapLogAnim>().Toggle();
+        
     }
 
     public void UpdateUI()

@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "QuestSelect",
+                    "type": "Value",
+                    "id": "d1fccaf5-8a37-41c6-a4b7-dcc44367e548",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -226,6 +235,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "DeathGague",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a7513a2-1e80-4430-b75a-2a76a6d570c9",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "QuestSelect",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

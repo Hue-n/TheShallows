@@ -23,6 +23,7 @@ public class NPC : MonoBehaviour
     public bool inRange = false;
 
     private bool questAdded = false;
+    public int questID;
 
     public GameUI UIcontroller;
 
@@ -67,19 +68,24 @@ public class NPC : MonoBehaviour
                 if (!questAdded)
                 {
                     // add to quest log
+                    GameObject[] logs = GameObject.FindGameObjectsWithTag("Quest");
+
+                    Vector2 newLoc = new Vector2(-70, 380 + (-100 * logs.Length));
                     GameObject newQuest = Instantiate(questPrefab, questContainer.transform);
+                    newQuest.GetComponent<RectTransform>().anchoredPosition = newLoc;
                     UIcontroller.GetComponent<GameUI>().AddQuest(newQuest, quest);
+                    questID = UIcontroller.GetComponent<GameUI>().questList.Count-1;
                     questAdded = true;
                 }
                 //add quest & switch to this one
-                switch(UIcontroller.stateList[UIcontroller.currentQuest])
+                switch(UIcontroller.stateList[questID])
                 {
                     case Quest.State.notStarted:
                         {
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.startDialogue);
 
                             //UnityEngine.Debug.Log("Intro Dialogue");
-                            UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.inProgress;
+                            UIcontroller.stateList[questID] = Quest.State.inProgress;
                             break;
                         }
                     case Quest.State.inProgress:
@@ -92,7 +98,7 @@ public class NPC : MonoBehaviour
                         {
                             //UnityEngine.Debug.Log("Finish Talk");
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.finishDialogue);
-                            UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.complete;
+                            UIcontroller.stateList[questID] = Quest.State.complete;
                             UIcontroller.UpdateUI();
                             quest = null;
                             break;

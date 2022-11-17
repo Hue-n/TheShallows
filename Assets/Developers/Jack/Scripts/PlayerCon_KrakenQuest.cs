@@ -76,10 +76,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
 
     private void Update()
     {
-
-        moveDir = transform.forward * currentSpeed;
-        
-
+        moveDir = transform.forward * currentSpeed;    
     }
 
     public void OnMovement(Vector3 input)
@@ -122,7 +119,6 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
             // Check the spawner
             GameManager.Instance.CheckHighScore(GameManager.Instance.spawner.waveCounter);
 
-            Debug.Log("G A M E  O V E R");
             SceneManager.LoadScene("LoseScreen");
         }
 

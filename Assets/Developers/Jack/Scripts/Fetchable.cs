@@ -6,6 +6,7 @@ using UnityEngine.InputSystem.XR;
 public class Fetchable : MonoBehaviour
 {
     public Quest quest;
+    public NPC questGiver;
     public bool inRange;
     public GameUI UIcontroller;
 
@@ -49,13 +50,13 @@ public class Fetchable : MonoBehaviour
     {
         if (inRange)
         {
-            UIcontroller.objList[UIcontroller.currentQuest] += 1;
+            UIcontroller.objList[questGiver.questID] += 1;
 
             FindObjectOfType<GameUI>().UpdateUI();
 
-            if (UIcontroller.objList[UIcontroller.currentQuest] >= quest.objectiveMax)
+            if (UIcontroller.objList[questGiver.questID] >= quest.objectiveMax)
             {
-                UIcontroller.stateList[UIcontroller.currentQuest] = Quest.State.returning;
+                UIcontroller.stateList[questGiver.questID] = Quest.State.returning;
                 FindObjectOfType<GameUI>().UpdateUI();
             }
 

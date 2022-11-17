@@ -116,6 +116,15 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuestSelect"",
+                    ""type"": ""Value"",
+                    ""id"": ""d1fccaf5-8a37-41c6-a4b7-dcc44367e548"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -250,6 +259,17 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""action"": ""DeathGague"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a7513a2-1e80-4430-b75a-2a76a6d570c9"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultCon"",
+                    ""action"": ""QuestSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -280,6 +300,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         m_Controller_ChooseTarget = m_Controller.FindAction("Choose Target", throwIfNotFound: true);
         m_Controller_Pause = m_Controller.FindAction("Pause", throwIfNotFound: true);
         m_Controller_DeathGague = m_Controller.FindAction("DeathGague", throwIfNotFound: true);
+        m_Controller_QuestSelect = m_Controller.FindAction("QuestSelect", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -349,6 +370,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controller_ChooseTarget;
     private readonly InputAction m_Controller_Pause;
     private readonly InputAction m_Controller_DeathGague;
+    private readonly InputAction m_Controller_QuestSelect;
     public struct ControllerActions
     {
         private @DefaultControls m_Wrapper;
@@ -363,6 +385,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         public InputAction @ChooseTarget => m_Wrapper.m_Controller_ChooseTarget;
         public InputAction @Pause => m_Wrapper.m_Controller_Pause;
         public InputAction @DeathGague => m_Wrapper.m_Controller_DeathGague;
+        public InputAction @QuestSelect => m_Wrapper.m_Controller_QuestSelect;
         public InputActionMap Get() { return m_Wrapper.m_Controller; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -402,6 +425,9 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @DeathGague.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnDeathGague;
                 @DeathGague.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnDeathGague;
                 @DeathGague.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnDeathGague;
+                @QuestSelect.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnQuestSelect;
+                @QuestSelect.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnQuestSelect;
+                @QuestSelect.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnQuestSelect;
             }
             m_Wrapper.m_ControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -436,6 +462,9 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @DeathGague.started += instance.OnDeathGague;
                 @DeathGague.performed += instance.OnDeathGague;
                 @DeathGague.canceled += instance.OnDeathGague;
+                @QuestSelect.started += instance.OnQuestSelect;
+                @QuestSelect.performed += instance.OnQuestSelect;
+                @QuestSelect.canceled += instance.OnQuestSelect;
             }
         }
     }
@@ -461,5 +490,6 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         void OnChooseTarget(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnDeathGague(InputAction.CallbackContext context);
+        void OnQuestSelect(InputAction.CallbackContext context);
     }
 }

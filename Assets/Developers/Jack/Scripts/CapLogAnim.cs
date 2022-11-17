@@ -16,10 +16,12 @@ public class CapLogAnim : MonoBehaviour
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("closed"))
         {
             anim.SetTrigger("Open");
+
         }
         else
         {
             anim.SetTrigger("Close");
+
         }
     }   
 }
