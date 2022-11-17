@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CapLogAnim : MonoBehaviour
 {
+    public static bool LogOpen = false;
     Animator anim;
 
     private void Awake()
@@ -16,12 +17,14 @@ public class CapLogAnim : MonoBehaviour
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("closed"))
         {
             anim.SetTrigger("Open");
-
+            LogOpen = true;
+            Time.timeScale = 0;
         }
         else
         {
             anim.SetTrigger("Close");
-
+            LogOpen = false;
+            Time.timeScale = 1;
         }
     }   
 }

@@ -42,4 +42,22 @@ public class QuestLog : MonoBehaviour
             //RequirementText.color = Color.green;
         }
     }
+
+    public void Selected(bool value)
+    {
+        if (value)
+        {
+            TitleText.color = Color.red;
+            DescriptionText.color = Color.red;
+            RequirementText.color = Color.red;
+
+        }  
+        else
+        {
+            TitleText.color = Color.white;
+            DescriptionText.color = Color.white;
+            RequirementText.color = Color.white;
+        }
+        
+    }
 }

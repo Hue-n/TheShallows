@@ -19,12 +19,13 @@ public class GameUI : MonoBehaviour
     public List<GameObject> logList;
     public int currentQuest = 0;
 
+    private bool isLogActive = false;
     
     public void Awake()
     {
         controls = new DefaultControls();
         controls.Controller.Log.performed += ctx => ToggleCaptainsLog();
-
+        controls.Controller.QuestSelect.performed += ctx => SelectQuest(ctx.ReadValue<Vector2>());
     }
 
     private void OnEnable()
@@ -40,8 +41,40 @@ public class GameUI : MonoBehaviour
     public void ToggleCaptainsLog()
     {
         Debug.Log("CLog Toggle");
-
+        isLogActive = !isLogActive;
         captainsLogUI.GetComponent<CapLogAnim>().Toggle();
+        
+    }
+
+    public void SelectQuest(Vector2 input)
+    {
+        if (isLogActive)
+        if (input.y < 0 && questList[currentQuest + 1] != null)
+        {
+            //Move Down
+
+            logList[currentQuest].GetComponent<QuestLog>().Selected(false);
+            currentQuest += 1;
+            
+            logList[currentQuest].GetComponent<QuestLog>().Selected(true);
+
+            UpdateUI();
+        }
+
+        if (input.y > 0 && questList[currentQuest - 1] != null)
+        {
+            // Move Up
+            logList[currentQuest].GetComponent<QuestLog>().Selected(false);
+            currentQuest -= 1;
+
+            logList[currentQuest].GetComponent<QuestLog>().Selected(true);
+
+            UpdateUI();
+        }
+    }
+
+    public void SetActiveQuest()
+    {
         
     }
 
