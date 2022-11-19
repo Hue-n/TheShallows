@@ -112,8 +112,8 @@ MonoBehaviour:
   agent: {fileID: 0}
   CannonHit: {fileID: 0}
   aiTick: 0
-  enemyStats: {fileID: 0}
-  collider: {fileID: 309659731}
+  enemyStats: {fileID: 11400000, guid: 5afd7c7cecd422f46ab83f2dc275cd5d, type: 2}
+  collidey: {fileID: 0}
   trigger: {fileID: 5005630033627820057}
   dropRate: 0.25
   drops:

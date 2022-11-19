@@ -34,7 +34,7 @@ public class EnemyTracker : MonoBehaviour
 
     private void Start()
     {
-        player = GameManager.Instance.playerInstance.GetComponent<ShootingMechanic>();
+        player = KQGameManager.Instance.playerInstance.GetComponent<ShootingMechanic>();
         bulletTime = player.bulletTime;
     }
 
@@ -43,6 +43,7 @@ public class EnemyTracker : MonoBehaviour
     {
         if (alive)
         {
+            
             // if the distance between the specific instance of the enemy and the instance of the player is less than the targetable range, add itself to the player instance's enemylist.
             if (((player.transform.position - transform.position).magnitude <= targetableRange) && !isTargetable)
             {

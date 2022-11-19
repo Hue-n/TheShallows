@@ -7,32 +7,46 @@ using UnityEngine.InputSystem.Controls;
 
 public class QuestLog : MonoBehaviour
 {
+    public GameUI UIcontroller = GameUI.Instance;
+
+    //UI Text
     private TextMeshProUGUI TitleText;
     private TextMeshProUGUI DescriptionText;
     private TextMeshProUGUI RequirementText;
 
+    //Variables
     private int objMax;
     private string reqText;
-    // Start is called before the first frame update
+    private int logID;
+
     void Awake()
     {
+        UIcontroller = GameUI.Instance;
+
         //Set the variables
         TitleText = GetComponent<TextMeshProUGUI>();
         DescriptionText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         RequirementText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
-    public void SetQuest(Quest data)
+    public void SetQuest(Quest data, int ID)
     {
         objMax = data.objectiveMax;
         reqText = data.QuestRequirements;
         TitleText.text = data.QuestName;
         DescriptionText.text = data.QuestDescription;
         RequirementText.text = reqText + " (0/"+ objMax +")";
+        logID = ID;
+    }
+
+    public void SelectQuest()
+    {
+        UIcontroller.SetActiveQuest(logID);
     }
 
     public void UpdateLog(int updatedReq)
     {
+        
         RequirementText.text = reqText + " (" + updatedReq + "/" + objMax + ")";
         
         if (updatedReq >= objMax)

@@ -6,26 +6,34 @@ using TMPro;
 
 public class GameUI : MonoBehaviour
 {
+    public static GameUI Instance;
+    public DefaultControls controls;
+
+    //UI Objects
     public TextMeshProUGUI score;
     public TextMeshProUGUI questTitle;
     public TextMeshProUGUI questReq;
     public GameObject captainsLogUI;
-
-    public DefaultControls controls;
-
+    
+    //Variables
     public List<Quest> questList;
     public List<Quest.State> stateList;
     public List<int> objList;
     public List<GameObject> logList;
     public int currentQuest = 0;
-
-    private bool isLogActive = false;
+    public bool isLogActive = false;
     
     public void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+
         controls = new DefaultControls();
         controls.Controller.Log.performed += ctx => ToggleCaptainsLog();
-        controls.Controller.QuestSelect.performed += ctx => SelectQuest(ctx.ReadValue<Vector2>());
+        //controls.Controller.QuestSelect.performed += ctx => SelectQuest(ctx.ReadValue<Vector2>());
     }
 
     private void OnEnable()
@@ -40,42 +48,19 @@ public class GameUI : MonoBehaviour
 
     public void ToggleCaptainsLog()
     {
-        Debug.Log("CLog Toggle");
+        if (!isLogActive)
+        {
+            captainsLogUI.SetActive(true);
+        }
         isLogActive = !isLogActive;
         captainsLogUI.GetComponent<CapLogAnim>().Toggle();
         
     }
-
-    public void SelectQuest(Vector2 input)
+    
+    public void SetActiveQuest(int questToSelect)
     {
-        if (isLogActive)
-        if (input.y < 0 && questList[currentQuest + 1] != null)
-        {
-            //Move Down
-
-            logList[currentQuest].GetComponent<QuestLog>().Selected(false);
-            currentQuest += 1;
-            
-            logList[currentQuest].GetComponent<QuestLog>().Selected(true);
-
-            UpdateUI();
-        }
-
-        if (input.y > 0 && questList[currentQuest - 1] != null)
-        {
-            // Move Up
-            logList[currentQuest].GetComponent<QuestLog>().Selected(false);
-            currentQuest -= 1;
-
-            logList[currentQuest].GetComponent<QuestLog>().Selected(true);
-
-            UpdateUI();
-        }
-    }
-
-    public void SetActiveQuest()
-    {
-        
+        currentQuest = questToSelect - 1;
+        UpdateUI();
     }
 
     public void UpdateUI()
@@ -113,7 +98,7 @@ public class GameUI : MonoBehaviour
         objList.Add(0);
         stateList.Add(Quest.State.notStarted);
         UpdateUI();
-        questLog.GetComponent<QuestLog>().SetQuest(quest);
+        questLog.GetComponent<QuestLog>().SetQuest(quest, logList.Count);
     }
 
     public void UpdateWaveCounter(int wave)

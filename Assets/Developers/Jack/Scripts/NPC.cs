@@ -11,28 +11,36 @@ using System.Diagnostics;
 
 public class NPC : MonoBehaviour
 {
-
+    
     public DefaultControls controls;
 
-    public Quest quest;
+    //Variables
+    private Quest quest;
+    [Header("Fill These Out:")]
+    [Tooltip("Put Quest Scr Obj here")]
     public Quest InitQuest;
-    public string charName;
-    public Dialogue[] dialogues;
-    public GameObject uiObject;
+    private Dialogue[] dialogues;
+    private GameObject uiObject;
+    [Tooltip("Put Dialogue Scr Obj here")]
     public GameObject dialogueObject;
-    public bool inRange = false;
+    
 
+    [Tooltip("Fetchables & Enemy Spawn Objects")]
+    public GameObject[] QuestObject;
+
+    private bool inRange = false;
     private bool questAdded = false;
-    public int questID;
 
-    public GameUI UIcontroller;
-
-    public GameObject questContainer;
-
+    [Tooltip("Assign quest container object")]
+    [SerializeField] private GameObject questContainer;
+    [Tooltip("Assign QuestUI prefab")]
     [SerializeField] private GameObject questPrefab;
+    [Header("Auto-Filled:")]
+    public int questID;
 
     public void Awake()
     {
+
         controls = new DefaultControls();
 
         controls.Controller.Attack.performed += ctx => SpeakToNPC();
@@ -40,6 +48,7 @@ public class NPC : MonoBehaviour
         quest = ScriptableObject.CreateInstance<Quest>();
         quest = InitQuest;
 
+        uiObject = transform.GetChild(0).transform.GetChild(0).gameObject;
     }
 
     private void OnEnable()
@@ -56,36 +65,40 @@ public class NPC : MonoBehaviour
     void Start()
     {
         uiObject.SetActive(false);
-
     }
 
     public void SpeakToNPC()
     {
         if (inRange)
         {
-            if (!dialogueObject.activeSelf)
+            if (!dialogueObject.activeSelf && !GameUI.Instance.isLogActive)
             {
                 if (!questAdded)
                 {
+                    //Activate Fetchables & Enemything
+                    foreach(GameObject obj in QuestObject)
+                    {
+                        obj.SetActive(true);
+                    }
+                    
                     // add to quest log
                     GameObject[] logs = GameObject.FindGameObjectsWithTag("Quest");
-
                     Vector2 newLoc = new Vector2(-70, 380 + (-100 * logs.Length));
                     GameObject newQuest = Instantiate(questPrefab, questContainer.transform);
                     newQuest.GetComponent<RectTransform>().anchoredPosition = newLoc;
-                    UIcontroller.GetComponent<GameUI>().AddQuest(newQuest, quest);
-                    questID = UIcontroller.GetComponent<GameUI>().questList.Count-1;
+                    GameUI.Instance.AddQuest(newQuest, quest);
+                    questID = GameUI.Instance.GetComponent<GameUI>().questList.Count-1;
                     questAdded = true;
                 }
                 //add quest & switch to this one
-                switch(UIcontroller.stateList[questID])
+                switch(GameUI.Instance.stateList[questID])
                 {
                     case Quest.State.notStarted:
                         {
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.startDialogue);
 
                             //UnityEngine.Debug.Log("Intro Dialogue");
-                            UIcontroller.stateList[questID] = Quest.State.inProgress;
+                            GameUI.Instance.stateList[questID] = Quest.State.inProgress;
                             break;
                         }
                     case Quest.State.inProgress:
@@ -98,8 +111,8 @@ public class NPC : MonoBehaviour
                         {
                             //UnityEngine.Debug.Log("Finish Talk");
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.finishDialogue);
-                            UIcontroller.stateList[questID] = Quest.State.complete;
-                            UIcontroller.UpdateUI();
+                            GameUI.Instance.stateList[questID] = Quest.State.complete;
+                            GameUI.Instance.UpdateUI();
                             quest = null;
                             break;
                         }
@@ -110,12 +123,6 @@ public class NPC : MonoBehaviour
                 FindObjectOfType<FocalPoint>().SetFocalPoint(gameObject);
             }  
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
- 
     }
 
     public void OnTriggerEnter(Collider other)

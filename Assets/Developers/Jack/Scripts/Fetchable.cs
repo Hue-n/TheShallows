@@ -5,16 +5,18 @@ using UnityEngine.InputSystem.XR;
 
 public class Fetchable : MonoBehaviour
 {
+    private GameUI UIcontroller;
+    public DefaultControls controls;
+
     public Quest quest;
     public NPC questGiver;
-    public bool inRange;
-    public GameUI UIcontroller;
-
-    public DefaultControls controls;
+    private bool inRange;
 
     // Start is called before the first frame update
     void Awake()
     {
+        UIcontroller = GameUI.Instance;
+
         controls = new DefaultControls();
         controls.Controller.Attack.performed += ctx => PickUp();
 

@@ -213,15 +213,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b23bff9fff548043b4467cd35f25c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 55d32df38877b394ca22c92c8f76165b, type: 2}
+  UIcontroller: {fileID: 0}
+  quest: {fileID: 0}
   InitQuest: {fileID: 0}
-  charName: Treeman
   dialogues:
   - {fileID: 0}
   uiObject: {fileID: 0}
   dialogueObject: {fileID: 0}
-  inRange: 0
-  UIcontroller: {fileID: 0}
+  questID: 0
   questContainer: {fileID: 0}
   questPrefab: {fileID: 6631468022513956483, guid: c31711471f6873e449c08968937e54c3, type: 3}
 --- !u!1 &8806125721298954627
