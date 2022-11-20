@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.Controls;
 public class QuestLog : MonoBehaviour
 {
     public GameUI UIcontroller = GameUI.Instance;
-
+    public FontStyles completedFont;
     //UI Text
     private TextMeshProUGUI TitleText;
     private TextMeshProUGUI DescriptionText;
@@ -48,13 +48,14 @@ public class QuestLog : MonoBehaviour
     {
         
         RequirementText.text = reqText + " (" + updatedReq + "/" + objMax + ")";
-        
-        if (updatedReq >= objMax)
-        {
-            //TitleText.color = Color.green;
-            //DescriptionText.color = Color.green;
-            //RequirementText.color = Color.green;
-        }
+
+    }
+
+    public void MarkCompleted()
+    {
+        TitleText.fontStyle = completedFont;
+        DescriptionText.color = Color.green;
+        RequirementText.color = Color.green;
     }
 
     public void Selected(bool value)

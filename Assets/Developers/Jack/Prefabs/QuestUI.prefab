@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIcontroller: {fileID: 0}
+  completedFont: 64
 --- !u!114 &1376344436737679113
 MonoBehaviour:
   m_ObjectHideFlags: 0
