@@ -16,12 +16,10 @@ MonoBehaviour:
   QuestDescription: Go get tree guy's rock.
   QuestRequirements: Get 2 fish
   returnText: return to carl for the reward
-  objectiveCur: 0
   objectiveMax: 1
-  qType: 0
+  qType: 1
   FireballReward: 0
   SoulReward: 0
   startDialogue: {fileID: 11400000, guid: ac1aa32bbeeff874cb1cd46f6c984ab8, type: 2}
   midquestDialogue: {fileID: 11400000, guid: d3a8805cd0b78cd4ea00604b512ca216, type: 2}
   finishDialogue: {fileID: 11400000, guid: 8f7a3551220e54f4388a454ad41a83dd, type: 2}
-  qState: 0

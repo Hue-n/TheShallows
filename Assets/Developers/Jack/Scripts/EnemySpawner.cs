@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private GameUI UIcontroller;
 
     //Variables
     [Tooltip("Deactivated Enemies to activate")]
@@ -19,7 +18,6 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        UIcontroller = GameUI.Instance;
         enemyNum = EnemyList.Length;
     }
 
@@ -49,10 +47,10 @@ public class EnemySpawner : MonoBehaviour
             {
                 //ENemies killed
                 Debug.Log("Enemies Killed");
-                UIcontroller.objList[questGiver.questID] += 1;
+                GameUI.Instance.objList[questGiver.questID] += 1;
 
-                UIcontroller.stateList[questGiver.questID] = Quest.State.returning;
-                FindObjectOfType<GameUI>().UpdateUI();
+                GameUI.Instance.stateList[questGiver.questID] = Quest.State.returning;
+                GameUI.Instance.UpdateUI();
 
 
                 Destroy(gameObject);
