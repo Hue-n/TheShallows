@@ -301,6 +301,98 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &2246194709827307421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8064133805074277832}
+  - component: {fileID: 7155185235769751173}
+  - component: {fileID: 3185364350152235616}
+  m_Layer: 0
+  m_Name: Fireball Cone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8064133805074277832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246194709827307421}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7415680190110254282}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7155185235769751173
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246194709827307421}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 30, y: 10, z: 50}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3185364350152235616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2246194709827307421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e778008e3a8dd1f40b7cc5a121304df3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  shootMech: {fileID: 0}
+--- !u!1 &5904404313580902158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7415680190110254282}
+  m_Layer: 0
+  m_Name: origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7415680190110254282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904404313580902158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8064133805074277832}
+  m_Father: {fileID: 8507357422721587717}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8507357422721587716
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +432,7 @@ Transform:
   - {fileID: 636426832}
   - {fileID: 596483827}
   - {fileID: 1348340537}
+  - {fileID: 7415680190110254282}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -355,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65628313cddf3d14691c4f194892d0f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canShoot: 1
   correctTime: 0.5
   errorTime: 0.15
   bulletTime: 0.5
@@ -375,6 +469,7 @@ MonoBehaviour:
   maxDeathGague: 100
   defaultPP: {fileID: 0}
   deathPP: {fileID: 0}
+  fireballMode: 0
 --- !u!54 &4233045282200890262
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -418,11 +513,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   currentHP: 0
+  fbAmmo: 0
+  fbAmmoText: {fileID: 0}
+  souls: 0
+  soulsText: {fileID: 0}
   maxSpeed: 0
   maxTurn: 0
   turnScalar: 0.05
   speedScalar: 0.05
   canTakeColDMG: 1
+  fireballUnlocked: 0
+  lanternUnlocked: 0
   currentSpeed: 0
   currentTurn: 0
 --- !u!114 &6471380584745181342

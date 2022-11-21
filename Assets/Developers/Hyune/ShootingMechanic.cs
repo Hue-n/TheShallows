@@ -14,6 +14,8 @@ public enum ShootStates
 
 public class ShootingMechanic : MonoBehaviour
 {
+    public bool canShoot = true;
+
     public static event OnShootingMechanic OnShootingMechanic;
 
     public float correctTime = 0.5f;
@@ -51,6 +53,10 @@ public class ShootingMechanic : MonoBehaviour
 
     public GameObject defaultPP;
     public GameObject deathPP;
+
+    //Fireball Variables
+    public bool fireballMode = false;
+
 
     private void Awake()
     {
@@ -96,7 +102,7 @@ public class ShootingMechanic : MonoBehaviour
     {
         controls.Controller.Disable();
     }
-
+    #region Hyune's Regular Shooting Code
     // Update is called once per frame
     void Update()
     {
@@ -299,6 +305,7 @@ public class ShootingMechanic : MonoBehaviour
 
     void OnScanButton()
     {
+        if(canShoot)
         switch (currentState)
         {
             case ShootStates.idle:
@@ -442,7 +449,7 @@ public class ShootingMechanic : MonoBehaviour
             // check the player's value and see if they hit it correctly.
             if ((Mathf.Abs(Mathf.Cos(currentValue)) >= correctTime - errorTime) && (Mathf.Abs(Mathf.Cos(currentValue)) <= correctTime + errorTime))
             {
-                // Case: Player Wins!
+                //Case: Player Wins!
                 focalPoint.SetFocalPoint(gameObject);
                 SetCurrentState(ShootStates.idle);
 
@@ -497,4 +504,24 @@ public class ShootingMechanic : MonoBehaviour
 
         return cannonPoints[leastAccessor].transform.position;
     }
+    #endregion
+
+    #region Jack's Fireball Code
+    public void ToggleFireball()
+    {
+        fireballMode = !fireballMode;
+        if (fireballMode)
+        {
+            canShoot = false;
+            SetCurrentState(ShootStates.idle);
+        } else
+        {
+            canShoot = true;
+        }
+
+    }
+
+
+
+    #endregion
 }

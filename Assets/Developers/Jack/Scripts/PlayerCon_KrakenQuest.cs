@@ -26,6 +26,9 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
 
     public bool canTakeColDMG = true;
 
+    public bool fireballUnlocked;
+    public bool lanternUnlocked;
+
     //public bool isMoving;
 
     [SerializeField] private float currentSpeed;
