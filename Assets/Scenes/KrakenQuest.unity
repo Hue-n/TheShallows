@@ -7007,6 +7007,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
+      propertyPath: fbAmmo
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
       propertyPath: maxTurn
       value: 0.7
       objectReference: {fileID: 0}
