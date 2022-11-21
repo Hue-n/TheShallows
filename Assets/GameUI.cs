@@ -77,8 +77,15 @@ public class GameUI : MonoBehaviour
 
         if (stateList[currentQuest] == Quest.State.complete)
         {
-            currentQuest += 1;
+            logList[currentQuest].GetComponent<QuestLog>().MarkCompleted();
             UpdateUI();
+            for (int i = 0; i < stateList.Count; i++)
+            {
+                if (stateList[i] != Quest.State.complete)
+                {
+                    currentQuest = i;
+                }
+            }
             //Debug.Log("Quest List " + currentQuest);
         }
 
@@ -86,7 +93,9 @@ public class GameUI : MonoBehaviour
         //Update Captains Log
         foreach (GameObject obj in logList)
         {
+            Debug.Log(obj);
             obj.GetComponent<QuestLog>().UpdateLog(objList[count]);
+            count++;
         }
 
     }
