@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab354cf5f53f7e64a9f9ec29e186a403, type: 3}
+  m_Name: Start- Tutorial
+  m_EditorClassIdentifier: 
+  characters:
+  - Captain Silver Tooth
+  - Captain Silver Tooth
+  - Captain Silver Tooth
+  - Captain Silver Tooth
+  text:
+  - Alright me boy, I am trusting you with me ship for a few days while I take a
+    vacation. I gotta rest me hams.
+  - Just in case you need to shoot something, press down on the left stick to enter
+    targeting mode.
+  - Take aim and press "A" to fire.
+  - Go practice on that fishing boat over there, no one will miss him.

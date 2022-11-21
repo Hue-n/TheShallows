@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab354cf5f53f7e64a9f9ec29e186a403, type: 3}
+  m_Name: Start- Get Da Egg
+  m_EditorClassIdentifier: 
+  characters:
+  - Kenny
+  - Kenny
+  - Kenny
+  - Kenny
+  text:
+  - Well look at that. Silver Tooth's old rickety ship with a young new crew. I hope
+    that old geezer is doing alright.
+  - You guys look like you are seeking an adventure, why don't you go fetch something
+    for me.
+  - 'I really wanna rub an egg on my head. But not just any egg, a kraken egg. Go
+    to the kraken''s nest and snatch her egg. '
+  - She probably won't be there, krakens leave their eggs alone for the most part
+    until they are ready to hatch.
