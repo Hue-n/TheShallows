@@ -318,7 +318,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8064133805074277832
 Transform:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2246194709827307421}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 30, y: 10, z: 50}
@@ -360,7 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
-  shootMech: {fileID: 0}
+  shootMech: {fileID: 9071130229709521057}
+  playerCon: {fileID: 2726783483663169660}
 --- !u!1 &5904404313580902158
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,6 +471,7 @@ MonoBehaviour:
   defaultPP: {fileID: 0}
   deathPP: {fileID: 0}
   fireballMode: 0
+  fireballObj: {fileID: 2246194709827307421}
 --- !u!54 &4233045282200890262
 Rigidbody:
   m_ObjectHideFlags: 0

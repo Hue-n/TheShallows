@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "FireballRounds",
+                    "type": "Button",
+                    "id": "7cee5788-6bb9-4376-8a92-d13e825c9d10",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -246,6 +255,17 @@
                     "processors": "",
                     "groups": "DefaultCon",
                     "action": "QuestSelect",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c16191ab-823c-44a1-8151-6ea59b0a180a",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "DefaultCon",
+                    "action": "FireballRounds",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

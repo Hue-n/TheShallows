@@ -12,10 +12,10 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
     public float maxHP = 100;
     public float currentHP;
 
-    public int fbAmmo;
+    public int fbAmmo = 0;
     public TMP_Text fbAmmoText;
 
-    public int souls;
+    public int souls = 0;
     public TMP_Text soulsText;
 
     public float maxSpeed;
@@ -70,10 +70,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         currentHP = maxHP;
         Cursor.visible = false;
 
-        fbAmmo = 0;
         SetFBAmmoText();
-
-        souls = 0;
         SetSoulsText();
     }
 
@@ -178,7 +175,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         }
     }
 
-    void SetFBAmmoText()
+    public void SetFBAmmoText()
     {
         fbAmmoText.text = "Fireball Rounds: " + fbAmmo.ToString();
     }

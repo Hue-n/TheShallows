@@ -125,6 +125,15 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FireballRounds"",
+                    ""type"": ""Button"",
+                    ""id"": ""7cee5788-6bb9-4376-8a92-d13e825c9d10"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -270,6 +279,17 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                     ""action"": ""QuestSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c16191ab-823c-44a1-8151-6ea59b0a180a"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""DefaultCon"",
+                    ""action"": ""FireballRounds"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -301,6 +321,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         m_Controller_Pause = m_Controller.FindAction("Pause", throwIfNotFound: true);
         m_Controller_DeathGague = m_Controller.FindAction("DeathGague", throwIfNotFound: true);
         m_Controller_QuestSelect = m_Controller.FindAction("QuestSelect", throwIfNotFound: true);
+        m_Controller_FireballRounds = m_Controller.FindAction("FireballRounds", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -371,6 +392,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Controller_Pause;
     private readonly InputAction m_Controller_DeathGague;
     private readonly InputAction m_Controller_QuestSelect;
+    private readonly InputAction m_Controller_FireballRounds;
     public struct ControllerActions
     {
         private @DefaultControls m_Wrapper;
@@ -386,6 +408,7 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Controller_Pause;
         public InputAction @DeathGague => m_Wrapper.m_Controller_DeathGague;
         public InputAction @QuestSelect => m_Wrapper.m_Controller_QuestSelect;
+        public InputAction @FireballRounds => m_Wrapper.m_Controller_FireballRounds;
         public InputActionMap Get() { return m_Wrapper.m_Controller; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -428,6 +451,9 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @QuestSelect.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnQuestSelect;
                 @QuestSelect.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnQuestSelect;
                 @QuestSelect.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnQuestSelect;
+                @FireballRounds.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnFireballRounds;
+                @FireballRounds.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnFireballRounds;
+                @FireballRounds.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnFireballRounds;
             }
             m_Wrapper.m_ControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -465,6 +491,9 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
                 @QuestSelect.started += instance.OnQuestSelect;
                 @QuestSelect.performed += instance.OnQuestSelect;
                 @QuestSelect.canceled += instance.OnQuestSelect;
+                @FireballRounds.started += instance.OnFireballRounds;
+                @FireballRounds.performed += instance.OnFireballRounds;
+                @FireballRounds.canceled += instance.OnFireballRounds;
             }
         }
     }
@@ -491,5 +520,6 @@ public partial class @DefaultControls : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnDeathGague(InputAction.CallbackContext context);
         void OnQuestSelect(InputAction.CallbackContext context);
+        void OnFireballRounds(InputAction.CallbackContext context);
     }
 }

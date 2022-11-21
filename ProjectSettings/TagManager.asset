@@ -9,6 +9,7 @@ TagManager:
   - Health
   - Souls
   - Quest
+  - Debris
   layers:
   - Default
   - TransparentFX

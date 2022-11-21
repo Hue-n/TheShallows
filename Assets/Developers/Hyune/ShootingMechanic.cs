@@ -57,6 +57,7 @@ public class ShootingMechanic : MonoBehaviour
     //Fireball Variables
     public bool fireballMode = false;
 
+    public GameObject fireballObj;
 
     private void Awake()
     {
@@ -68,6 +69,7 @@ public class ShootingMechanic : MonoBehaviour
         controls.Controller.Attack.performed += ctx => OnAttackButton();
 
         controls.Controller.DeathGague.performed += ctx => OnDeathGague();
+        controls.Controller.FireballRounds.performed += ctx => ToggleFireball();
     }
 
     public void OnDeathGague()
@@ -509,13 +511,20 @@ public class ShootingMechanic : MonoBehaviour
     #region Jack's Fireball Code
     public void ToggleFireball()
     {
-        fireballMode = !fireballMode;
         if (fireballMode)
+            fireballMode = false;
+
+        if (GetComponent<PlayerCon_KrakenQuest>().fbAmmo > 0 && !fireballMode)
+        fireballMode = true;
+
+            if (fireballMode)
         {
+            fireballObj.SetActive(true);
             canShoot = false;
             SetCurrentState(ShootStates.idle);
         } else
         {
+            fireballObj.SetActive(false);
             canShoot = true;
         }
 
