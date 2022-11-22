@@ -512,7 +512,14 @@ public class ShootingMechanic : MonoBehaviour
     public void ToggleFireball()
     {
         if (fireballMode)
+        {
             fireballMode = false;
+            Debug.Log("Turn off");
+            fireballObj.SetActive(false);
+            canShoot = true;
+            return;
+        }
+            
 
         if (GetComponent<PlayerCon_KrakenQuest>().fbAmmo > 0 && !fireballMode)
         fireballMode = true;
@@ -524,8 +531,7 @@ public class ShootingMechanic : MonoBehaviour
             SetCurrentState(ShootStates.idle);
         } else
         {
-            fireballObj.SetActive(false);
-            canShoot = true;
+            
         }
 
     }

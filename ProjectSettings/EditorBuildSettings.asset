@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 6a739b02081e39c48bf58d540681d268
   - enabled: 1
     path: Assets/Scenes/KrakenQuest.unity
     guid: a003dc41979325948ab80b569e256e72
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LoseScreen.unity
     guid: 51c44a148b39b3e449c93e0d1ac94c4b
   m_configObjects: {}
