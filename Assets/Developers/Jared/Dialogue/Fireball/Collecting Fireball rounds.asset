@@ -10,15 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab354cf5f53f7e64a9f9ec29e186a403, type: 3}
-  m_Name: Finish- Fireball
+  m_Name: Collecting Fireball rounds
   m_EditorClassIdentifier: 
   characters:
-  - Ray "The Crazy" Idiot
-  - Ray "The Crazy" Idiot
-  - Ray "The Crazy" Idiot
+  - Ray's Secret Stash
   text:
-  - Now, I don't know what you want to blow up with those fancy new fire power of
-    yours...
-  - Now, I don't know what you want to blow up with those fancy new fire power of
-    yours...
-  - 'Something I never got to do in my life what slay a giant beast of some kind. '
+  - You have found Ray "The Crazy" Idiot's stash of fireball rounds.
