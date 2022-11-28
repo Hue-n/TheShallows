@@ -10,6 +10,7 @@ TagManager:
   - Souls
   - Quest
   - Debris
+  - Grid
   layers:
   - Default
   - TransparentFX
