@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab354cf5f53f7e64a9f9ec29e186a403, type: 3}
+  m_Name: Start- Fireball
+  m_EditorClassIdentifier: 
+  characters:
+  - Ray "The Crazy" Idiot
+  - Ray "The Crazy" Idiot
+  - Ray "The Crazy" Idiot
+  text:
+  - OoOoOOooOOoO, I AM A GHOST
+  - Haha I hope that I didn't scare you too bad, thank you for killing those other
+    ghosts, those guys were jerks.
+  - You look like someone who likes explosions. Now that I am a ghost I can't enjoy
+    them the same way you can.
+  - I have a secret stash of fireball rounds that I keep in Barrel Beach.
+  - If you can find them, you can have them.
