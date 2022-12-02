@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("WaveSurvival");
+        SceneManager.LoadScene("KrakenQuest");
     }
 
     public void controlsMenu()

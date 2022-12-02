@@ -88,7 +88,7 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _Deep: 1
-    - _DepthFade: 5.84
+    - _DepthFade: 5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -101,14 +101,14 @@ Material:
     - _GlossyReflections: 0
     - _Height: 0.02
     - _Metallic: 0
-    - _NoiseScale: 3
+    - _NoiseScale: 0.6
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 1
     - _QueueOffset: 8
     - _ReceiveShadows: 1
     - _Shallow: 1
-    - _Smoothnes: -0.1
+    - _Smoothnes: 0.1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
