@@ -29,6 +29,10 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
     public bool fireballUnlocked;
     public bool lanternUnlocked;
 
+    public bool isDamned;
+    public float timeDamned = 5f;
+    public float damnedTimer;
+
     //public bool isMoving;
 
     [SerializeField] private float currentSpeed;
@@ -70,13 +74,40 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         currentHP = maxHP;
         Cursor.visible = false;
 
+
+
         SetFBAmmoText();
         SetSoulsText();
     }
 
     private void Update()
     {
-        moveDir = transform.forward * currentSpeed;    
+        moveDir = transform.forward * currentSpeed;
+
+        if (souls >= 1)
+        {
+            if(Input.GetKey("???"))
+            {
+                isDamned = true;
+                damnedTimer = timeDamned;
+                souls = souls - 1;
+                SetSoulsText();
+            }
+        } 
+
+        if (isDamned)
+        {
+            damnedTimer -= Time.deltaTime;
+            canTakeColDMG = false;
+            // GetComponent<Collider>(false);
+            maxSpeed = maxSpeed * 2;
+            maxTurn = maxTurn * 2;
+            if (damnedTimer < 0)
+                isDamned = false;
+                canTakeColDMG = true;
+                maxSpeed = maxSpeed / 2;
+                maxTurn = maxTurn / 2;
+        }
     }
 
     public void OnMovement(Vector3 input)
