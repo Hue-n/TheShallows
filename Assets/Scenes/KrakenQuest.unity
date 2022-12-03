@@ -12089,6 +12089,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
+      propertyPath: Lantern
+      value: 
+      objectReference: {fileID: 8300000, guid: 7dda09a4f9d54b24bbe1ca1203f5764d, type: 3}
+    - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
       propertyPath: maxTurn
       value: 0.7
       objectReference: {fileID: 0}
@@ -12101,6 +12105,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1155024561}
     - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
+      propertyPath: ItemPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f89e1a2213e5314d81d8a9374b79895, type: 3}
+    - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
       propertyPath: fbAmmoText
       value: 
       objectReference: {fileID: 1991273841}
@@ -12112,6 +12120,10 @@ PrefabInstance:
       propertyPath: speedScalar
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 3185364350152235616, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
+      propertyPath: Fireball
+      value: 
+      objectReference: {fileID: 8300000, guid: d6d0eb50ac447d74c9433e283f3191fc, type: 3}
     - target: {fileID: 6471380584745181342, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
       propertyPath: mechanic
       value: 
@@ -24548,12 +24560,12 @@ Transform:
   - {fileID: 533696665}
   - {fileID: 93698498}
   - {fileID: 2021289546}
-  - {fileID: 2133247897}
   - {fileID: 2039249283}
   - {fileID: 1552163534}
   - {fileID: 716553673}
   - {fileID: 734375223}
   - {fileID: 641756579}
+  - {fileID: 2133247897}
   - {fileID: 187677983}
   - {fileID: 374535267}
   - {fileID: 1273547793}

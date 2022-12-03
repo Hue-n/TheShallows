@@ -12,6 +12,8 @@ public class FireballCone : MonoBehaviour
 
     private bool canShoot = true;
 
+    public AudioClip Fireball;
+
     private void Awake()
     {
         controls = new DefaultControls();
@@ -39,6 +41,7 @@ public class FireballCone : MonoBehaviour
             playerCon.SetFBAmmoText();
             StartCoroutine(Timer());
             canShoot = false;
+            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, Fireball, 1f);
         }
          
 

@@ -33,6 +33,10 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
     public float timeDamned = 5f;
     public float damnedTimer;
 
+    public AudioClip Lantern;
+
+    public AudioClip ItemPickup;
+
     //public bool isMoving;
 
     [SerializeField] private float currentSpeed;
@@ -92,6 +96,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
                 damnedTimer = timeDamned;
                 souls = souls - 1;
                 SetSoulsText();
+                AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, Lantern, 1f);
             }
         } 
 
@@ -185,6 +190,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
             SetFBAmmoText();
 
             Destroy(collider.gameObject);
+            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, ItemPickup, 1f);
         }
 
         if (collider.tag == "Health")
@@ -194,6 +200,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
                 currentHP = currentHP + 25f;
 
                 Destroy(collider.gameObject);
+                AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, ItemPickup, 1f);
             }
         }
 
@@ -203,6 +210,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
             SetSoulsText();
 
             Destroy(collider.gameObject);
+            AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, ItemPickup, 1f);
         }
     }
 
