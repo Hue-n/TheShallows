@@ -31,7 +31,6 @@ public class CreatureAI : Enemy
         if (enemyStats != null)
         SetStats();
 
-        
     }
 
     private void SetStats()
@@ -41,14 +40,6 @@ public class CreatureAI : Enemy
         agent.speed = enemyStats.spd;
         agent.angularSpeed = enemyStats.rotSpd;
         attackRange = enemyStats.attackRange;
-
-
-
-        
-        //frontSensorPos = enemyStats.sensorPos;
-        //sensorLength = enemyStats.sensorLength;
-        
-        //set navmesh stats
 
     }
 
