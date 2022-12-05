@@ -18,7 +18,7 @@ MonoBehaviour:
   returnText: Return to Ray  with the fireballs
   objectiveMax: 5
   qType: 0
-  FireballReward: 0
+  FireballReward: 5
   SoulReward: 0
   startDialogue: {fileID: 11400000, guid: ed1d43149812a2e4a905f2d519813b5b, type: 2}
   midquestDialogue: {fileID: 11400000, guid: 877815c50becce14ba5b3673d33d2026, type: 2}

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestName: Hunt For Ghost Souls
   QuestDescription: Go to Deadman's Sands and collect
-  QuestRequirements: Kill 2 Ghost Ships
-  returnText: return to carl for the reward
-  objectiveMax: 5
+  QuestRequirements: Kill 5 Ghost Ships
+  returnText: Return to carl for the reward
+  objectiveMax: 1
   qType: 1
   FireballReward: 0
-  SoulReward: 0
+  SoulReward: 5
   startDialogue: {fileID: 11400000, guid: 27df28df500451e46b65779a9847d69f, type: 2}
   midquestDialogue: {fileID: 11400000, guid: ccaac9cf8b8425d46b47fe23e5ee4248, type: 2}
   finishDialogue: {fileID: 11400000, guid: 7497fa1270614b1479e69c8d69a8c06a, type: 2}

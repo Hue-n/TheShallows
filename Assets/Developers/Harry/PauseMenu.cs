@@ -49,7 +49,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
         animator.SetBool("PauseIsOpen", false);
-
+        pauseMenuUI.SetActive(false);
         //clear selected object 
         EventSystem.current.SetSelectedGameObject(null);
     }
