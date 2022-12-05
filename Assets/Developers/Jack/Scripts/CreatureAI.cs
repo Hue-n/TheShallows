@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class CreatureAI : Enemy
 {
@@ -18,6 +19,7 @@ public class CreatureAI : Enemy
     public float dropRate;
     public List<GameObject> drops;
 
+    public bool isKrak;
 
     // Start is called before the first frame update
     void Start()
@@ -124,5 +126,10 @@ public class CreatureAI : Enemy
     {
         FindObjectOfType<ScoreKeeper>().AddScore(enemyStats.points);
         Drop();
+
+        if (isKrak)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

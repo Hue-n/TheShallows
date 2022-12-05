@@ -82,7 +82,7 @@ public class NPC : MonoBehaviour
                     
                     // add to quest log
                     GameObject[] logs = GameObject.FindGameObjectsWithTag("Quest");
-                    Vector2 newLoc = new Vector2(-70, 380 + (-100 * logs.Length));
+                    Vector2 newLoc = new Vector2(-70, 380 + (-200 * logs.Length));
                     GameObject newQuest = Instantiate(questPrefab, questContainer.transform);
                     newQuest.GetComponent<RectTransform>().anchoredPosition = newLoc;
                     GameUI.Instance.AddQuest(newQuest, quest);
