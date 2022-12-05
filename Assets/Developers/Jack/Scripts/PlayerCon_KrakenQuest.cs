@@ -9,6 +9,11 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
 {
     public DefaultControls controls;
 
+    public GameObject questContainer;
+    public GameObject defaultQuest;
+    public Quest quest;
+    public int questID;
+
     public float maxHP = 100;
     public float currentHP;
 
@@ -80,10 +85,15 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         currentHP = maxHP;
         Cursor.visible = false;
 
-
-
         SetFBAmmoText();
         SetSoulsText();
+
+        GameObject[] logs = GameObject.FindGameObjectsWithTag("Quest");
+        Vector2 newLoc = new Vector2(-70, 280 + (-100 * logs.Length));
+        GameObject newQuest = Instantiate(defaultQuest, questContainer.transform);
+        newQuest.GetComponent<RectTransform>().anchoredPosition = newLoc;
+        GameUI.Instance.AddQuest(newQuest, quest);
+        questID = GameUI.Instance.GetComponent<GameUI>().questList.Count - 1;
     }
 
     private void Update()

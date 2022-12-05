@@ -12242,6 +12242,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
+      propertyPath: quest
+      value: 
+      objectReference: {fileID: 11400000, guid: 78d9aea8c5a3473498bba97b9bcbe037, type: 2}
+    - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
       propertyPath: fbAmmo
       value: 5
       objectReference: {fileID: 0}
@@ -12277,6 +12281,14 @@ PrefabInstance:
       propertyPath: speedScalar
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
+      propertyPath: defaultQuest
+      value: 
+      objectReference: {fileID: 6631468022513956483, guid: c31711471f6873e449c08968937e54c3, type: 3}
+    - target: {fileID: 2726783483663169660, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
+      propertyPath: questContainer
+      value: 
+      objectReference: {fileID: 2008644771}
     - target: {fileID: 3185364350152235616, guid: 266f27387c9c1f447a2d7548867a39c9, type: 3}
       propertyPath: Fireball
       value: 
