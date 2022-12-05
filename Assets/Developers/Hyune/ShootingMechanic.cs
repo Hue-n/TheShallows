@@ -14,6 +14,8 @@ public enum ShootStates
 
 public class ShootingMechanic : MonoBehaviour
 {
+    public int maxTime = 5;
+
     public bool canShoot = true;
 
     public static event OnShootingMechanic OnShootingMechanic;
@@ -425,7 +427,6 @@ public class ShootingMechanic : MonoBehaviour
 
         userInput = false;
 
-        float maxTime = 2f;
         float timer = 0f;
 
         float currentValue = Random.Range(0, 100);

@@ -63,11 +63,13 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         controls = new DefaultControls();
 
         controls.Controller.Movement.performed += ctx => OnMovement(ctx.ReadValue<Vector2>());
+        controls.Controller.Lantern.performed += ctx => ActivateLantern();
     }
 
     private void OnDestroy()
     {
         controls.Controller.Movement.performed -= ctx => OnMovement(ctx.ReadValue<Vector2>());
+        controls.Controller.Lantern.performed += ctx => ActivateLantern();
     }
 
     // Start is called before the first frame update
@@ -88,17 +90,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
     {
         moveDir = transform.forward * currentSpeed;
 
-        if (souls >= 1)
-        {
-            if(Input.GetKey("???"))
-            {
-                isDamned = true;
-                damnedTimer = timeDamned;
-                souls = souls - 1;
-                SetSoulsText();
-                AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, Lantern, 1f);
-            }
-        } 
+        
 
         if (isDamned)
         {
@@ -112,6 +104,18 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
                 canTakeColDMG = true;
                 maxSpeed = maxSpeed / 2;
                 maxTurn = maxTurn / 2;
+        }
+    }
+
+    public void ActivateLantern()
+    {
+        if (souls >= 1)
+        {
+                isDamned = true;
+                damnedTimer = timeDamned;
+                souls = souls - 1;
+                SetSoulsText();
+                AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, Lantern, 1f);
         }
     }
 
