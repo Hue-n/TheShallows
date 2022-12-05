@@ -121,7 +121,7 @@ public class ShipAI : Enemy
         {
             //Put Screenshake Here
             yield return Hit();
-            target.GetComponent<PlayerController>().Damage(25);
+            target.GetComponent<PlayerCon_KrakenQuest>().Damage(25);
             yield return new WaitForSeconds(1f);
 
         }
@@ -140,7 +140,7 @@ public class ShipAI : Enemy
 
         while (lerpPosition < lerpLength)
         {
-            inst.transform.position = Vector3.Lerp(bulletSpawn.position, GameManager.Instance.playerInstance.transform.position, lerpPosition / lerpLength);
+            inst.transform.position = Vector3.Lerp(bulletSpawn.position, KQGameManager.Instance.playerInstance.transform.position, lerpPosition / lerpLength);
             lerpPosition += Time.deltaTime;
             yield return null;
         }
@@ -148,7 +148,7 @@ public class ShipAI : Enemy
         AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.cannonMiss, 1f);
         Destroy(inst);
 
-        Instantiate(GameManager.Instance.missEffect, GameManager.Instance.playerInstance.transform.position, Quaternion.identity);
+        Instantiate(KQGameManager.Instance.missEffect, KQGameManager.Instance.playerInstance.transform.position, Quaternion.identity);
     }
 
     private IEnumerator Hit()
@@ -161,7 +161,7 @@ public class ShipAI : Enemy
 
         while (lerpPosition < lerpLength)
         {
-            inst.transform.position = Vector3.Lerp(bulletSpawn.position, GameManager.Instance.playerInstance.transform.position, lerpPosition / lerpLength);
+            inst.transform.position = Vector3.Lerp(bulletSpawn.position, KQGameManager.Instance.playerInstance.transform.position, lerpPosition / lerpLength);
             lerpPosition += Time.deltaTime;
             yield return null;
         }
@@ -169,7 +169,7 @@ public class ShipAI : Enemy
         AudioManager.Instance.PlaySound(AudioManagerChannels.SoundEffectChannel, AudioManager.Instance.cannonHit, 1f);
         Destroy(inst);
 
-        Instantiate(GameManager.Instance.hitEffect, GameManager.Instance.playerInstance.transform.position, Quaternion.identity);
+        Instantiate(KQGameManager.Instance.hitEffect, KQGameManager.Instance.playerInstance.transform.position, Quaternion.identity);
     }
 
     void Drop() {

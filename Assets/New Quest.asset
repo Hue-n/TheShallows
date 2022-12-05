@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1c5d768d0346f4b97f1610a0dac6fb, type: 3}
+  m_Name: New Quest
+  m_EditorClassIdentifier: 
+  QuestName: Default Quest
+  QuestDescription: Journey to the thing with the stuff.
+  QuestRequirements: Kill 2 fish
+  returnText: return to carl for the reward
+  objectiveMax: 0
+  qType: 0
+  FireballReward: 0
+  SoulReward: 0
+  startDialogue: {fileID: 0}
+  midquestDialogue: {fileID: 0}
+  finishDialogue: {fileID: 0}

@@ -140,6 +140,6 @@ public class EnemyTracker : MonoBehaviour
             isTargetable = false;
         }
 
-        GameManager.Instance.spawner.GetComponent<Enemy_Wave_Spawner>().enemiesList.Remove(gameObject);
+        //GameManager.Instance.spawner.GetComponent<Enemy_Wave_Spawner>().enemiesList.Remove(gameObject);
     }
 }
