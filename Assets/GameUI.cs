@@ -78,14 +78,16 @@ public class GameUI : MonoBehaviour
         if (stateList[currentQuest] == Quest.State.complete)
         {
             logList[currentQuest].GetComponent<QuestLog>().MarkCompleted();
-            UpdateUI();
+            
             for (int i = 0; i < stateList.Count; i++)
             {
                 if (stateList[i] != Quest.State.complete)
                 {
                     currentQuest = i;
+                    UpdateUI();
                 }
             }
+            
             //Debug.Log("Quest List " + currentQuest);
         }
 
