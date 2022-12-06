@@ -233,7 +233,7 @@ public class PlayerCon_KrakenQuest : MonoBehaviour
         fbAmmoText.text = "Fireball Rounds: " + fbAmmo.ToString();
     }
 
-    void SetSoulsText()
+    public void SetSoulsText()
     {
         soulsText.text = "Souls: " + souls.ToString();
     }

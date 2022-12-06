@@ -111,6 +111,11 @@ public class NPC : MonoBehaviour
                             //UnityEngine.Debug.Log("Finish Talk");
                             dialogueObject.GetComponent<KQ_Dialogue>().AssignDialogue(quest.finishDialogue);
                             GameUI.Instance.stateList[questID] = Quest.State.complete;
+                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCon_KrakenQuest>().fbAmmo += quest.FireballReward;
+                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCon_KrakenQuest>().souls += quest.SoulReward;
+                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCon_KrakenQuest>().SetFBAmmoText();
+                            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCon_KrakenQuest>().SetSoulsText();
+
                             GameUI.Instance.UpdateUI();
                             quest = null;
                             break;
