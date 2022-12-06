@@ -15329,7 +15329,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 309659731, guid: 6e864fa5fbbeb6d4fae703dd174a3d7e, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2019392870, guid: 6e864fa5fbbeb6d4fae703dd174a3d7e, type: 3}
       propertyPath: m_Constraints
